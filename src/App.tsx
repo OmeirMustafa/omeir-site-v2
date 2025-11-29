@@ -298,15 +298,15 @@ const Contact = () => (
         If you need an engineer who understands both code and product, let's connect.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        {/* CORRECTED EMAIL LINK */}
+        {/* CORRECTED EMAIL LINK - Added Subject */}
         <a 
-          href="mailto:kaziomeirmustafa@gmail.com" 
+          href="mailto:kaziomeirmustafa@gmail.com?subject=Inquiry%20about%20your%20AI%20Portfolio" 
           className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:scale-105 transition-transform flex items-center justify-center gap-2"
         >
           <Mail size={20} /> Email Me
         </a>
         
-        {/* CORRECTED LINKEDIN LINK */}
+        {/* CORRECTED LINKEDIN LINK - Verified URL */}
         <a 
           href="https://www.linkedin.com/in/omeir-mustafa-uddin/" 
           target="_blank" 
