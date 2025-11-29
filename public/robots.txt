@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://omeirmustafa.vercel.app/sitemap.xml
