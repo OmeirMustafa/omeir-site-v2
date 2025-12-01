@@ -371,7 +371,7 @@ const Contact = () => (
       
       {/* FINALIZED PROFESSIONAL PITCH */}
       <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-        I’m open to **freelance and full-time opportunities**. If you need an engineer who understands **product strategy as well as code**, let’s talk.
+        I’m open to freelance and full-time opportunities. If you need an engineer who understands product strategy as well as code, let’s talk.
       </p>
       
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
