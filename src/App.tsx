@@ -223,50 +223,31 @@ const About = () => (
 );
 
 const FeaturedProject = () => {
-  const { scrollYProgress } = useViewportScroll();
-  const rotateX = useTransform(scrollYProgress, [0.3, 0.7], [0, 20]); // Rotate slightly on scroll
-  const scale = useTransform(scrollYProgress, [0.3, 0.7], [0.9, 1.0]); // Scale slightly on scroll
+  // Removed useViewportScroll, useTransform for performance on Parallax
+  const [currentImage, setCurrentImage] = useState('/dashboard.png'); // State added for the next dynamic image upgrade
 
-  const [currentImage, setCurrentImage] = useState('/dashboard.png');
-
-  useEffect(() => {
-    const images = ['/dashboard.png', '/dashboard2.png']; // Add all your project images here
-    let currentIndex = 0;
-
-    const interval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % images.length;
-      setCurrentImage(images[currentIndex]);
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, []);
+  // Continuous floating animation
+  const continuousFloatAndRotate = {
+    animate: { y: [0, -10, 0], rotateY: [0, 2, -2, 0] }, 
+    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+  };
 
   return (
-    <section id="work" className="py-32 relative">
+    <section id="work" className="py-24 relative"> {/* REDUCED PADDING */}
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="flex items-center gap-4 mb-16 opacity-70">
           <div className="h-px bg-cyan-500 flex-grow shadow-[0_0_10px_#06b6d4]"></div>
-          
-          {/* ANIMATED FLAGSHIP PROJECT TEXT */}
-          <motion.span 
-            initial={{ opacity: 0.5, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
-            className="text-xs font-mono text-cyan-400 tracking-[0.3em] uppercase drop-shadow-[0_0_5px_#06b6d4]"
-          >
-            Flagship Project
-          </motion.span>
-          
+          <span className="text-xs font-mono text-cyan-400 tracking-[0.3em] uppercase drop-shadow-[0_0_5px_#06b6d4]">Flagship Project</span>
           <div className="h-px bg-cyan-500 flex-grow shadow-[0_0_10px_#06b6d4]"></div>
         </div>
 
         <motion.div 
           whileHover={{ scale: 1.01 }}
-          className="glass-panel rounded-[2.5rem] overflow-hidden border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-[0_0_50px_rgba(6,182,212,0.1)] hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] transition-all duration-500"
+          className="glass-panel rounded-[2.5rem] overflow-hidden border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-2xl shadow-black/50"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* TEXT CONTENT */}
-            <div className="p-10 md:p-20 flex flex-col justify-center relative">
+            <div className="p-8 md:p-16 flex flex-col justify-center relative"> 
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500/5 to-transparent opacity-20"></div>
               
               <div className="relative z-10">
@@ -299,22 +280,18 @@ const FeaturedProject = () => {
               </div>
             </div>
 
-            {/* VISUAL MOCKUP WITH DYNAMIC IMAGE SWITCHING */}
-            <div className="bg-black/50 p-10 flex items-center justify-center relative overflow-hidden min-h-[500px] border-l border-white/5">
+            {/* VISUAL MOCKUP */}
+            <div className="bg-black/50 p-10 flex items-center justify-center relative overflow-hidden min-h-[400px] border-l border-white/5">
               
+              {/* The Image Container with continuous float and subtle rotate */}
               <motion.div 
-                style={{ rotateX, scale }}
-                animate={{ y: [0, -15, 0], rotateY: [0, 5, -5, 0] }} // Continuous float + subtle rotate
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                // Using continuousFloatAndRotate defined outside (as per previous instructions)
+                animate={continuousFloatAndRotate.animate}
+                transition={continuousFloatAndRotate.transition}
                 className="relative w-full max-w-md rounded-2xl overflow-hidden shadow-2xl border border-white/20 group cursor-pointer"
               >
-                {/* Dynamic Image */}
-                <motion.img 
-                  key={currentImage} // Key prop forces re-render and animation on image change
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  src={currentImage} 
+                <img 
+                  src={currentImage} // Using state for future dynamic images
                   alt="SeeThruo Dashboard" 
                   className="w-full h-full object-cover bg-slate-800"
                   onError={(e) => {
@@ -330,7 +307,7 @@ const FeaturedProject = () => {
                 {/* Floating Badge */}
                 <div className="absolute -right-6 top-12 bg-black/80 backdrop-blur-md p-4 rounded-xl border border-green-500/30 shadow-[0_0_30px_rgba(34,197,94,0.2)] transform translate-x-4">
                    <div className="flex items-center gap-3">
-                      <motion.div variants={pulse} animate="animate" className="w-2 h-2 rounded-full bg-green-500"></motion.div>
+                      <div className="w-2 h-2 rounded-full bg-green-500 animate-[ping_1.5s_ease-in-out_infinite]"></div>
                       <span className="text-sm font-mono text-green-400 font-bold">System Online</span>
                    </div>
                 </div>
@@ -342,7 +319,6 @@ const FeaturedProject = () => {
     </section>
   );
 };
-
 const Skills = () => {
   return (
     <section id="stack" className="py-32 relative">
