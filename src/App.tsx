@@ -220,6 +220,7 @@ const About = () => (
               <item.icon className={`w-7 h-7 ${item.color}`} />
             </div>
             <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
+            {/* FIX: Increased text size from text-sm to text-base */}
             <p className="text-slate-400 leading-relaxed text-base">{item.desc}</p>
           </motion.div>
         ))}
@@ -231,9 +232,9 @@ const About = () => (
 const FeaturedProject = () => {
   const [currentImage, setCurrentImage] = useState('/dashboard.png'); 
 
-  // Continuous floating animation for the project image
+  // **FIX: Increased animation severity for noticeable float**
   const continuousFloatAndRotate = {
-    animate: { y: [0, -20, 0], rotateY: [0, 4, -4, 0] }, 
+    animate: { y: [0, -20, 0], rotateY: [0, 4, -4, 0] }, // Increased float to 20px, rotate to 4 deg
     transition: { duration: 7, repeat: Infinity, ease: "easeInOut" }
   };
 
@@ -244,7 +245,7 @@ const FeaturedProject = () => {
     const interval = setInterval(() => {
       currentIndex = (currentIndex + 1) % images.length;
       setCurrentImage(images[currentIndex]);
-    }, 5000); // Change image every 5 seconds
+    }, 5000); 
 
     return () => clearInterval(interval); 
   }, []);
@@ -256,7 +257,7 @@ const FeaturedProject = () => {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* HEADER LINE (Moving Light Effect) */}
-        <div className="flex items-center gap-4 mb-8 opacity-70">
+        <div className="flex items-center gap-4 mb-8 opacity-70"> {/* Reduced mb-10 to mb-8 */}
           <div className="h-px flex-grow relative overflow-hidden">
             <motion.div 
               className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/80 to-transparent"
@@ -296,15 +297,16 @@ const FeaturedProject = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* TEXT CONTENT */}
-            <div className="p-8 md:p-14 flex flex-col justify-center relative"> {/* Reduced from p-16 */}
+            <div className="p-8 md:p-12 flex flex-col justify-center relative"> {/* Reduced internal padding */}
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500/5 to-transparent opacity-20"></div>
               
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
                   <ScanEye className="w-8 h-8 text-cyan-400" />
                 </div>
-                <h3 className="text-4xl font-bold text-white mb-3 tracking-tight">SeeThruo</h3>
+                <h3 className="text-4xl font-bold text-white mb-3 tracking-tight">SeeThruo</h3> {/* Adjusted size */}
                 <p className="text-lg text-cyan-300/80 mb-6 font-mono">Decision Intelligence Engine</p> 
+                {/* FIX: Increased text size for project description */}
                 <p className="text-slate-400 mb-8 leading-relaxed text-md"> 
                   A proprietary AI system that decodes corporate comms, media bias, and hidden intent. 
                   Built with a forensic "Glass & Glow" interface for rapid information processing.
@@ -312,7 +314,7 @@ const FeaturedProject = () => {
                 
                 <div className="flex flex-wrap gap-3 mb-8">
                   {['Gemini 2.0 Flash', 'React 18', 'Vercel Edge', 'Tailwind'].map((tag) => (
-                    <span key={tag} className="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-xs text-cyan-100 font-mono">
+                    <span key={tag} className="px-3 py-1.5 rounded-md bg-white/5 border border-white/5 text-slate-300 text-xs font-medium font-mono">
                       {tag}
                     </span>
                   ))}
@@ -329,8 +331,8 @@ const FeaturedProject = () => {
               </div>
             </div>
 
-            {/* VISUAL MOCKUP */}
-            <div className="bg-black/50 p-6 flex items-center justify-center relative overflow-hidden min-h-[350px] border-l border-white/5">
+            {/* VISUAL MOCKUP - Height reduced and animation increased */}
+            <div className="bg-black/50 p-6 flex items-center justify-center relative overflow-hidden min-h-[300px] border-l border-white/5">
               
               <motion.div 
                 animate={continuousFloatAndRotate.animate}
