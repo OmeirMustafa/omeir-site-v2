@@ -368,9 +368,10 @@ const Contact = () => (
       <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
         Let's Build.
       </h2>
+      
+      {/* FINALIZED PROFESSIONAL PITCH */}
       <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-        I am currently open to freelance projects and full-time opportunities.
-        If you need an engineer who understands both code and product, let's connect.
+        I’m open to **freelance and full-time opportunities**. If you need an engineer who understands **product strategy as well as code**, let’s talk.
       </p>
       
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -378,7 +379,7 @@ const Contact = () => (
           whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255,255,255,0.2)" }}
           href="https://mail.google.com/mail/?view=cm&fs=1&to=kaziomeirmustafa@gmail.com&su=Portfolio%20Inquiry" 
           target="_blank" 
-          className="px-10 py-5 bg-white text-black font-bold rounded-2xl flex items-center justify-center gap-3"
+          className="px-10 py-5 bg-white text-black font-bold rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-white/10"
         >
           <Mail size={20} /> Email Me
         </motion.a>
