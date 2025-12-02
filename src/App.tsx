@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+ import React, { useState, useEffect } from 'react';
 
 // --- ICONS ---
 const ArrowRight = () => (
@@ -17,7 +17,6 @@ const LayoutIcon = () => (
 function App() {
   const [scrolled, setScrolled] = useState(false);
 
-  // Add shadow to nav on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -84,7 +83,7 @@ function App() {
               <h2 className="text-3xl font-bold text-slate-900 mb-2">Selected Projects</h2>
               <p className="text-slate-500">Recent commercial and personal work.</p>
             </div>
-            <a href="https://github.com" className="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center">
+            <a href="https://github.com/kaziomeir" className="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center">
               View GitHub <ExternalLink />
             </a>
           </div>
