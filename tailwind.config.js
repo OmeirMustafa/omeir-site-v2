@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -13,8 +14,8 @@ export default {
       },
       colors: {
         void: {
-          900: '#020617', // Deepest black/blue
-          800: '#0F172A', // Secondary
+          900: '#020617', 
+          800: '#0F172A', 
         },
         quantum: {
           cyan: '#22d3ee',
@@ -27,13 +28,24 @@ export default {
         'iridescent-gradient': 'linear-gradient(to right, #22d3ee, #3b82f6, #a855f7, #ec4899)',
       },
       animation: {
-        'shimmer': 'shimmer 2s linear infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'neon-glow-border': 'neon-glow-border 4s ease-in-out infinite alternate',
       },
       keyframes: {
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        }
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        'neon-glow-border': {
+            '0%, 100%': {
+              'box-shadow': '0 0 5px rgba(6, 182, 212, 0.4), 0 0 15px rgba(6, 182, 212, 0.4)',
+              'border-color': 'rgba(6, 182, 212, 0.4)',
+            },
+            '50%': {
+              'box-shadow': '0 0 8px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.6)',
+              'border-color': 'rgba(6, 182, 212, 0.6)',
+            },
+          },
       }
     },
   },
