@@ -361,7 +361,7 @@ const FeaturedProject = () => {
       </div>
     </section>
   );
-};
+}; 
 
 const Skills = () => (
   <section id="stack" className="py-32 relative">
