@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-export default { 
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}" // Explicitly include components folder
   ],
   theme: {
     extend: {
@@ -19,7 +20,6 @@ export default {
       },
       animation: {
         'blob': 'blob 7s infinite',
-        // This generates the class: "animate-neon-glow-border"
         'neon-glow-border': 'neon-glow-border 4s ease-in-out infinite alternate',
       },
       keyframes: {
@@ -32,15 +32,15 @@ export default {
         'neon-glow-border': {
             '0%, 100%': {
               'box-shadow': '0 0 5px rgba(6, 182, 212, 0.4), 0 0 15px rgba(6, 182, 212, 0.4)',
-              'border-color': 'rgba(6, 182, 212, 0.6)',
+              'border-color': 'rgba(6, 182, 212, 0.4)',
             },
             '50%': {
-              'box-shadow': '0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.6)',
-              'border-color': 'rgba(6, 182, 212, 1)',
+              'box-shadow': '0 0 8px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.6)',
+              'border-color': 'rgba(6, 182, 212, 0.6)',
             },
           },
       }
     },
   },
   plugins: [],
-} 
+}
