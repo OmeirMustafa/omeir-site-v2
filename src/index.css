@@ -7,17 +7,12 @@
 }
 
 body {
-    background-color: #020617;
+    background-color: #020617; /* Void 900 */
     color: #e2e8f0;
     overflow-x: hidden;
 }
 
-/* Utility for the glowing border animation */
-.neon-border-glow {
-    animation: neon-border 3s ease-in-out infinite alternate;
-}
-
-/* Premium Dark Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -26,9 +21,14 @@ body {
     background: #020617; 
 }
 ::-webkit-scrollbar-thumb {
-    background: #1e293b; 
+    background: linear-gradient(to bottom, #3b82f6, #a855f7);
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: linear-gradient(to bottom, #22d3ee, #ec4899);
+}
+
+::selection {
+    background: rgba(34, 211, 238, 0.2);
+    color: #fff;
 }
