@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink, ArrowRight, ShieldAlert, Layout, ChevronDown, Zap, ScanEye, Brain, GitBranch } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Sparkles, ShieldAlert, Layout, ChevronDown, Cpu, Globe, Zap, ScanEye, Brain, Layers, GitBranch } from 'lucide-react';
 
 // --- PHYSICS & ANIMATION UTILS ---
 
 // 3D Tilt Card Effect
-const TiltCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+const TiltCard = ({ children, className = "" }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-100, 100], [15, -15]);
@@ -41,7 +41,7 @@ const TiltCard = ({ children, className = "" }: { children: React.ReactNode, cla
         style={{
           background: useMotionTemplate`radial-gradient(200px circle at ${x}px ${y}px, rgba(34, 211, 238, 0.15), transparent 80%)`
         }}
-        className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"
+        className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-inherit pointer-events-none"
       />
     </motion.div>
   );
@@ -73,7 +73,7 @@ const AuroraBackground = () => {
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="absolute bottom-[-50%] right-[-50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-quantum-cyan/20 via-quantum-purple/10 to-transparent blur-[150px]"
       />
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay"></div>
+      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay"></div> {/* Optional Noise texture if you have one, otherwise it's subtle */}
     </div>
   );
 };
@@ -163,7 +163,7 @@ const Hero = () => {
         <motion.h1 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, ease: "[0.16, 1, 0.3, 1]" }} // Custom spring-like ease
           className="font-heading text-6xl md:text-8xl font-black tracking-tighter text-white leading-[1.1] mb-10"
         >
           Architecting <br />
@@ -199,8 +199,7 @@ const Hero = () => {
 
           <a 
             href="https://seethruo-engine.vercel.app/" 
-            target="_blank"
-            rel="noreferrer"
+            target="_blank" 
             className="px-8 py-4 text-white font-bold rounded-xl border border-white/10 flex items-center gap-2 hover:bg-white/5 transition-all group"
           >
             Launch SeeThruo <ExternalLink size={20} className="text-quantum-cyan group-hover:rotate-45 transition-transform duration-300" />
@@ -258,7 +257,7 @@ const About = () => (
 
 const FeaturedProject = () => {
   const [currentImage, setCurrentImage] = useState('/dashboard.png'); 
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ['10%', '-10%']); // Parallax effect on image
 
@@ -273,7 +272,7 @@ const FeaturedProject = () => {
   }, []);
 
   return (
-    <section id="work" className="py-32 relative z-10" ref={ref as any}> 
+    <section id="work" className="py-32 relative z-10" ref={ref}> 
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Quantum Scanner Header */}
@@ -281,7 +280,7 @@ const FeaturedProject = () => {
           <div className="h-px flex-grow bg-gradient-to-r from-transparent via-quantum-blue/50 to-transparent relative overflow-hidden">
             <motion.div 
               className="absolute inset-0 bg-quantum-cyan blur-[2px]"
-              initial={{ x: '-100%' }} animate={{ x: '200%' }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              initial={{ x: '-100%' }} animate={{ x: '200%' }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} else
             />
           </div>
           <span className="font-mono text-quantum-cyan tracking-[0.4em] uppercase font-bold text-sm relative">
@@ -316,7 +315,7 @@ const FeaturedProject = () => {
               </p>
               
               <div className="flex flex-wrap gap-3 mb-12">
-                {['Gemini 2.0 Flash', 'React 18', 'Vercel Edge', 'Tailwind', 'Framer Motion'].map((tag) => (
+                {['Gemini 2.0 Flash', 'React 18', 'Vercel Edge', 'Tailwind', 'Framer Motion'].map((tag, i) => (
                   <span key={tag} className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-quantum-cyan font-mono font-medium hover:bg-white/10 hover:border-quantum-cyan/30 transition-all">
                     {tag}
                   </span>
@@ -324,10 +323,10 @@ const FeaturedProject = () => {
               </div>
 
               <div className="flex flex-wrap gap-6">
-                <a href="https://seethruo-engine.vercel.app/" target="_blank" rel="noreferrer" className="px-8 py-4 bg-quantum-cyan text-void-900 font-bold rounded-xl flex items-center gap-3 shadow-lg shadow-quantum-cyan/20 hover:shadow-quantum-cyan/50 hover:-translate-y-1 transition-all">
+                <a href="https://seethruo-engine.vercel.app/" target="_blank" className="px-8 py-4 bg-quantum-cyan text-void-900 font-bold rounded-xl flex items-center gap-3 shadow-lg shadow-quantum-cyan/20 hover:shadow-quantum-cyan/50 hover:-translate-y-1 transition-all">
                   Initialize System <ExternalLink size={20} />
                 </a>
-                <a href="https://github.com/OmeirMustafa/seethruo" target="_blank" rel="noreferrer" className="px-8 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-all flex items-center gap-3">
+                <a href="https://github.com/OmeirMustafa/seethruo" target="_blank" className="px-8 py-4 border border-white/20 hover:bg-white/5 text-white font-medium rounded-xl transition-all flex items-center gap-3">
                   <Github size={20} /> Source Protocol
                 </a>
               </div>
@@ -431,7 +430,7 @@ const Contact = () => (
         <a href="mailto:kaziomeirmustafa@gmail.com" className="px-12 py-6 bg-white text-void-900 font-bold text-lg rounded-2xl shadow-2xl shadow-white/10 hover:bg-quantum-cyan hover:scale-105 transition-all flex items-center justify-center gap-3">
           <Mail size={24} /> Transmit Email
         </a>
-        <a href="https://www.linkedin.com/in/omeir-mustafa-uddin/" target="_blank" rel="noreferrer" className="px-12 py-6 bg-void-800 text-white font-bold text-lg rounded-2xl border border-white/10 hover:bg-void-700 hover:border-quantum-cyan/50 transition-all flex items-center justify-center gap-3">
+        <a href="https://www.linkedin.com/in/omeir-mustafa-uddin/" target="_blank" className="px-12 py-6 bg-void-800 text-white font-bold text-lg rounded-2xl border border-white/10 hover:bg-void-700 hover:border-quantum-cyan/50 transition-all flex items-center justify-center gap-3">
           <Linkedin size={24} /> Establish Link
         </a>
       </div>
