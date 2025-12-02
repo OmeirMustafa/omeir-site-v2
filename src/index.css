@@ -7,35 +7,17 @@
 }
 
 body {
-    background-color: #020617; /* Void 900 */
+    background-color: #020617;
     color: #e2e8f0;
     overflow-x: hidden;
 }
 
-/* The Quantum Glow utility */
-.quantum-border {
-    position: relative;
-    background-clip: padding-box;
-    border: 1px solid transparent;
+/* Utility for the glowing border animation */
+.neon-border-glow {
+    animation: neon-border 3s ease-in-out infinite alternate;
 }
 
-.quantum-border::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    z-index: -1;
-    margin: -1px;
-    border-radius: inherit;
-    background: linear-gradient(to right, #22d3ee, #a855f7);
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-}
-
-.quantum-border:hover::before {
-    opacity: 1;
-}
-
-/* Premium Scrollbar */
+/* Premium Dark Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -44,15 +26,9 @@ body {
     background: #020617; 
 }
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #3b82f6, #a855f7);
+    background: #1e293b; 
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #22d3ee, #ec4899);
-}
-
-/* Selection color */
-::selection {
-    background: rgba(34, 211, 238, 0.2); /* Cyan tint */
-    color: #fff;
+    background: #334155;
 }
