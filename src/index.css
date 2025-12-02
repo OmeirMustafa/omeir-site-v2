@@ -1,12 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
+:root {
+  font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
 }
 
+/* Base Styles */
 body {
-  background-color: #ffffff;
-  color: #0f0f0f;
+  @apply bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Utility Class for Glass Effect */
+.glass {
+  @apply bg-white/80 backdrop-blur-md border-b border-white/20;
+}
+
+/* Utility for Section Spacing */
+.section-padding {
+  @apply py-24 md:py-32;
 }
