@@ -3,47 +3,53 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        heading: ['Space Grotesk', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        // THE PEBBLE PALETTE (Warm Greys)
-        pebble: {
-          100: '#F5F5F4', // Main Background (Stone)
-          200: '#E7E5E4', // Borders
-          300: '#D6D3D1', // Accents
-          800: '#292524', // Secondary Text
-          900: '#1C1917', // Primary Text (Charcoal)
+        void: {
+          900: '#020617', // Deepest black/blue background
+          800: '#0F172A', // Secondary background
         },
-        // DAYLIGHT ACCENTS (For the "Glow")
-        accent: {
-          cyan: '#06b6d4',
+        // The iridescent energy colors
+        quantum: {
+          cyan: '#22d3ee',
           blue: '#3b82f6',
+          purple: '#a855f7',
+          pink: '#ec4899',
         }
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'iridescent-gradient': 'linear-gradient(to right, #22d3ee, #3b82f6, #a855f7, #ec4899)',
+      },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'soft-pulse': 'soft-pulse 4s ease-in-out infinite alternate',
+        'slow-pan': 'pan 20s linear infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 4s ease-in-out infinite alternate',
+        'shimmer': 'shimmer 2s linear infinite',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+        pan: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
         },
-        'soft-pulse': {
-          '0%, 100%': {
-            'box-shadow': '0 10px 40px -10px rgba(6, 182, 212, 0.2)',
-            'border-color': 'rgba(6, 182, 212, 0.3)',
-          },
-          '50%': {
-            'box-shadow': '0 20px 60px -10px rgba(59, 130, 246, 0.3)',
-            'border-color': 'rgba(59, 130, 246, 0.5)',
-          },
+        float: {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+        },
+        'pulse-glow': {
+          '0%, 100%': { opacity: 0.4, transform: 'scale(1)' },
+          '50%': { opacity: 0.8, transform: 'scale(1.1)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         }
       }
     },
