@@ -421,16 +421,17 @@ const Contact = () => (
         I am currently accepting new projects. Tell me about your goals, and let's determine if we are a good fit.
       </p>
       <div className="flex justify-center">
-        {/* NEW SINGLE BUTTON */}
+        {/* FIXED: Opens Gmail Composition Window directly */}
         <a 
-          href="mailto:omeirmustafa.work@gmail.com" 
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=omeirmustafa.work@gmail.com" 
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-8 py-4 bg-white text-void-900 font-bold rounded-full hover:bg-quantum-cyan hover:scale-105 transition-all flex items-center gap-2 text-sm shadow-xl shadow-white/10"
         >
           <MessageSquare size={18} /> Start a Conversation
         </a>
       </div>
       
-      {/* NEW FOOTER */}
       <footer className="mt-32 text-slate-600 text-[10px] uppercase tracking-widest font-mono pt-8 border-t border-white/5">
         <p>&copy; {new Date().getFullYear()} Omeir Mustafa. Systems Active. All rights reserved.</p>
       </footer>
