@@ -3,7 +3,6 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -25,32 +24,32 @@ export default {
         }
       },
       backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'iridescent-gradient': 'linear-gradient(to right, #22d3ee, #3b82f6, #a855f7, #ec4899)',
       },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'neon-glow-border': 'neon-glow-border 4s ease-in-out infinite alternate',
+        'slow-pan': 'pan 20s linear infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 4s ease-in-out infinite alternate',
         'shimmer': 'shimmer 2s linear infinite',
       },
       keyframes: {
+        pan: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
+        },
         float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+        },
+        'pulse-glow': {
+          '0%, 100%': { opacity: 0.4, transform: 'scale(1)' },
+          '50%': { opacity: 0.8, transform: 'scale(1.1)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
-        },
-        'neon-glow-border': {
-            '0%, 100%': {
-              'box-shadow': '0 0 5px rgba(6, 182, 212, 0.4), 0 0 15px rgba(6, 182, 212, 0.4)',
-              'border-color': 'rgba(6, 182, 212, 0.4)',
-            },
-            '50%': {
-              'box-shadow': '0 0 15px rgba(6, 182, 212, 0.6), 0 0 30px rgba(6, 182, 212, 0.4)',
-              'border-color': 'rgba(6, 182, 212, 0.8)',
-            },
-          },
+        }
       }
     },
   },
