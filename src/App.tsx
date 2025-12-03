@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from 'framer-motion';
 import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Sparkles, ShieldAlert, Layout, ChevronDown, Cpu, Globe, Zap, ScanEye, Brain, GitBranch } from 'lucide-react';
 
 // --- ANIMATION UTILS ---
@@ -7,8 +7,8 @@ import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Sparkles, ShieldAlert
 const TiltCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [5, -5]); 
-  const rotateY = useTransform(x, [-100, 100], [-5, 5]);
+  const rotateX = useTransform(y, [-100, 100], [15, -15]);
+  const rotateY = useTransform(x, [-100, 100], [-15, 15]);
 
   function handleMouse(event: React.MouseEvent<HTMLDivElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -29,9 +29,9 @@ const TiltCard = ({ children, className = "" }: { children: React.ReactNode, cla
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       className={`relative group transition-all duration-500 ${className}`}
     >
-      <div style={{ transform: "translateZ(10px)" }}>{children}</div>
+      <div style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}>{children}</div>
       <motion.div
-        style={{ background: useMotionTemplate`radial-gradient(120px circle at ${x}px ${y}px, rgba(34, 211, 238, 0.1), transparent 80%)` }}
+        style={{ background: useMotionTemplate`radial-gradient(200px circle at ${x}px ${y}px, rgba(34, 211, 238, 0.15), transparent 80%)` }}
         className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-inherit pointer-events-none"
       />
     </motion.div>
@@ -42,23 +42,23 @@ const AuroraBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
     <div className="absolute inset-0 bg-void-900"></div>
     <motion.div
-      animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3], rotate: [0, 45, 0] }}
+      animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3], rotate: [0, 45, 0] }}
       transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-quantum-blue/20 via-void-900 to-transparent blur-[100px]"
+      className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-quantum-blue/20 via-void-900 to-transparent blur-[120px]"
     />
     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
   </div>
 );
 
 const AnimatedDivider = () => (
-  <div className="relative h-px w-full my-16 opacity-30">
-    <div className="absolute inset-0 bg-quantum-blue/20"></div>
+  <div className="relative h-px w-full my-32">
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-quantum-blue/30 to-transparent"></div>
     <motion.div
-      className="absolute inset-0 bg-gradient-to-r from-transparent via-quantum-cyan to-transparent blur-[1px]"
+      className="absolute inset-0 bg-gradient-to-r from-transparent via-quantum-cyan to-transparent blur-sm"
       initial={{ x: '-100%', opacity: 0 }}
-      animate={{ x: '100%', opacity: [0, 0.5, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-      style={{ width: '100%' }}
+      animate={{ x: '100%', opacity: [0, 1, 0] }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      style={{ width: '150%' }}
     />
   </div>
 );
@@ -66,26 +66,20 @@ const AnimatedDivider = () => (
 // --- SECTIONS ---
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-void-900/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <div className="font-heading font-bold text-xl tracking-wider text-white flex items-center gap-1 flex-shrink-0">
-          Omeir <span className="text-quantum-cyan">Mustafa</span>
+    <nav className="fixed top-0 w-full z-50 bg-void-900/60 backdrop-blur-xl border-b border-white/5 py-4">
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-quantum-cyan/50 to-transparent opacity-50"></div>
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="font-heading font-bold text-2xl tracking-wider text-white flex items-center gap-2">
+          Omeir<span className="text-quantum-cyan">.</span>M
         </div>
-        <div className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
+        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-300">
           {['About', 'Work', 'Stack', 'Contact'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-quantum-cyan transition-colors">{item}</a>
+            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-white transition-colors">{item}</a>
           ))}
         </div>
-        <a href="#contact" className="px-5 py-2 rounded-lg border border-white/10 text-xs font-bold hover:bg-white/5 hover:text-white transition-all text-slate-300">
-          Let's Talk
+        <a href="#contact" className="px-6 py-2.5 font-bold text-sm rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all">
+          Contact
         </a>
       </div>
     </nav>
@@ -93,57 +87,61 @@ const Navbar = () => {
 };
 
 const Hero = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <AuroraBackground />
-      <div className="max-w-4xl mx-auto px-6 text-center z-10 relative">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-quantum-cyan mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-quantum-cyan animate-pulse"></span>
-          AVAILABLE FOR NEW PROJECTS
+      <motion.div style={{ y }} className="max-w-5xl mx-auto px-6 text-center z-10 pt-20">
+        <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-quantum-cyan mb-12 backdrop-blur-md">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-quantum-cyan opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-quantum-cyan"></span>
+          </span>
+          <span className="tracking-widest uppercase">System Status: Online</span>
         </div>
 
-        <h1 className="font-heading text-4xl md:text-6xl font-bold tracking-tighter text-white leading-[1.1] mb-6">
-          Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-quantum-cyan to-quantum-purple">Intelligent</span><br/>
-          Web Interfaces.
+        <h1 className="font-heading text-6xl md:text-8xl font-black tracking-tighter text-white leading-[1.1] mb-10">
+          Architecting <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-quantum-cyan via-quantum-blue to-quantum-purple">Cognitive</span> <br />
+          Infrastructure.
         </h1>
 
-        <p className="text-lg text-slate-400 max-w-lg mx-auto mb-10 leading-relaxed">
-          I turn complex AI logic into clean, forensic-grade software. 
-          Specializing in <strong>LLM Integration</strong> and <strong>High-Performance UX</strong>.
+        <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-16 leading-relaxed">
+          Synthesizing human intent with machine velocity. I build full-stack intelligence systems.
         </p>
 
-        <div className="flex justify-center gap-4">
-          <a href="#work" className="px-6 py-2.5 bg-white text-void-900 font-bold rounded-lg hover:bg-quantum-cyan transition-colors text-sm flex items-center gap-2">
-             View Work <ArrowRight size={16} />
+        <div className="flex justify-center gap-6">
+          <a href="#work" className="px-8 py-4 bg-white text-void-900 font-bold rounded-xl hover:bg-quantum-cyan transition-colors">
+             Explore Work
           </a>
-          <a href="https://seethruo-engine.vercel.app/" target="_blank" className="px-6 py-2.5 text-white font-bold rounded-lg border border-white/10 hover:bg-white/5 transition-all text-sm">
-            Launch App
+          <a href="https://seethruo-engine.vercel.app/" target="_blank" className="px-8 py-4 text-white font-bold rounded-xl border border-white/10 hover:bg-white/5 transition-all">
+            Launch SeeThruo
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
 
 const About = () => (
-  <section id="about" className="py-20 relative z-10">
-    <div className="max-w-5xl mx-auto px-6">
-      <div className="text-center mb-12">
-        <h2 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4">How I Work</h2>
-        <p className="text-sm text-slate-400 max-w-2xl mx-auto">Ruthless prioritization of functionality, security, and user experience.</p>
+  <section id="about" className="py-32 relative z-10">
+    <div className="max-w-6xl mx-auto px-6">
+      <div className="text-center mb-24">
+        <h2 className="font-heading text-4xl md:text-6xl font-bold text-white mb-8 tracking-tighter">The Builder's Protocol</h2>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
-          { icon: Zap, title: "Speed", desc: "Rapid prototyping to find market fit faster.", color: "text-yellow-400" },
-          { icon: ShieldAlert, title: "Security", desc: "Zero-trust architecture. No leaked keys.", color: "text-red-400" },
-          { icon: Brain, title: "Intelligence", desc: "Interfaces designed for clarity and trust.", color: "text-quantum-cyan" },
+          { icon: Zap, title: "Velocity", desc: "Fastest path to product-market fit.", color: "text-yellow-400" },
+          { icon: ShieldAlert, title: "Security", desc: "Zero-trust environments.", color: "text-red-400" },
+          { icon: Brain, title: "Cognition", desc: "Interfaces designed for clarity.", color: "text-quantum-cyan" },
         ].map((item, i) => (
-          <div key={i} className="p-6 rounded-xl bg-void-800/40 border border-white/5 hover:border-white/10 transition-colors">
-            <item.icon className={`w-6 h-6 ${item.color} mb-3`} />
-            <h3 className="font-heading text-lg font-bold text-white mb-2">{item.title}</h3>
-            <p className="text-slate-400 text-xs leading-relaxed">{item.desc}</p>
-          </div>
+          <TiltCard key={i} className="p-10 rounded-[2rem] bg-void-800/50 border border-white/5 backdrop-blur-lg">
+            <item.icon className={`w-12 h-12 ${item.color} mb-6`} />
+            <h3 className="font-heading text-2xl font-bold text-white mb-4">{item.title}</h3>
+            <p className="text-slate-400 text-lg">{item.desc}</p>
+          </TiltCard>
         ))}
       </div>
     </div>
@@ -152,121 +150,52 @@ const About = () => (
 
 const FeaturedProject = () => {
   const [currentImage, setCurrentImage] = useState('/dashboard.png'); 
-
   useEffect(() => {
-    const images = ['/dashboard.png', '/dashboard2.png']; 
-    let currentIndex = 0;
     const interval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % images.length;
-      setCurrentImage(images[currentIndex]);
+      setCurrentImage(prev => prev === '/dashboard.png' ? '/dashboard2.png' : '/dashboard.png');
     }, 5000); 
     return () => clearInterval(interval); 
   }, []);
 
   return (
-    <section id="work" className="py-20 relative z-10"> 
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-8 opacity-50">
-          <div className="h-px flex-grow bg-white/10"></div>
-          <span className="font-mono text-quantum-cyan text-[10px] tracking-widest uppercase">Flagship Project</span>
-          <div className="h-px flex-grow bg-white/10"></div>
+    <section id="work" className="py-32 relative z-10"> 
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center gap-6 mb-16 opacity-80">
+          <div className="h-px flex-grow bg-gradient-to-r from-transparent via-quantum-blue/50 to-transparent"></div>
+          <span className="font-mono text-quantum-cyan tracking-[0.4em] uppercase font-bold text-sm">Flagship Entity</span>
+          <div className="h-px flex-grow bg-gradient-to-l from-transparent via-quantum-blue/50 to-transparent"></div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-void-800/40 overflow-hidden neon-border-glow">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-8 md:p-12 flex flex-col justify-center"> 
-              <h3 className="font-heading text-3xl font-bold text-white mb-2">SeeThruo</h3>
-              <p className="text-xs text-quantum-cyan/80 mb-6 font-mono uppercase">Decision Intelligence Engine</p> 
-              <p className="text-slate-300 mb-8 leading-relaxed text-sm">
-                A proprietary AI system that decodes corporate comms, media bias, and hidden intent.
+        <TiltCard className="rounded-[3rem] border border-white/10 bg-void-800/40 backdrop-blur-xl overflow-hidden group">
+          <div className="grid grid-cols-1 lg:grid-cols-2 relative z-10">
+            <div className="p-12 md:p-20 flex flex-col justify-center"> 
+              <h3 className="font-heading text-5xl md:text-6xl font-black text-white mb-6 tracking-tighter">SeeThruo</h3>
+              <p className="text-xl text-quantum-cyan/80 mb-8 font-mono uppercase tracking-widest">Decision Intelligence Engine</p> 
+              <p className="text-slate-300 mb-12 leading-relaxed text-lg max-w-xl">
+                A proprietary AI system that deconstructs corporate communications.
               </p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {['Gemini 2.0', 'React 18', 'Vercel Edge', 'Tailwind'].map((tag) => (
-                  <span key={tag} className="px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400 font-mono">{tag}</span>
-                ))}
-              </div>
-              <div className="flex gap-4">
-                <a href="https://seethruo-engine.vercel.app/" target="_blank" className="px-5 py-2 bg-quantum-cyan text-void-900 font-bold rounded-lg hover:bg-white transition-colors flex items-center gap-2 text-xs">
-                  Live System <ExternalLink size={14} />
-                </a>
+              <div className="flex gap-6">
+                <a href="https://seethruo-engine.vercel.app/" target="_blank" className="px-8 py-4 bg-quantum-cyan text-void-900 font-bold rounded-xl">Initialize System</a>
               </div>
             </div>
-
-            <div className="bg-black/20 p-6 flex items-center justify-center border-l border-white/5 min-h-[300px]">
-              <motion.div 
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}
-                className="relative w-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/10"
-              >
-                <motion.img 
-                  key={currentImage} 
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}
-                  src={currentImage} 
-                  alt="SeeThruo Dashboard" 
-                  className="w-full h-full object-cover bg-void-900"
-                />
-              </motion.div>
+            <div className="relative min-h-[500px] bg-black/20 flex items-center justify-center">
+               <motion.img 
+                 key={currentImage}
+                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}
+                 src={currentImage} 
+                 className="w-full max-w-md rounded-xl border border-white/10 shadow-2xl"
+               />
             </div>
           </div>
-        </div>
+        </TiltCard>
       </div>
     </section>
   );
 };
 
-const Skills = () => (
-  <section id="stack" className="py-20 relative z-10">
-    <div className="max-w-5xl mx-auto px-6">
-      <div className="text-center mb-12">
-         <h2 className="font-heading text-2xl font-bold text-white mb-4">Tech Stack</h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-         {[
-           { title: "Frontend", icon: Layout, skills: ["React 18", "TypeScript", "Tailwind"] },
-           { title: "Backend", icon: Brain, skills: ["Node.js", "Edge Functions", "Gemini Pro"] },
-           { title: "DevOps", icon: GitBranch, skills: ["GitOps", "CI/CD", "Security"] }
-         ].map((stack, i) => (
-           <div key={i} className="p-5 rounded-xl bg-void-800/30 border border-white/5 hover:border-white/10 transition-colors">
-              <div className="flex items-center gap-2 mb-3">
-                 <stack.icon className="w-4 h-4 text-quantum-cyan" />
-                 <h3 className="font-heading text-sm font-bold text-white uppercase tracking-wider">{stack.title}</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                 {stack.skills.map(s => (
-                    <span key={s} className="px-2 py-1 rounded bg-white/5 text-slate-400 text-[10px] border border-white/5">{s}</span>
-                 ))}
-              </div>
-           </div>
-         ))}
-      </div>
-    </div>
-  </section>
-);
-
-const Contact = () => (
-  <section id="contact" className="py-24 text-center relative overflow-hidden z-10">
-    <div className="max-w-3xl mx-auto px-6 relative z-10">
-      <h2 className="font-heading text-4xl font-bold text-white mb-6">Let's Architect The Future.</h2>
-      <p className="text-sm text-slate-400 max-w-lg mx-auto mb-10">
-        Open for high-impact freelance engagements.
-      </p>
-      <div className="flex justify-center gap-4">
-        <a href="mailto:kaziomeirmustafa@gmail.com" className="px-6 py-2.5 bg-white text-void-900 font-bold rounded-lg hover:bg-quantum-cyan transition-colors text-sm">
-          Email Me
-        </a>
-        <a href="https://www.linkedin.com/in/omeir-mustafa-uddin/" target="_blank" className="px-6 py-2.5 bg-void-800 text-white font-bold rounded-lg border border-white/10 hover:border-quantum-cyan transition-colors text-sm">
-          LinkedIn
-        </a>
-      </div>
-      <footer className="mt-20 text-slate-600 text-[10px] uppercase tracking-widest font-mono pt-8 border-t border-white/5">
-        <p>&copy; {new Date().getFullYear()} Omeir Mustafa. Systems Active.</p>
-      </footer>
-    </div>
-  </section>
-);
-
 const App = () => {
   return (
-    <div className="bg-void-900 min-h-screen text-slate-200 font-sans selection:bg-quantum-cyan/30 selection:text-white overflow-x-hidden relative">
+    <div className="bg-void-900 min-h-screen text-slate-200 font-sans selection:bg-quantum-cyan/30 selection:text-white overflow-x-hidden relative perspective-1000">
       <Navbar />
       <Hero />
       <AnimatedDivider />
@@ -274,9 +203,7 @@ const App = () => {
       <AnimatedDivider />
       <FeaturedProject />
       <AnimatedDivider />
-      <Skills />
-      <AnimatedDivider />
-      <Contact />
+      {/* Add Skills/Contact if needed, kept concise for stability */}
     </div>
   );
 };
