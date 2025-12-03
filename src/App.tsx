@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue, AnimatePresence, HTMLMotionProps } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Sparkles, ShieldAlert, Layout, ChevronDown, Cpu, Globe, Zap, ScanEye, Brain, GitBranch, Terminal, Palette, MessageSquare, X, Send, Database } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Sparkles, ShieldAlert, Layout, ChevronDown, Cpu, Globe, Zap, ScanEye, Brain, GitBranch, Terminal, Palette, MessageSquare, X, Send } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // --- TYPES ---
@@ -9,7 +9,21 @@ interface TiltCardProps extends HTMLMotionProps<"div"> {
   className?: string;
 }
 
-// --- PHYSICS & ANIMATION UTILS ---
+// --- ANIMATION VARIANTS ---
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+// --- COMPONENTS ---
 
 const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", ...props }) => {
   const x = useMotionValue(0);
@@ -35,6 +49,7 @@ const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", ...props 
       onMouseLeave={() => { x.set(0); y.set(0); }}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       className={`relative group transition-all duration-500 ${className}`}
+      variants={fadeInUp}
       {...props}
     >
       <div style={{ transform: "translateZ(10px)" }}>{children}</div>
@@ -96,11 +111,7 @@ const AskAI = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(scrollToBottom, [messages]);
+  useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
 
   const handleSend = async (textOverride?: string) => {
     const userMsg = textOverride || input;
@@ -109,7 +120,6 @@ const AskAI = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setInput('');
 
-    // 1. Local Check (Instant Response)
     let localResponse = null;
     const lowerText = userMsg.toLowerCase();
     if (lowerText.includes('email') || lowerText.includes('contact')) localResponse = KNOWLEDGE_BASE['email'];
@@ -118,29 +128,23 @@ const AskAI = () => {
     else if (lowerText.includes('project') || lowerText.includes('work')) localResponse = KNOWLEDGE_BASE['project'];
 
     if (localResponse) {
-      setTimeout(() => {
-        setMessages(prev => [...prev, { role: 'ai', text: localResponse! }]);
-      }, 600);
+      setTimeout(() => { setMessages(prev => [...prev, { role: 'ai', text: localResponse! }]); }, 600);
       return;
     }
     
-    // 2. API Fallback
     setIsLoading(true);
     try {
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
       if (!apiKey) {
          setTimeout(() => {
-            setMessages(prev => [...prev, { role: 'ai', text: "My neural link is currently offline (API Key missing). Please contact Omeir directly via email." }]);
+            setMessages(prev => [...prev, { role: 'ai', text: "My neural link is offline. Please email Omeir directly." }]);
             setIsLoading(false);
          }, 1000);
          return;
       }
-
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-      const chat = model.startChat({
-        history: [{ role: "user", parts: [{ text: SYSTEM_PROMPT }] }, { role: "model", parts: [{ text: "Ready." }] }],
-      });
+      const chat = model.startChat({ history: [{ role: "user", parts: [{ text: SYSTEM_PROMPT }] }, { role: "model", parts: [{ text: "Ready." }] }] });
       const result = await chat.sendMessage(userMsg);
       setMessages(prev => [...prev, { role: 'ai', text: result.response.text() }]);
     } catch (error) {
@@ -152,17 +156,8 @@ const AskAI = () => {
 
   return (
     <>
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="fixed bottom-6 right-6 z-50"
-      >
-        <motion.button 
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setIsOpen(!isOpen)}
-          className="group relative flex items-center justify-center w-14 h-14 bg-void-900 border border-quantum-cyan/50 rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] transition-all"
-        >
+      <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="fixed bottom-6 right-6 z-50">
+        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => setIsOpen(!isOpen)} className="group relative flex items-center justify-center w-14 h-14 bg-void-900 border border-quantum-cyan/50 rounded-full shadow-2xl">
           <div className="absolute inset-0 bg-quantum-cyan/20 rounded-full blur-md group-hover:animate-pulse"></div>
           {isOpen ? <X className="text-white w-6 h-6" /> : <Sparkles className="text-quantum-cyan w-6 h-6" />}
         </motion.button>
@@ -170,63 +165,29 @@ const AskAI = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-50 w-[90vw] max-w-[350px] h-[500px] bg-void-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden neon-border-glow"
-          >
+          <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.95 }} className="fixed bottom-24 right-6 z-50 w-[90vw] max-w-[350px] h-[450px] bg-void-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden neon-border-glow">
             <div className="p-4 border-b border-white/10 bg-white/5 flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
               <span className="text-sm font-bold text-white tracking-wider">PORTFOLIO AI</span>
             </div>
-
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] p-3 rounded-xl text-xs leading-relaxed ${
-                    msg.role === 'user' 
-                      ? 'bg-quantum-cyan text-black font-bold' 
-                      : 'bg-white/10 text-slate-200 border border-white/5'
-                  }`}>
-                    {msg.text}
-                  </div>
+                  <div className={`max-w-[85%] p-3 rounded-xl text-xs leading-relaxed ${msg.role === 'user' ? 'bg-quantum-cyan text-black font-bold' : 'bg-white/10 text-slate-200 border border-white/5'}`}>{msg.text}</div>
                 </div>
               ))}
               {isLoading && <div className="text-xs text-slate-500 animate-pulse">Thinking...</div>}
               <div ref={messagesEndRef} />
             </div>
-
             <div className="px-4 pb-2 flex gap-2 overflow-x-auto scrollbar-hide">
-               {["What is your stack?", "Contact info?", "Services?"].map(q => (
-                 <motion.button 
-                   whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-                   whileTap={{ scale: 0.95 }}
-                   key={q} onClick={() => handleSend(q)} className="whitespace-nowrap px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-quantum-cyan hover:bg-white/10 transition-colors">
-                   {q}
-                 </motion.button>
+               {["Services?", "Contact info?", "Stack?"].map(q => (
+                 <motion.button key={q} onClick={() => handleSend(q)} whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }} whileTap={{ scale: 0.95 }} className="whitespace-nowrap px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-quantum-cyan transition-colors">{q}</motion.button>
                ))}
             </div>
-
             <div className="p-4 border-t border-white/10 bg-black/20">
               <div className="relative flex items-center">
-                <input 
-                  type="text" 
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask anything..."
-                  className="w-full bg-void-900 border border-white/10 rounded-full py-3 pl-4 pr-10 text-xs text-white focus:outline-none focus:border-quantum-cyan/50 transition-colors"
-                />
-                <motion.button 
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => handleSend()}
-                  disabled={isLoading || !input.trim()}
-                  className="absolute right-2 p-1.5 rounded-full bg-quantum-cyan text-black disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <Send size={14} />
-                </motion.button>
+                <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSend()} placeholder="Ask anything..." className="w-full bg-void-900 border border-white/10 rounded-full py-3 pl-4 pr-10 text-xs text-white focus:outline-none focus:border-quantum-cyan/50 transition-colors" />
+                <motion.button onClick={() => handleSend()} disabled={isLoading || !input.trim()} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="absolute right-2 p-1.5 rounded-full bg-quantum-cyan text-black disabled:opacity-50"><Send size={14} /></motion.button>
               </div>
             </div>
           </motion.div>
@@ -249,6 +210,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-void-900/80 backdrop-blur-lg border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        {/* ANIMATED LOGO */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }} 
           animate={{ opacity: 1, x: 0 }} 
@@ -285,39 +247,51 @@ const Hero = () => {
     <section className="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center justify-center">
       <AuroraBackground />
       <div className="max-w-4xl mx-auto px-6 text-center z-10 relative">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-quantum-cyan mb-6">
+        <motion.div 
+           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-quantum-cyan mb-6"
+        >
           <span className="w-1.5 h-1.5 rounded-full bg-quantum-cyan animate-pulse"></span>
           AVAILABLE FOR NEW PROJECTS
-        </div>
+        </motion.div>
 
-        <h1 className="font-heading text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[1.1] mb-6">
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}
+          className="font-heading text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[1.1] mb-6"
+        >
           Building Digital Experiences <br/>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-quantum-cyan to-quantum-purple">That Drive Growth.</span>
-        </h1>
+        </motion.h1>
 
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <motion.p 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
+          className="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
           I bridge the gap between complex engineering and intuitive design—helping forward-thinking brands scale through high-performance web solutions.
-        </p>
+        </motion.p>
 
-        <div className="flex justify-center gap-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+          className="flex justify-center gap-4"
+        >
           <motion.a 
+            href="#work" 
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(34,211,238,0.4)" }}
             whileTap={{ scale: 0.95 }}
-            href="#work" 
             className="px-6 py-3 bg-white text-void-900 font-bold rounded-lg hover:bg-quantum-cyan transition-colors text-sm flex items-center gap-2"
           >
              View Selected Work <ArrowRight size={16} />
           </motion.a>
           <motion.a 
-            whileHover={{ scale: 1.05, borderColor: "rgba(34,211,238,0.8)" }}
-            whileTap={{ scale: 0.95 }}
             href="https://seethruo-engine.vercel.app/" 
             target="_blank" 
+            whileHover={{ scale: 1.05, borderColor: "rgba(34,211,238,0.8)" }}
+            whileTap={{ scale: 0.95 }}
             className="px-6 py-3 text-white font-bold rounded-lg border border-white/10 hover:bg-white/5 transition-all text-sm"
           >
             Launch App
           </motion.a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -329,11 +303,14 @@ const About = () => (
       <div className="text-center mb-16">
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-6">Behind the Code</h2>
         <p className="text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
-          I am not just a developer; I am a digital architect focused on business outcomes. With a background in modern frontend frameworks and a keen eye for user experience, I help clients transition from ideas to scalable products. My approach combines technical precision with design thinking, ensuring that every line of code serves a user need.
+          I am not just a developer; I am a digital architect focused on business outcomes. With a background in modern frontend frameworks and a keen eye for user experience, I help clients transition from ideas to scalable products.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <motion.div 
+        variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+      >
         <TiltCard className="p-8 rounded-xl bg-void-800/40 border border-white/5 hover:border-white/10 transition-colors backdrop-blur-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2 rounded-lg bg-blue-500/10"><Layout className="w-5 h-5 text-blue-400" /></div>
@@ -345,7 +322,6 @@ const About = () => (
              ))}
           </div>
         </TiltCard>
-
         <TiltCard className="p-8 rounded-xl bg-void-800/40 border border-white/5 hover:border-white/10 transition-colors backdrop-blur-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2 rounded-lg bg-purple-500/10"><Palette className="w-5 h-5 text-purple-400" /></div>
@@ -357,7 +333,6 @@ const About = () => (
              ))}
           </div>
         </TiltCard>
-
         <TiltCard className="p-8 rounded-xl bg-void-800/40 border border-white/5 hover:border-white/10 transition-colors backdrop-blur-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2 rounded-lg bg-green-500/10"><Terminal className="w-5 h-5 text-green-400" /></div>
@@ -369,7 +344,7 @@ const About = () => (
              ))}
           </div>
         </TiltCard>
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -381,8 +356,7 @@ const Services = () => (
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Services</h2>
         <p className="text-sm text-slate-400 uppercase tracking-widest">Strategic Implementation</p>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
           { icon: Globe, title: "Strategic Web Development", desc: "Building scalable, SEO-optimized, lightning-fast applications using React, TypeScript, and Next.js.", color: "text-quantum-cyan" },
           { icon: Layout, title: "UI/UX Engineering", desc: "Translating brand identity into pixel-perfect, accessible interfaces. I focus on micro-interactions and fluidity.", color: "text-quantum-purple" },
@@ -394,7 +368,7 @@ const Services = () => (
             <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
           </TiltCard>
         ))}
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -483,7 +457,9 @@ const Contact = () => (
         <motion.a 
           whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(34,211,238,0.4)" }}
           whileTap={{ scale: 0.95 }}
-          href="mailto:omeirmustafa.work@gmail.com" 
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=omeirmustafa.work@gmail.com" 
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-8 py-4 bg-white text-void-900 font-bold rounded-full hover:bg-quantum-cyan transition-all flex items-center gap-2 text-sm shadow-xl shadow-white/10"
         >
           <MessageSquare size={18} /> Start a Conversation
