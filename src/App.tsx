@@ -74,11 +74,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-void-900/80 backdrop-blur-lg border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-void-900/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="font-heading font-bold text-xl tracking-wider text-white flex items-center gap-1 flex-shrink-0">
+        <div className="font-heading font-bold text-xl tracking-wider text-white flex items-center gap-1 flex-shrink-0">
           Omeir <span className="text-quantum-cyan">Mustafa</span>
-        </motion.div>
+        </div>
         <div className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
           {['About', 'Work', 'Stack', 'Contact'].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-quantum-cyan transition-colors">{item}</a>

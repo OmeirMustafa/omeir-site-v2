@@ -3,7 +3,6 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -24,35 +23,27 @@ export default {
           pink: '#ec4899',
         }
       },
-      backgroundImage: {
-        'iridescent-gradient': 'linear-gradient(to right, #22d3ee, #3b82f6, #a855f7, #ec4899)',
-      },
       animation: {
         'float': 'float 6s ease-in-out infinite',
         'neon-glow-border': 'neon-glow-border 4s ease-in-out infinite alternate',
-        'shimmer': 'shimmer 2s linear infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        },
         'neon-glow-border': {
             '0%, 100%': {
-              'box-shadow': '0 0 5px rgba(34, 211, 238, 0.4), 0 0 15px rgba(34, 211, 238, 0.2)',
-              'border-color': 'rgba(34, 211, 238, 0.4)',
+              'box-shadow': '0 0 5px rgba(6, 182, 212, 0.4), 0 0 15px rgba(6, 182, 212, 0.4)',
+              'border-color': 'rgba(6, 182, 212, 0.4)',
             },
             '50%': {
-              'box-shadow': '0 0 15px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4)',
-              'border-color': 'rgba(34, 211, 238, 0.8)',
+              'box-shadow': '0 0 8px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.6)',
+              'border-color': 'rgba(6, 182, 212, 0.6)',
             },
           },
       }
     },
   },
-  plugins: [], // <--- PLUGINS ARRAY IS NOW EMPTY
+  plugins: [],
 }
