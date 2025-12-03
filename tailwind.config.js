@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -13,8 +14,8 @@ export default {
       },
       colors: {
         void: {
-          900: '#020617', // Deepest black
-          800: '#0F172A', // Secondary dark
+          900: '#020617', 
+          800: '#0F172A', 
         },
         quantum: {
           cyan: '#22d3ee',
@@ -33,17 +34,17 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         'neon-glow-border': {
-          '0%, 100%': {
-            'box-shadow': '0 0 5px rgba(6, 182, 212, 0.4), 0 0 15px rgba(6, 182, 212, 0.4)',
-            'border-color': 'rgba(6, 182, 212, 0.4)',
+            '0%, 100%': {
+              'box-shadow': '0 0 5px rgba(6, 182, 212, 0.4), 0 0 15px rgba(6, 182, 212, 0.4)',
+              'border-color': 'rgba(6, 182, 212, 0.4)',
+            },
+            '50%': {
+              'box-shadow': '0 0 8px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.6)',
+              'border-color': 'rgba(6, 182, 212, 0.6)',
+            },
           },
-          '50%': {
-            'box-shadow': '0 0 8px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.6)',
-            'border-color': 'rgba(6, 182, 212, 0.6)',
-          },
-        }
       }
     },
   },
-  plugins: [],
-} 
+  plugins: [], // NO PLUGINS HERE
+}

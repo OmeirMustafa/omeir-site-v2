@@ -55,8 +55,8 @@ const AnimatedDivider = () => (
     <div className="absolute inset-0 bg-quantum-blue/20"></div>
     <motion.div
       className="absolute inset-0 bg-gradient-to-r from-transparent via-quantum-cyan to-transparent blur-[1px]"
-      initial={{ x: '-100%' }}
-      animate={{ x: '100%' }}
+      initial={{ x: '-100%', opacity: 0 }}
+      animate={{ x: '100%', opacity: [0, 0.5, 0] }}
       transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
       style={{ width: '100%' }}
     />
@@ -79,7 +79,7 @@ const Navbar = () => {
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="font-heading font-bold text-xl tracking-wider text-white flex items-center gap-1 flex-shrink-0">
           Omeir <span className="text-quantum-cyan">Mustafa</span>
         </motion.div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+        <div className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
           {['About', 'Work', 'Stack', 'Contact'].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-quantum-cyan transition-colors">{item}</a>
           ))}
@@ -94,7 +94,7 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center justify-center">
+    <section className="relative pt-32 pb-20 overflow-hidden">
       <AuroraBackground />
       <div className="max-w-4xl mx-auto px-6 text-center z-10 relative">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-quantum-cyan mb-6">
@@ -102,15 +102,14 @@ const Hero = () => {
           AVAILABLE FOR NEW PROJECTS
         </div>
 
-        <h1 className="font-heading text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[1.1] mb-6">
-          Architecting <br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-quantum-cyan to-quantum-purple">Cognitive</span><br/>
-          Infrastructure.
+        <h1 className="font-heading text-4xl md:text-6xl font-bold tracking-tighter text-white leading-[1.1] mb-6">
+          Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-quantum-cyan to-quantum-purple">Intelligent</span><br/>
+          Web Interfaces.
         </h1>
 
         <p className="text-lg text-slate-400 max-w-lg mx-auto mb-10 leading-relaxed">
-          Synthesizing human intent with machine velocity. I build full-stack intelligence systems that merge 
-          <strong className="text-white mx-1">LLMs</strong> with <strong className="text-white mx-1">forensic interfaces</strong>.
+          I turn complex AI logic into clean, forensic-grade software. 
+          Specializing in <strong>LLM Integration</strong> and <strong>High-Performance UX</strong>.
         </p>
 
         <div className="flex justify-center gap-4">
@@ -130,7 +129,7 @@ const About = () => (
   <section id="about" className="py-20 relative z-10">
     <div className="max-w-5xl mx-auto px-6">
       <div className="text-center mb-12">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">The Builder's Protocol</h2>
+        <h2 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4">How I Work</h2>
         <p className="text-sm text-slate-400 max-w-2xl mx-auto">Ruthless prioritization of functionality, security, and user experience.</p>
       </div>
 
@@ -140,13 +139,11 @@ const About = () => (
           { icon: ShieldAlert, title: "Security", desc: "Zero-trust architecture. No leaked keys.", color: "text-red-400" },
           { icon: Brain, title: "Intelligence", desc: "Interfaces designed for clarity and trust.", color: "text-quantum-cyan" },
         ].map((item, i) => (
-          <TiltCard key={i} className="p-6 rounded-xl bg-void-800/40 border border-white/5 hover:border-white/10 transition-colors backdrop-blur-sm">
-            <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-4">
-              <item.icon className={`w-5 h-5 ${item.color}`} />
-            </div>
+          <div key={i} className="p-6 rounded-xl bg-void-800/40 border border-white/5 hover:border-white/10 transition-colors">
+            <item.icon className={`w-6 h-6 ${item.color} mb-3`} />
             <h3 className="font-heading text-lg font-bold text-white mb-2">{item.title}</h3>
             <p className="text-slate-400 text-xs leading-relaxed">{item.desc}</p>
-          </TiltCard>
+          </div>
         ))}
       </div>
     </div>
@@ -170,28 +167,15 @@ const FeaturedProject = () => {
     <section id="work" className="py-20 relative z-10"> 
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-8 opacity-50">
-          <div className="h-px flex-grow bg-white/10 relative overflow-hidden">
-              <motion.div 
-                className="absolute inset-0 bg-quantum-cyan blur-[2px]"
-                initial={{ x: '-100%' }} animate={{ x: '100%' }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} 
-              />
-          </div>
+          <div className="h-px flex-grow bg-white/10"></div>
           <span className="font-mono text-quantum-cyan text-[10px] tracking-widest uppercase">Flagship Project</span>
-          <div className="h-px flex-grow bg-white/10 relative overflow-hidden">
-               <motion.div 
-                className="absolute inset-0 bg-quantum-cyan blur-[2px]"
-                initial={{ x: '100%' }} animate={{ x: '-100%' }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} 
-              />
-          </div>
+          <div className="h-px flex-grow bg-white/10"></div>
         </div>
 
-        <TiltCard className="rounded-2xl border border-white/10 bg-void-800/40 backdrop-blur-xl overflow-hidden neon-border-glow">
+        <div className="rounded-2xl border border-white/10 bg-void-800/40 overflow-hidden neon-border-glow">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 md:p-12 flex flex-col justify-center"> 
-              <div className="flex items-center gap-3 mb-6">
-                 <ScanEye className="w-8 h-8 text-quantum-cyan" />
-                 <h3 className="font-heading text-3xl font-bold text-white tracking-tight">SeeThruo</h3>
-              </div>
+              <h3 className="font-heading text-3xl font-bold text-white mb-2">SeeThruo</h3>
               <p className="text-xs text-quantum-cyan/80 mb-6 font-mono uppercase">Decision Intelligence Engine</p> 
               <p className="text-slate-300 mb-8 leading-relaxed text-sm">
                 A proprietary AI system that decodes corporate comms, media bias, and hidden intent.
@@ -223,7 +207,7 @@ const FeaturedProject = () => {
               </motion.div>
             </div>
           </div>
-        </TiltCard>
+        </div>
       </div>
     </section>
   );
