@@ -342,7 +342,7 @@ const App = () => {
       <FeaturedProject />
       <AnimatedDivider />
       <Contact />
-      <AskAI />
+      <AskAI /> 
     </div>
   );
 };

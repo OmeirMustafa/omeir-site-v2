@@ -24,6 +24,9 @@ export default {
           pink: '#ec4899',
         }
       },
+      backgroundImage: {
+        'iridescent-gradient': 'linear-gradient(to right, #22d3ee, #3b82f6, #a855f7, #ec4899)',
+      },
       animation: {
         'float': 'float 6s ease-in-out infinite',
         'neon-glow-border': 'neon-glow-border 4s ease-in-out infinite alternate',
@@ -39,17 +42,17 @@ export default {
           '100%': { backgroundPosition: '200% 0' },
         },
         'neon-glow-border': {
-          '0%, 100%': {
-            'box-shadow': '0 0 5px rgba(34, 211, 238, 0.4), 0 0 15px rgba(34, 211, 238, 0.2)',
-            'border-color': 'rgba(34, 211, 238, 0.4)',
+            '0%, 100%': {
+              'box-shadow': '0 0 5px rgba(34, 211, 238, 0.4), 0 0 15px rgba(34, 211, 238, 0.2)',
+              'border-color': 'rgba(34, 211, 238, 0.4)',
+            },
+            '50%': {
+              'box-shadow': '0 0 15px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4)',
+              'border-color': 'rgba(34, 211, 238, 0.8)',
+            },
           },
-          '50%': {
-            'box-shadow': '0 0 15px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4)',
-            'border-color': 'rgba(34, 211, 238, 0.8)',
-          },
-        }
       }
     },
   },
-  plugins: [],
+  plugins: [], // No plugins here = No build errors
 }
