@@ -9,9 +9,10 @@
 body {
     background-color: #020617; 
     color: #e2e8f0;
+    overflow-x: hidden;
 }
 
-/* NEON GLOW ANIMATION - CRITICAL */
+/* NEON GLOW ANIMATION */
 @keyframes neon-glow-border {
   0%, 100% {
     box-shadow: 0 0 5px rgba(34, 211, 238, 0.4), 0 0 15px rgba(34, 211, 238, 0.2);
@@ -27,7 +28,7 @@ body {
   animation: neon-glow-border 3s ease-in-out infinite alternate;
 }
 
-/* Scrollbar */
+/* Dark Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -37,4 +38,4 @@ body {
 ::-webkit-scrollbar-thumb {
     background: #334155; 
     border-radius: 10px;
-} 
+}

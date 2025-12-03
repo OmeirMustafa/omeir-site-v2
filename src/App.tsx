@@ -76,10 +76,10 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-void-900/80 backdrop-blur-lg border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="font-heading font-bold text-lg tracking-wider text-white flex items-center gap-1 flex-shrink-0">
+        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="font-heading font-bold text-xl tracking-wider text-white flex items-center gap-1 flex-shrink-0">
           Omeir <span className="text-quantum-cyan">Mustafa</span>
         </motion.div>
-        <div className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
+        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
           {['About', 'Work', 'Stack', 'Contact'].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-quantum-cyan transition-colors">{item}</a>
           ))}
@@ -130,7 +130,7 @@ const About = () => (
   <section id="about" className="py-20 relative z-10">
     <div className="max-w-5xl mx-auto px-6">
       <div className="text-center mb-12">
-        <h2 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4">The Builder's Protocol</h2>
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">The Builder's Protocol</h2>
         <p className="text-sm text-slate-400 max-w-2xl mx-auto">Ruthless prioritization of functionality, security, and user experience.</p>
       </div>
 
@@ -170,9 +170,19 @@ const FeaturedProject = () => {
     <section id="work" className="py-20 relative z-10"> 
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-8 opacity-50">
-          <div className="h-px flex-grow bg-white/10"></div>
+          <div className="h-px flex-grow bg-white/10 relative overflow-hidden">
+              <motion.div 
+                className="absolute inset-0 bg-quantum-cyan blur-[2px]"
+                initial={{ x: '-100%' }} animate={{ x: '100%' }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} 
+              />
+          </div>
           <span className="font-mono text-quantum-cyan text-[10px] tracking-widest uppercase">Flagship Project</span>
-          <div className="h-px flex-grow bg-white/10"></div>
+          <div className="h-px flex-grow bg-white/10 relative overflow-hidden">
+               <motion.div 
+                className="absolute inset-0 bg-quantum-cyan blur-[2px]"
+                initial={{ x: '100%' }} animate={{ x: '-100%' }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} 
+              />
+          </div>
         </div>
 
         <TiltCard className="rounded-2xl border border-white/10 bg-void-800/40 backdrop-blur-xl overflow-hidden neon-border-glow">
@@ -287,4 +297,4 @@ const App = () => {
   );
 };
 
-export default App;  
+export default App;

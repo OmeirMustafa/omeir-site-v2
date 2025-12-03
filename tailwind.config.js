@@ -13,8 +13,8 @@ export default {
       },
       colors: {
         void: {
-          900: '#020617', 
-          800: '#0F172A', 
+          900: '#020617', // Deepest black
+          800: '#0F172A', // Secondary dark
         },
         quantum: {
           cyan: '#22d3ee',
@@ -25,17 +25,12 @@ export default {
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
-        'shimmer': 'shimmer 2s linear infinite',
         'neon-glow-border': 'neon-glow-border 4s ease-in-out infinite alternate',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
-        },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
         },
         'neon-glow-border': {
           '0%, 100%': {
