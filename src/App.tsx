@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Sparkles, ShieldAlert, Layout, ChevronDown, Cpu, Globe, Zap, ScanEye, Brain, GitBranch, Terminal, Database, Palette, MessageSquare } from 'lucide-react';
+import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue, AnimatePresence } from 'framer-motion';
+import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Sparkles, ShieldAlert, Layout, ChevronDown, Cpu, Globe, Zap, ScanEye, Brain, GitBranch, Terminal, Database, Palette, MessageSquare, X, Send } from 'lucide-react';
 
 // --- TYPES ---
 interface TiltCardProps {
@@ -69,22 +69,131 @@ const AnimatedDivider = () => (
   </div>
 );
 
-const AskAI = () => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 2 }}
-    className="fixed bottom-8 right-8 z-50"
-  >
-    <button className="relative group">
-      <div className="absolute -inset-1 bg-gradient-to-r from-quantum-cyan to-quantum-purple rounded-full blur opacity-40 group-hover:opacity-75 transition duration-200 animate-pulse"></div>
-      <div className="relative px-6 py-3 bg-void-900 rounded-full border border-white/10 flex items-center gap-2 text-white font-bold shadow-2xl">
-        <Sparkles className="w-4 h-4 text-quantum-cyan" />
-        <span>Ask AI</span>
-      </div>
-    </button>
-  </motion.div>
-);
+// --- KNOWLEDGE BASE & CHAT ---
+const KNOWLEDGE_BASE: Record<string, string> = {
+  "email": "You can reach Omeir directly at omeirmustafa.work@gmail.com.",
+  "stack": "Omeir's core stack is React 18, TypeScript, Tailwind CSS, Node.js, and Gemini AI.",
+  "services": "Omeir specializes in Strategic Web Development, UI/UX Engineering, and Performance Optimization.",
+  "project": "His flagship project is SeeThruo, a Decision Intelligence Engine that decodes corporate narratives using AI.",
+  "experience": "Omeir bridges the gap between complex engineering and intuitive design to help brands scale.",
+  "availability": "Omeir is currently open for freelance and full-time opportunities."
+};
+
+const AskAI = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<{ role: 'user' | 'ai'; text: string }[]>([
+    { role: 'ai', text: "Hi! I'm Omeir's Portfolio Assistant. Ask me about his skills, projects, or contact info." }
+  ]);
+  const [input, setInput] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
+  const handleSend = (textOverride?: string) => {
+    const userText = textOverride || input;
+    if (!userText.trim()) return;
+
+    setMessages(prev => [...prev, { role: 'user', text: userText }]);
+    setInput('');
+
+    // Simple Keyword Matching Logic (Local "AI")
+    let response = "I'm focused on Omeir's professional work. Please email him for specific details!";
+    const lowerText = userText.toLowerCase();
+
+    if (lowerText.includes('email') || lowerText.includes('contact') || lowerText.includes('reach')) response = KNOWLEDGE_BASE['email'];
+    else if (lowerText.includes('stack') || lowerText.includes('tech') || lowerText.includes('skill')) response = KNOWLEDGE_BASE['stack'];
+    else if (lowerText.includes('service') || lowerText.includes('offer') || lowerText.includes('help')) response = KNOWLEDGE_BASE['services'];
+    else if (lowerText.includes('project') || lowerText.includes('seethruo') || lowerText.includes('work')) response = KNOWLEDGE_BASE['project'];
+    else if (lowerText.includes('experience') || lowerText.includes('background') || lowerText.includes('who')) response = KNOWLEDGE_BASE['experience'];
+    else if (lowerText.includes('available') || lowerText.includes('hiring') || lowerText.includes('job')) response = KNOWLEDGE_BASE['availability'];
+
+    setTimeout(() => {
+      setMessages(prev => [...prev, { role: 'ai', text: response }]);
+    }, 600);
+  };
+
+  return (
+    <>
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="fixed bottom-6 right-6 z-50"
+      >
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="group relative flex items-center justify-center w-14 h-14 bg-void-900 border border-quantum-cyan/50 rounded-full shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] transition-all"
+        >
+          <div className="absolute inset-0 bg-quantum-cyan/20 rounded-full blur-md group-hover:animate-pulse"></div>
+          {isOpen ? <X className="text-white w-6 h-6" /> : <Sparkles className="text-quantum-cyan w-6 h-6" />}
+        </button>
+      </motion.div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-24 right-6 z-50 w-[90vw] max-w-[350px] h-[450px] bg-void-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden neon-border-glow"
+          >
+            <div className="p-4 border-b border-white/10 bg-white/5 flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+              <span className="text-sm font-bold text-white tracking-wider">PORTFOLIO AI</span>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              {messages.map((msg, i) => (
+                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[85%] p-3 rounded-xl text-xs leading-relaxed ${
+                    msg.role === 'user' 
+                      ? 'bg-quantum-cyan text-black font-bold' 
+                      : 'bg-white/10 text-slate-200 border border-white/5'
+                  }`}>
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Preset Questions */}
+            <div className="px-4 pb-2 flex gap-2 overflow-x-auto scrollbar-hide">
+               {["What is your stack?", "Contact info?", "Services?"].map(q => (
+                 <button key={q} onClick={() => handleSend(q)} className="whitespace-nowrap px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-quantum-cyan hover:bg-white/10 transition-colors">
+                   {q}
+                 </button>
+               ))}
+            </div>
+
+            <div className="p-4 border-t border-white/10 bg-black/20">
+              <div className="relative flex items-center">
+                <input 
+                  type="text" 
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                  placeholder="Ask anything..."
+                  className="w-full bg-void-900 border border-white/10 rounded-full py-3 pl-4 pr-10 text-xs text-white focus:outline-none focus:border-quantum-cyan/50 transition-colors"
+                />
+                <button 
+                  onClick={() => handleSend()}
+                  disabled={!input.trim()}
+                  className="absolute right-2 p-1.5 rounded-full bg-quantum-cyan text-black hover:scale-105 active:scale-95 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Send size={14} />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
 
 // --- SECTIONS ---
 
@@ -268,7 +377,7 @@ const FeaturedProject = () => {
               </div>
               <p className="text-xs text-quantum-cyan/80 mb-6 font-mono uppercase">Decision Intelligence Engine</p> 
               <p className="text-slate-300 mb-8 leading-relaxed text-sm">
-                A proprietary AI system that decodes corporate comms, media bias, and hidden intent.
+                A next-generation AI system engineered to interpret corporate narratives, surface media bias, and uncover the strategic intent beneath every message.
               </p>
               <div className="flex flex-wrap gap-2 mb-8">
                 {['Gemini 2.0', 'React 18', 'Vercel Edge', 'Tailwind'].map((tag) => (
@@ -342,7 +451,7 @@ const App = () => {
       <FeaturedProject />
       <AnimatedDivider />
       <Contact />
-      <AskAI /> 
+      <AskAI />
     </div>
   );
 };
