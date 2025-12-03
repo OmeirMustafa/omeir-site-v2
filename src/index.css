@@ -2,10 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
-body { background-color: #020617; color: #e2e8f0; overflow-x: hidden; }
+:root {
+  color-scheme: dark;
+}
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #020617; }
-::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+body {
+    background-color: #020617; 
+    color: #e2e8f0;
+    overflow-x: hidden;
+}
+
+/* NEON GLOW ANIMATION */
+@keyframes neon-glow-border {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(34, 211, 238, 0.4), 0 0 15px rgba(34, 211, 238, 0.2);
+    border-color: rgba(34, 211, 238, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4);
+    border-color: rgba(34, 211, 238, 0.8);
+  }
+}
+
+.neon-border-glow {
+  animation: neon-glow-border 3s ease-in-out infinite alternate;
+}
+
+/* Compact Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #020617; 
+}
+::-webkit-scrollbar-thumb {
+    background: #334155; 
+    border-radius: 10px;
+}
