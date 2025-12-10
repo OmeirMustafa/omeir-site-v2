@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Terminal as TerminalIcon, Maximize2, Minus, X } from "lucide-react";
+import { Terminal as TerminalIcon } from "lucide-react";
 import { COMMANDS } from "@/data/terminal-data";
 
 interface LogEntry {
@@ -19,13 +19,12 @@ export function Terminal() {
         { type: "system", content: "Select a query to begin..." },
     ]);
     const [isLocked, setIsLocked] = useState(false);
-    const bottomRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Auto-scroll effect
+    // Auto-scroll effect (Internal Only)
     useEffect(() => {
-        if (bottomRef.current) {
-            bottomRef.current.scrollIntoView({ behavior: "smooth" });
+        if (containerRef.current) {
+            containerRef.current.scrollTop = containerRef.current.scrollHeight;
         }
     }, [logs]);
 
@@ -103,7 +102,7 @@ export function Terminal() {
             {/* Terminal Body */}
             <div
                 ref={containerRef}
-                className="relative z-10 h-[400px] overflow-y-auto p-6 space-y-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent flex flex-col"
+                className="relative z-10 h-[300px] overflow-y-auto p-6 space-y-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent flex flex-col"
             >
                 <div className="min-h-[300px]"> {/* Stabilization Container */}
                     <AnimatePresence mode="wait">
@@ -135,7 +134,6 @@ export function Terminal() {
                         ))}
                     </AnimatePresence>
                 </div>
-                <div ref={bottomRef} />
             </div>
 
             {/* Command Dock */}
