@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { Database, Cpu, Eye } from 'lucide-react';
 
@@ -32,7 +34,7 @@ export default function ComponentArchitecture() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {modules.map((item, index) => (
-                        <div key={index} className="group p-8 rounded-xl bg-slate-900/50 border border-cyan-500/10 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+                        <div key={index} className="group p-6 rounded-lg bg-slate-900/50 border border-cyan-500/30 hover:border-cyan-400/70 transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]">
                             <div className="mb-6 p-4 rounded-full bg-cyan-500/10 w-fit group-hover:bg-cyan-500/20 transition-colors">
                                 {item.icon}
                             </div>
