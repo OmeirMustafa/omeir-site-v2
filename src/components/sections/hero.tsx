@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { Terminal } from "@/components/Terminal";
 import { MagneticButton } from "@/components/ui/magnetic-button";
@@ -64,14 +65,24 @@ export function HeroSection() {
                         I architect investor-ready, AI-native digital ecosystems. transforming abstract vision into high-performance, secure, and scalable reality.
                     </motion.p>
 
-                    <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
-                        <MagneticButton className="bg-white text-black hover:bg-gray-200 rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                            Book Strategy Call <ArrowRight className="w-4 h-4" />
-                        </MagneticButton>
+                    <motion.div variants={itemVariants} className="flex flex-wrap gap-6 pt-4 relative z-20">
+                        <Link href="#contact" scroll={true} className="relative group">
+                            <MagneticButton
+                                whileHover={{ scale: 1.05, zIndex: 10 }}
+                                className="bg-white text-black hover:bg-gray-200 rounded-lg border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.5)]"
+                            >
+                                INITIATE AUDIT PROTOCOL <ArrowRight className="w-4 h-4 ml-2" />
+                            </MagneticButton>
+                        </Link>
 
-                        <MagneticButton className="bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20 rounded-lg backdrop-blur-sm">
-                            View Portfolio <ChevronRight className="w-4 h-4 text-white/50" />
-                        </MagneticButton>
+                        <Link href="#portfolio" scroll={true} className="relative group">
+                            <MagneticButton
+                                whileHover={{ scale: 1.05, zIndex: 10 }}
+                                className="bg-slate-900/50 backdrop-blur-md border border-slate-700 hover:border-white/50 text-white rounded-lg"
+                            >
+                                INSPECT BLUEPRINTS <ChevronRight className="w-4 h-4 ml-1 opacity-50" />
+                            </MagneticButton>
+                        </Link>
                     </motion.div>
                 </motion.div>
 
