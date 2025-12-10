@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/sections/hero";
 import { ServicesSection } from "@/components/sections/services";
 import { SecureAISystems } from "@/components/sections/secure-ai-systems";
-import ComponentArchitecture from "@/components/sections/about";
+import { ComponentArchitecture } from "@/components/sections/ComponentArchitecture";
 import { WorkflowSection } from "@/components/sections/workflow";
 import { FinalCTASection } from "@/components/sections/final-cta";
 
