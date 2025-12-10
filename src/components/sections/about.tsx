@@ -2,105 +2,84 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { BrainCircuit, Hammer, Eye } from "lucide-react";
-
-const SKILLS = [
-    {
-        category: "Architect (Strategy Layer)",
-        icon: BrainCircuit,
-        items: [
-            "Digital transformation planning",
-            "Roadmap definition & prioritization",
-            "Commercial model understanding (CAC/LTV)",
-            "Competitive analysis",
-            "Risk mapping & mitigation"
-        ]
-    },
-    {
-        category: "Builder (Technical Layer)",
-        icon: Hammer,
-        items: [
-            "Next.js architecture (App Router, SSR, RSC)",
-            "AI automation & RAG workflows",
-            "Secure data flows & middleware",
-            "Component design systems",
-            "Systems integration (CRM/ERP/API)"
-        ]
-    },
-    {
-        category: "Visionary (Design Layer)",
-        icon: Eye,
-        items: [
-            "Dark-mode enterprise UX",
-            "Trust-based interface architecture",
-            "Micro-interactions & design physics",
-            "High-fidelity prototyping",
-            "Typography systems"
-        ]
-    }
-];
+import { QuantumCard } from "@/components/ui/QuantumCard";
+import { Code2, PenTool, Rocket } from "lucide-react";
 
 export function AboutSection() {
     return (
-        <section className="py-24 px-6 bg-[#0a0a0a] relative overflow-hidden">
-            <div className="container mx-auto max-w-7xl relative z-10">
+        <section id="about" className="min-h-screen flex flex-col justify-center items-center py-24 px-6 relative overflow-hidden bg-black">
+            {/* Background Context */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_70%)] pointer-events-none" />
 
-                {/* Header / Narrative */}
-                <div className="max-w-4xl mb-20">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-                        A website should think — <br />
+            <div className="max-w-7xl mx-auto w-full z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-16 text-center"
+                >
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-voltage-purple">
-                            not just look nice.
+                            Core Architecture
                         </span>
                     </h2>
+                    <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed">
+                        I operate at the intersection of technical engineering and product strategy.
+                    </p>
+                </motion.div>
 
-                    <div className="space-y-6 text-lg text-white/70 leading-relaxed max-w-3xl">
-                        <p>
-                            I bridge the gap between strategy and execution. Most businesses either hire a strategist who cannot build, or a developer who does not understand commercial intent. I do both.
-                        </p>
-                        <p>
-                            My role is to:
-                        </p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-4">
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-neon-cyan rounded-full" /> Translate business requirements into scalable architectures</li>
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-neon-cyan rounded-full" /> Reduce technical risk</li>
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-neon-cyan rounded-full" /> Design investor-ready interfaces</li>
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-neon-cyan rounded-full" /> Build component systems</li>
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-neon-cyan rounded-full" /> Implement secure AI/RAG automation</li>
-                            <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-neon-cyan rounded-full" /> Eliminate inefficiencies inside digital workflows</li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Skill Taxonomy Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {SKILLS.map((skill, idx) => (
-                        <motion.div
-                            key={skill.category}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1, duration: 0.5 }}
-                            viewport={{ once: true }}
-                            className="group p-8 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/[0.07] transition-all"
-                        >
-                            <div className="mb-6 flex items-center gap-3 text-neon-cyan group-hover:text-white transition-colors">
-                                <skill.icon size={24} />
-                                <h3 className="font-bold text-lg text-white tracking-wide">{skill.category}</h3>
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                    >
+                        <QuantumCard className="h-full">
+                            <div className="mb-4 w-12 h-12 rounded-lg bg-neon-cyan/10 flex items-center justify-center">
+                                <Code2 className="text-neon-cyan w-6 h-6" />
                             </div>
+                            <h3 className="text-xl font-bold text-white mb-2">The Architect</h3>
+                            <p className="text-white/50 text-sm leading-relaxed">
+                                Designing scalable, secure, and high-performance system architectures. Specializing in Next.js ecosystems and server-less infrastructure.
+                            </p>
+                        </QuantumCard>
+                    </motion.div>
 
-                            <ul className="space-y-4">
-                                {skill.items.map((item) => (
-                                    <li key={item} className="flex items-start gap-3 text-sm text-white/60 group-hover:text-white/80 transition-colors">
-                                        <span className="mt-1.5 w-1 h-1 bg-white/20 rounded-full group-hover:bg-neon-cyan/50" />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    ))}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <QuantumCard className="h-full">
+                            <div className="mb-4 w-12 h-12 rounded-lg bg-voltage-purple/10 flex items-center justify-center">
+                                <Rocket className="text-voltage-purple w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">The Builder</h3>
+                            <p className="text-white/50 text-sm leading-relaxed">
+                                Rapid prototyping and mvp development. Transforming abstract requirements into functional, deployed software in record time.
+                            </p>
+                        </QuantumCard>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                    >
+                        <QuantumCard className="h-full">
+                            <div className="mb-4 w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                                <PenTool className="text-blue-500 w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">The Visionary</h3>
+                            <p className="text-white/50 text-sm leading-relaxed">
+                                Bridging the gap between code and business goals. Focusing on ROI, user retention, and long-term product viability.
+                            </p>
+                        </QuantumCard>
+                    </motion.div>
                 </div>
-
             </div>
         </section>
     );

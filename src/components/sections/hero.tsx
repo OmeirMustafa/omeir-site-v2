@@ -25,7 +25,7 @@ const itemVariants: Variants = {
 
 export function HeroSection() {
     return (
-        <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 overflow-hidden gap-12">
+        <section className="relative h-screen flex flex-col lg:flex-row items-center justify-center px-6 overflow-hidden gap-12">
 
             <QuantumBackground />
 
