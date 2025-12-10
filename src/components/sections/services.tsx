@@ -56,7 +56,7 @@ const SERVICES = [
 export function ServicesSection() {
     return (
         <section className="py-24 px-6 bg-[#0c0c0c] border-t border-white/5">
-            <div className="container mx-auto max-w-7xl">
+            <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-voltage-purple">

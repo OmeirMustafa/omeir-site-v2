@@ -8,7 +8,8 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 
 export function HeroSection() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
+    return (
+        <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 overflow-hidden">
             {/* Background Ambience */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-cyan/5 rounded-full blur-[120px] mix-blend-screen opacity-30 animate-pulse" />

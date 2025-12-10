@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Omeir Mustafa | Digital Asset Architect",
+  title: "Digital Product Architect | Strategic Infrastructure",
   description: "Translating high-level consulting expertise into intelligent, AI-integrated digital infrastructure.",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-[#0a0a0a] text-foreground`}
       >
         {children}
       </body>

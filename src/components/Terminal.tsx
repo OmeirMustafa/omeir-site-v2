@@ -103,35 +103,38 @@ export function Terminal() {
             {/* Terminal Body */}
             <div
                 ref={containerRef}
-                className="relative z-10 h-[400px] overflow-y-auto p-6 space-y-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent"
+                className="relative z-10 h-[400px] overflow-y-auto p-6 space-y-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent flex flex-col"
             >
-                <AnimatePresence>
-                    {logs.map((log, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className={cn(
-                                "break-words",
-                                log.type === "command" && "text-cyan-300 font-bold",
-                                log.type === "response" && "text-gray-300",
-                                log.type === "system" && "text-green-400"
-                            )}
-                        >
-                            {log.type === "command" ? (
-                                <span>{log.content}</span>
-                            ) : (
-                                <span>
-                                    {log.type === "system" && ">> "}
-                                    {log.content}
-                                </span>
-                            )}
-                            {log.isTyping && (
-                                <span className="inline-block w-2 H-4 bg-neon-cyan animate-pulse ml-1 align-middle">_</span>
-                            )}
-                        </motion.div>
-                    ))}
-                </AnimatePresence>
+                <div className="min-h-[300px]"> {/* Stabilization Container */}
+                    <AnimatePresence mode="wait">
+                        {logs.map((log, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ ease: "easeInOut", duration: 0.2 }}
+                                className={cn(
+                                    "break-words",
+                                    log.type === "command" && "text-cyan-300 font-bold",
+                                    log.type === "response" && "text-gray-300",
+                                    log.type === "system" && "text-green-400"
+                                )}
+                            >
+                                {log.type === "command" ? (
+                                    <span>{log.content}</span>
+                                ) : (
+                                    <span>
+                                        {log.type === "system" && ">> "}
+                                        {log.content}
+                                    </span>
+                                )}
+                                {log.isTyping && (
+                                    <span className="inline-block w-2 h-4 bg-neon-cyan animate-pulse ml-1 align-middle">_</span>
+                                )}
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </div>
                 <div ref={bottomRef} />
             </div>
 
