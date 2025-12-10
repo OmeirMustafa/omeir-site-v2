@@ -50,7 +50,7 @@ export function HeroSection() {
                         </MagneticButton>
 
                         <MagneticButton className="bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20 rounded-lg backdrop-blur-sm">
-                            View Portfolio <ChevronRight className="w-4 h-4 ml-1 opacity-50" />
+                            View Portfolio <ChevronRight className="w-4 h-4 text-white/50" />
                         </MagneticButton>
                     </div>
                 </motion.div>

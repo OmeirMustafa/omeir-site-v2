@@ -2,24 +2,38 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const SERVICES = [
     {
+        id: "starter",
+        tier: "Diagnostic",
+        title: "Founder Diagnostic Audit",
+        originalPrice: "$750",
+        price: "$249",
+        bestFor: "Solo founders, Pre-Seed to Seed",
+        deliverables: [
+            "48-Hour Code Health Check",
+            "UX Friction Report",
+            "Technical Debt Map",
+            "Immediate Remediation Plan"
+        ],
+        isSpecial: true
+    },
+    {
         id: "audit",
         tier: "Entry Offer",
         title: "Technical Audit",
         price: "$3,500 – $5,000",
-        bestFor: "SaaS founders, VC portfolios, stalled products",
+        bestFor: "SaaS founders, VC portfolios",
         deliverables: [
             "Codebase quality assessment",
             "Architecture risk map",
             "UX heuristics report",
             "RAG readiness evaluation",
-            "“Red/Amber/Green” priority roadmap",
-            "1-week turnaround"
+            "“Red/Amber/Green” priority roadmap"
         ]
     },
     {
@@ -27,29 +41,28 @@ const SERVICES = [
         tier: "Core Product",
         title: "Build Sprint",
         price: "$15,000 – $60,000",
-        bestFor: "Non-technical founders, professional firms, SaaS teams",
+        bestFor: "Non-technical founders, SaaS teams",
         mainFeatures: [
             "Next.js product architecture",
             "UI/UX design systems",
             "Secure SSR flows & Local RAG tools",
             "Operational dashboards"
         ],
-        outcome: "A scalable, investor-ready digital product with intelligent automation."
+        outcome: "A scalable, investor-ready digital product."
     },
     {
         id: "retainer",
         tier: "Retainer",
         title: "Fractional Product Leadership",
         price: "$6,000 – $12,000/mo",
-        bestFor: "Scale-ups, professional services, high-growth teams",
+        bestFor: "Scale-ups, high-growth teams",
         deliverables: [
-            "Product strategy & Architecture ownership",
+            "Product strategy ownership",
             "Vendor + dev team oversight",
             "Technical hiring",
-            "KPI / OKR roadmap leadership",
-            "Founder advisory"
+            "KPI / OKR roadmap leadership"
         ],
-        outcome: "You get CPO/CTO-level guidance without the $250k salary or equity requirement."
+        outcome: "CPO/CTO-level guidance."
     }
 ];
 
@@ -68,7 +81,7 @@ export function ServicesSection() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {SERVICES.map((service, index) => (
                         <motion.div
                             key={service.id}
@@ -77,57 +90,65 @@ export function ServicesSection() {
                             transition={{ delay: index * 0.1, duration: 0.5, ease: "easeInOut" }}
                             viewport={{ once: true }}
                             className={cn(
-                                "relative p-8 rounded-2xl border border-white/5 bg-[#0a0a0a] hover:border-white/10 transition-all flex flex-col min-h-[550px]",
-                                index === 1 && "border-neon-cyan/20 bg-[#0a0a0a]/80 shadow-[0_0_30px_rgba(0,243,255,0.05)]"
+                                "relative p-6 rounded-2xl border bg-[#0a0a0a] transition-all flex flex-col min-h-[500px] group",
+                                service.isSpecial
+                                    ? "border-amber-500/50 hover:border-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.1)]"
+                                    : "border-white/5 hover:border-white/10"
                             )}
                             whileHover={{ y: -5 }}
                         >
-                            {index === 1 && (
-                                <div className="absolute top-0 right-0 px-3 py-1 bg-neon-cyan text-black text-xs font-bold uppercase rounded-bl-xl rounded-tr-xl">
-                                    Most Popular
+                            {service.isSpecial && (
+                                <div className="absolute top-0 right-0 px-3 py-1 bg-amber-500 text-black text-[10px] font-bold uppercase rounded-bl-xl rounded-tr-xl flex items-center gap-1">
+                                    <Zap size={12} fill="currentColor" /> Limited Offer
                                 </div>
                             )}
 
-                            <div className="mb-8">
-                                <span className="text-xs font-mono uppercase tracking-wider text-neon-cyan mb-2 block">
+                            <div className="mb-6">
+                                <span className={cn(
+                                    "text-xs font-mono uppercase tracking-wider mb-2 block",
+                                    service.isSpecial ? "text-amber-500" : "text-neon-cyan"
+                                )}>
                                     {service.tier}
                                 </span>
-                                <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                                <div className="text-3xl font-light text-white/90 mb-1">{service.price}</div>
-                                <div className="text-sm text-white/40 mb-6">Best for: {service.bestFor}</div>
+                                <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+
+                                <div className="flex items-baseline gap-2 mb-1">
+                                    <div className="text-2xl font-light text-white/90">{service.price}</div>
+                                    {service.originalPrice && (
+                                        <div className="text-sm text-white/40 line-through decoration-white/30">{service.originalPrice}</div>
+                                    )}
+                                </div>
+                                <div className="text-xs text-white/40 mb-4 h-8">Best for: {service.bestFor}</div>
                             </div>
 
-                            <div className="flex-grow space-y-4 mb-8">
-                                {service.deliverables && service.deliverables.map((item) => (
-                                    <div key={item} className="flex items-start gap-3 text-sm text-white/70">
-                                        <Check className="w-4 h-4 text-neon-cyan mt-0.5 shrink-0" />
+                            <div className="flex-grow space-y-3 mb-6">
+                                {((service.deliverables || service.mainFeatures) || []).map((item) => (
+                                    <div key={item} className="flex items-start gap-2 text-xs text-white/70">
+                                        <Check className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", service.isSpecial ? "text-amber-500" : "text-neon-cyan")} />
                                         <span>{item}</span>
                                     </div>
                                 ))}
-
                                 {service.mainFeatures && (
-                                    <>
-                                        <div className="text-xs uppercase text-white/30 font-bold tracking-widest mb-2 mt-4">Includes:</div>
-                                        {service.mainFeatures.map((item) => (
-                                            <div key={item} className="flex items-start gap-3 text-sm text-white/70">
-                                                <Check className="w-4 h-4 text-neon-cyan mt-0.5 shrink-0" />
-                                                <span>{item}</span>
-                                            </div>
-                                        ))}
-                                    </>
+                                    <div className="text-[10px] uppercase text-white/30 font-bold tracking-widest mt-2">Includes above</div>
                                 )}
                             </div>
 
                             {service.outcome && (
-                                <div className="mt-auto pt-6 border-t border-white/10">
-                                    <p className="text-sm text-white/50 italic">
+                                <div className="mt-auto pt-4 border-t border-white/10 mb-6">
+                                    <p className="text-xs text-white/50 italic">
                                         "{service.outcome}"
                                     </p>
                                 </div>
                             )}
 
-                            <Button variant="outline" className="w-full mt-8 group h-12 border-white/10 hover:bg-white/5">
-                                Select Protocol <ArrowRight className="w-4 h-4 ml-2 opacity-50 group-hover:translate-x-1 transition-transform" />
+                            <Button
+                                variant="outline"
+                                className={cn(
+                                    "w-full mt-auto h-10 border-white/10 hover:bg-white/5 text-xs uppercase tracking-wide",
+                                    service.isSpecial && "bg-amber-500/10 border-amber-500/50 hover:bg-amber-500/20 text-amber-500"
+                                )}
+                            >
+                                {service.isSpecial ? "Claim Audit" : "Select Protocol"} <ArrowRight className="w-3 h-3 ml-2 opacity-50 group-hover:translate-x-1 transition-transform" />
                             </Button>
 
                         </motion.div>
