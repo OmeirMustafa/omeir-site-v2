@@ -74,12 +74,13 @@ export function ServicesSection() {
                             key={service.id}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            transition={{ delay: index * 0.1, duration: 0.5, ease: "easeInOut" }}
                             viewport={{ once: true }}
                             className={cn(
                                 "relative p-8 rounded-2xl border border-white/5 bg-[#0a0a0a] hover:border-white/10 transition-all flex flex-col min-h-[550px]",
                                 index === 1 && "border-neon-cyan/20 bg-[#0a0a0a]/80 shadow-[0_0_30px_rgba(0,243,255,0.05)]"
                             )}
+                            whileHover={{ y: -5 }}
                         >
                             {index === 1 && (
                                 <div className="absolute top-0 right-0 px-3 py-1 bg-neon-cyan text-black text-xs font-bold uppercase rounded-bl-xl rounded-tr-xl">

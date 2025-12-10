@@ -8,8 +8,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 
 export function HeroSection() {
     return (
-    return (
-        <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 overflow-hidden">
+        <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 overflow-hidden gap-12">
             {/* Background Ambience */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-cyan/5 rounded-full blur-[120px] mix-blend-screen opacity-30 animate-pulse" />
@@ -23,7 +22,7 @@ export function HeroSection() {
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
                     className="space-y-8"
                 >
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/5 text-xs font-mono text-neon-cyan/80">
@@ -57,11 +56,12 @@ export function HeroSection() {
                 </motion.div>
 
                 {/* Right Column: Terminal */}
+                {/* Fixed min-height to prevent jumping */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="relative"
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
+                    className="relative w-full min-h-[300px]"
                 >
                     <div className="absolute -inset-1 bg-gradient-to-r from-neon-cyan to-voltage-purple rounded-xl blur opacity-20" />
                     <Terminal />
