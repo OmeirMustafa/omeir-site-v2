@@ -2,123 +2,63 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-const CASE_STUDIES = [
-    {
-        id: "infra-upgrade",
-        project: "Digital Infrastructure Upgrade",
-        clientType: "SaaS / Fintech / Consulting",
-        problems: [
-            "Outdated architecture",
-            "Low credibility UX",
-            "Manual workflows",
-            "No AI automation"
-        ],
-        solutions: [
-            "New Next.js architecture",
-            "Dark-mode enterprise design",
-            "Data layer & analytics",
-            "RAG automation"
-        ],
-        outcome: [
-            "Reduced risk",
-            "Faster workflows",
-            "Investor confidence",
-            "Better conversion"
-        ]
-    }
-];
+import { MasterPanel } from "@/components/ui/MasterPanel";
+import { ArrowUpRight, Loader2 } from "lucide-react";
 
 export function CaseStudiesSection() {
     return (
-        <section className="py-24 px-6 bg-[#0a0a0a] relative">
-            <div className="container mx-auto max-w-7xl">
-                {/* Section Header */}
-                <div className="flex justify-between items-end mb-12">
-                    <div>
-                        <div className="h-1 w-24 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-deep)] rounded-full" />
-                        <h2 className="text-3xl md:text-5xl font-bold mt-6 text-[var(--text-primary)]">Mission Archives</h2>
-                    </div>
-                    <div className="text-[var(--accent-green)] font-mono text-sm tracking-widest hidden md:block">
-                        // SECURE_AWARDS.LOG
-                    </div>
-                </div>
+        <section id="portfolio" className="py-24 px-6 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto">
+                <MasterPanel title="PROJECT_DB // ARCHIVES">
 
-                <div className="space-y-32">
-                    {CASE_STUDIES.map((study, idx) => (
+                    {/* Header */}
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                        <div>
+                            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter text-[var(--text-primary)] mb-4">
+                                BLUEPRINT <span className="text-[var(--accent-green)]">ARCHIVES</span>
+                            </h2>
+                            <p className="text-[var(--text-muted)] font-mono text-sm tracking-widest">
+                                DECLASSIFIED PROJECT FILES
+                            </p>
+                        </div>
+
+                        {/* Loader Ring */}
+                        <div className="flex items-center gap-3 text-[var(--accent-green)] text-xs font-mono tracking-widest opacity-70">
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            <span>SYNCING DATABASE...</span>
+                        </div>
+                    </div>
+
+                    {/* Content Placeholder */}
+                    <div className="relative min-h-[400px] border border-dashed border-[var(--hairline)] rounded-lg flex flex-col items-center justify-center p-12 text-center bg-[var(--bg-deep)]/50">
+
+                        <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(0,255,160,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
+
                         <motion.div
-                            key={study.id}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7 }}
+                            animate={{ opacity: [0.5, 1, 0.5] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="bg-[var(--accent-green)]/10 border border-[var(--accent-green)] px-6 py-2 rounded-full mb-8 backdrop-blur-sm"
                         >
-                            <div className="grid lg:grid-cols-2 gap-16 relative">
-                                {/* Decor Number */}
-                                <div className="absolute -top-12 -left-12 text-[12rem] font-bold text-[var(--accent-green)]/5 select-none leading-none z-0">
-                                    0{idx + 1}
-                                </div>
-
-                                {/* Left: Info */}
-                                <div className="space-y-8 relative z-10">
-                                    <div className="space-y-2">
-                                        <div className="inline-block px-3 py-1 rounded-full border border-[var(--accent-green)]/30 bg-[var(--accent-green)]/5 text-[var(--accent-green)] text-xs font-mono mb-4">
-                                            {study.clientType}
-                                        </div>
-                                        <h3 className="text-4xl font-bold text-[var(--text-primary)]">{study.project}</h3>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 gap-8 pt-8 border-t border-[var(--hairline)]">
-                                        <div>
-                                            <h4 className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-wider mb-4">Challenge</h4>
-                                            <ul className="space-y-2">
-                                                {study.problems.map((p, i) => (
-                                                    <li key={i} className="flex items-center gap-2 text-sm text-[var(--text-primary)]/80">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-red-500/50" />
-                                                        {p}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-wider mb-4">Solution</h4>
-                                            <ul className="space-y-2">
-                                                {study.solutions.map((s, i) => (
-                                                    <li key={i} className="flex items-center gap-2 text-sm text-[var(--text-primary)]/80">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)]" />
-                                                        {s}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Right: Result Card */}
-                                <div className="relative">
-                                    <div className="relative z-10 bg-white/5 backdrop-blur-sm border border-[var(--hairline)] p-8 rounded-xl hover:border-[var(--accent-green)]/50 transition-colors duration-500">
-                                        <h4 className="text-[var(--accent-green)] font-mono text-sm tracking-widest mb-6 border-b border-[var(--accent-green)]/20 pb-4">
-                                            // MISSION OUTCOME
-                                        </h4>
-                                        <div className="grid gap-4">
-                                            {study.outcome.map((out, i) => (
-                                                <div key={i} className="flex items-center justify-between group">
-                                                    <span className="text-[var(--text-primary)]/90 text-lg group-hover:text-white transition-colors">{out}</span>
-                                                    <ArrowUpRight className="w-5 h-5 text-[var(--accent-green)] opacity-50 group-hover:opacity-100 transition-opacity" />
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Glow Effect */}
-                                    <div className="absolute inset-0 bg-[var(--accent-green)]/10 blur-[80px] -z-10 rounded-full opacity-50" />
-                                </div>
-                            </div>
+                            <span className="text-[var(--accent-green)] font-mono text-sm tracking-[0.2em] font-bold">
+                                SYSTEM UPGRADE IN PROGRESS
+                            </span>
                         </motion.div>
-                    ))}
-                </div>
+
+                        <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-4">
+                            Recalibrating Portfolio Data
+                        </h3>
+                        <p className="text-[var(--text-muted)] max-w-md">
+                            Detailed case studies for Enterprise RAG Systems and High-Scale SaaS Architectures are being indexed.
+                        </p>
+
+                        <div className="mt-12 grid grid-cols-2 gap-4 opacity-50">
+                            <div className="h-32 w-48 bg-[var(--hairline)] rounded animate-pulse" />
+                            <div className="h-32 w-48 bg-[var(--hairline)] rounded animate-pulse animation-delay-500" />
+                        </div>
+
+                    </div>
+
+                </MasterPanel>
             </div>
         </section>
     );

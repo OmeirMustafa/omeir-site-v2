@@ -4,102 +4,115 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* DEEP-GREEN REACTOR Palette */
-  --color-bg-deep: #050807;
-  --color-bg-deep-2: #071817;
-  --color-accent-green: #00C28A;
-  --color-accent-deep: #007A52;
+  /* DEEP-GREEN REACTOR Palette - v3.1 Strict */
+  --color-accent-green: #00ffa0;
+  --color-accent-dim: #00cc7e;
+  --color-bg-deep: #040506;
+  --color-bg-overlay: rgba(5, 8, 10, 0.72);
+
   --color-text-primary: #E6FFF6;
   --color-text-muted: #9CCDBF;
-  --color-hairline: rgba(0, 194, 138, 0.12);
-  --color-halo: rgba(0, 194, 138, 0.06);
+
+  --color-hairline: rgba(0, 255, 160, 0.22);
+  --color-halo: rgba(0, 255, 160, 0.55);
+  --color-grid-line: rgba(0, 255, 160, 0.06);
 
   --font-sans: var(--font-primary), ui-sans-serif, system-ui;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular;
+
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-spin-slow: spin 12s linear infinite;
+  --animate-pulse-glow: pulseGlow 4s ease-in-out infinite;
 }
 
 :root {
-  --bg-deep: #050807;
-  --bg-deep-2: #071817;
-  --accent-green: #00C28A;
-  --accent-deep: #007A52;
+  /* Core Variables */
+  --accent-green: #00ffa0;
+  --accent-dim: #00cc7e;
+  --bg-deep: #040506;
+  --bg-overlay: rgba(5, 8, 10, 0.72);
+
   --text-primary: #E6FFF6;
   --text-muted: #9CCDBF;
-  --hairline: rgba(0, 194, 138, 0.12);
-  --halo: rgba(0, 194, 138, 0.06);
+
+  --hairline: rgba(0, 255, 160, 0.22);
+  --halo: rgba(0, 255, 160, 0.55);
 
   --background: var(--bg-deep);
   --foreground: var(--text-primary);
+
   --font-primary: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 body {
-  background: linear-gradient(180deg, var(--bg-deep), var(--bg-deep-2));
+  background-color: var(--bg-deep);
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
   width: 100%;
   cursor: none;
+  /* Custom Reticle Cursor */
+  position: relative;
+}
+
+/* Global Background System */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0, 255, 160, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 160, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 160, 0.05), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 @layer utilities {
 
-  /* Scanlines & Grid */
-  .scanlines {
-    background-image: repeating-linear-gradient(transparent, transparent 6px, rgba(0, 255, 200, 0.015) 7px);
-    opacity: 0.03;
-    pointer-events: none;
-  }
-
-  .tech-grid {
-    background-image: linear-gradient(to right, rgba(0, 255, 200, 0.02) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 255, 200, 0.02) 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.08;
-    pointer-events: none;
-  }
-
-  /* Master Panel - Deep Green */
+  /* Master Panel Implementation */
   .master-panel {
-    background: rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(10px);
+    background: var(--bg-overlay);
+    backdrop-filter: blur(18px);
     border: 1px solid var(--hairline);
-    box-shadow: 0 30px 60px var(--halo);
-    border-radius: 12px;
-    padding: 48px;
+    border-radius: 16px;
+    box-shadow: 0 0 48px rgba(0, 255, 160, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 255, 160, 0.5);
   }
 
   /* Scanline Overlay */
-  .scan-overlay {
-    background: repeating-linear-gradient(to bottom,
-        transparent 0px,
-        transparent 2px,
-        rgba(0, 245, 255, 0.03) 3px,
-        rgba(0, 245, 255, 0.03) 4px);
+  .scanlines::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    z-index: 2;
     pointer-events: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    animation: scanline 8s linear infinite;
-  }
-
-  /* Text Styles */
-  .terminal-text {
-    font-family: var(--font-mono);
-    color: var(--accent-green);
-  }
-
-  /* Animations */
-  .animate-spin-slow {
-    animation: spin 8s linear infinite;
-  }
-
-  .animate-holo-pulse {
-    animation: holoPulse 3s ease-in-out infinite;
+    opacity: 0.15;
   }
 }
 
+/* Keyframes */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -112,66 +125,31 @@ body {
 
 @keyframes scanline {
   0% {
-    background-position: 0 -30px;
+    transform: translateY(0%);
   }
 
   100% {
-    background-position: 0 30px;
+    transform: translateY(100%);
   }
 }
 
-@keyframes holoPulse {
-  0% {
-    transform: scale(0.995);
-    opacity: 0.92;
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    box-shadow: 0 0 20px rgba(0, 255, 160, 0.2);
   }
 
   50% {
-    transform: scale(1.01);
     opacity: 1;
-  }
-
-  100% {
-    transform: scale(0.995);
-    opacity: 0.92;
-  }
-}
-
-@keyframes reticleSpin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-holo-sweep {
-  animation: bgSweep 3s linear infinite;
-  background-size: 200% auto;
-}
-
-@keyframes bgSweep {
-  to {
-    background-position: 200% center;
+    box-shadow: 0 0 40px rgba(0, 255, 160, 0.6);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
-  *,
-  ::before,
-  ::after {
+  * {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .scan-overlay,
-  .animate-spin-slow,
-  .animate-holo-pulse {
-    animation: none !important;
   }
 }

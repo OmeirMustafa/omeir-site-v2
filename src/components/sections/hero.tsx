@@ -3,8 +3,8 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-import { Terminal } from "@/components/Terminal";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { MasterPanel } from "@/components/ui/MasterPanel"; // Using the new Master Component
+import { ArrowRight, ChevronRight, Terminal as TerminalIcon } from "lucide-react";
 import { ParticleCanvas } from "@/components/ui/ParticleCanvas";
 import { MOTION, VARIANTS } from "@/config/motion";
 
@@ -20,8 +20,6 @@ export function HeroSection() {
 
     const moveX = useTransform(springX, [-0.5, 0.5], ["-15px", "15px"]);
     const moveY = useTransform(springY, [-0.5, 0.5], ["-15px", "15px"]);
-    const moveXReverse = useTransform(springX, [-0.5, 0.5], ["15px", "-15px"]);
-    const moveYReverse = useTransform(springY, [-0.5, 0.5], ["15px", "-15px"]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         const { clientX, clientY, currentTarget } = e;
@@ -36,92 +34,80 @@ export function HeroSection() {
         <section
             ref={ref}
             onMouseMove={handleMouseMove}
-            className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 pt-20 pb-20 overflow-hidden max-w-7xl mx-auto gap-12"
+            className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-20 overflow-hidden max-w-7xl mx-auto"
         >
             {/* 0. GLOBAL ENVIRONMENT */}
             <ParticleCanvas />
 
-            {/* Left Column: Command Console */}
+            {/* MAIN CONTENT WRAPPED IN MASTER PANEL */}
             <motion.div
                 style={{ x: moveX, y: moveY }}
                 variants={VARIANTS.container}
                 initial="hidden"
                 animate="visible"
-                className="flex-1 space-y-8 flex flex-col items-start text-left z-10"
+                className="w-full max-w-5xl relative z-10"
             >
-                <motion.div variants={VARIANTS.item}>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-black/40 border border-[var(--hairline)] rounded-full backdrop-blur-md shadow-[0_0_15px_var(--halo)]">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-green)] opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-green)]"></span>
-                        </span>
-                        <span className="text-xs font-mono text-[var(--accent-green)] tracking-widest uppercase">
-                            SYSTEM ONLINE
-                        </span>
+                <MasterPanel className="flex flex-col md:flex-row items-center gap-12 md:gap-24" title="MAIN_CORE // ONLINE">
+
+                    {/* Left Column: Typography */}
+                    <div className="flex-1 space-y-8 text-left">
+                        {/* Status Pill */}
+                        <motion.div variants={VARIANTS.item}>
+                            <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-[var(--bg-deep)] border border-[var(--hairline)] rounded-full shadow-[0_0_15px_var(--halo)]">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-green)] opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-green)]"></span>
+                                </span>
+                                <span className="text-xs font-mono text-[var(--accent-green)] tracking-[0.2em] uppercase">
+                                    OMEIR OS v3.1
+                                </span>
+                            </div>
+                        </motion.div>
+
+                        {/* H1 Title */}
+                        <motion.h1 variants={VARIANTS.item} className="relative text-5xl md:text-7xl font-bold tracking-tight leading-[1] text-[var(--text-primary)]">
+                            DIGITAL <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-dim)] filter drop-shadow-[0_0_20px_var(--halo)]">
+                                PRODUCT ARCHITECT
+                            </span>
+                        </motion.h1>
+
+                        {/* Description */}
+                        <motion.p variants={VARIANTS.item} className="text-lg text-[var(--text-muted)] max-w-md leading-relaxed font-light">
+                            Engineering AI-native systems with secure pipelines and enterprise-grade architecture. Precision is the only standard.
+                        </motion.p>
+
+                        {/* CTAs */}
+                        <motion.div variants={VARIANTS.item} className="flex flex-wrap gap-4">
+                            <Link href="#contact" scroll={true}>
+                                <button className="group relative px-8 py-4 bg-[var(--accent-green)]/5 hover:bg-[var(--accent-green)]/10 text-[var(--accent-green)] font-bold font-mono text-sm tracking-widest uppercase border border-[var(--accent-green)] hover:shadow-[0_0_30px_var(--halo)] transition-all duration-300 flex items-center gap-3">
+                                    <span className="relative z-10">INITIALIZE PROTOCOL</span>
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            </Link>
+
+                            <Link href="#portfolio" scroll={true}>
+                                <button className="group px-8 py-4 bg-transparent border border-[var(--hairline)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--accent-green)]/50 font-mono text-sm tracking-widest uppercase transition-all duration-300">
+                                    BLUEPRINT ARCHIVES
+                                </button>
+                            </Link>
+                        </motion.div>
                     </div>
-                </motion.div>
 
-                {/* H1 with Holo Sweep Mask */}
-                <motion.h1 variants={VARIANTS.item} className="relative text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] text-[var(--text-primary)] overflow-hidden p-1">
-                    <span className="relative z-10">DIGITAL PRODUCT</span> <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-green)] to-[#007A52] filter drop-shadow-[0_0_15px_var(--halo)]">
-                        ARCHITECT
-                    </span>
+                    {/* Right Column: Reticle / Visual */}
+                    <motion.div variants={VARIANTS.item} className="hidden md:flex flex-col items-center justify-center relative w-64 h-64">
+                        {/* Spinning Reticle Rings */}
+                        <div className="absolute inset-0 border border-[var(--accent-green)]/30 rounded-full animate-[spin_10s_linear_infinite]" />
+                        <div className="absolute inset-4 border border-dashed border-[var(--accent-green)]/20 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+                        <div className="absolute inset-1/4 border-2 border-[var(--accent-green)]/10 rounded-full animate-pulse" />
 
-                    {/* Gradient Wipe Animation */}
-                    <motion.div
-                        initial={{ x: "-100%" }}
-                        animate={{ x: "100%" }}
-                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent-green)]/30 to-transparent skew-x-12 z-20 pointer-events-none"
-                    />
-                </motion.h1>
+                        {/* Center Core */}
+                        <div className="w-2 h-2 bg-[var(--accent-green)] rounded-full shadow-[0_0_20px_var(--accent-green)] animate-ping" />
+                    </motion.div>
 
-                <motion.p variants={VARIANTS.item} className="text-lg text-[var(--text-muted)] max-w-xl leading-relaxed font-light">
-                    I design and architect AI-native, secure digital systems using Next.js, RAG pipelines, and enterprise-grade component architecture.
-                </motion.p>
-
-                <motion.div variants={VARIANTS.item} className="flex flex-col w-full sm:w-auto gap-4">
-                    <Link href="#contact" scroll={true} className="w-full sm:w-auto">
-                        <button className="group relative w-full sm:w-auto px-8 py-4 bg-[var(--accent-green)]/10 hover:bg-[var(--accent-green)]/20 text-[var(--accent-green)] font-bold font-mono rounded border border-[var(--hairline)] hover:border-[var(--accent-green)] hover:shadow-[0_0_30px_var(--halo)] transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden">
-                            <span className="relative z-10 flex items-center gap-2 tracking-widest uppercase text-sm">
-                                INITIATE AUDIT PROTOCOL <ArrowRight className="w-4 h-4" />
-                            </span>
-                            {/* Scanline sweep */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent-green)]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                        </button>
-                    </Link>
-
-                    <Link href="#portfolio" scroll={true} className="w-full sm:w-auto">
-                        <button className="group w-full sm:w-auto px-8 py-4 bg-black/40 hover:bg-black/60 text-[var(--text-muted)] font-mono rounded border border-[var(--hairline)] hover:border-[var(--accent-green)]/30 transition-all duration-300 flex items-center justify-center gap-3 backdrop-blur-sm">
-                            <span className="tracking-widest uppercase text-sm">
-                                VIEW BLUEPRINT ARCHIVES
-                            </span>
-                            <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        </button>
-                    </Link>
-                </motion.div>
+                </MasterPanel>
             </motion.div>
 
-            {/* Right Column: AI Terminal + Parallax Reverse */}
-            <motion.div
-                style={{ x: moveXReverse, y: moveYReverse }}
-                variants={VARIANTS.item}
-                initial="hidden"
-                animate="visible"
-                className="flex-1 w-full max-w-lg relative min-h-[400px] hidden lg:block"
-            >
-                <div className="absolute -inset-10 bg-[var(--accent-green)]/10 blur-[100px] rounded-full pointer-events-none" />
-                <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative z-10"
-                >
-                    {/* Holographic Platform */}
-                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-[var(--accent-green)]/20 blur-xl rounded-[100%]" />
-                    <Terminal />
-                </motion.div>
-            </motion.div>
         </section>
     );
 }

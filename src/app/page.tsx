@@ -1,18 +1,18 @@
 import { HeroSection } from "@/components/sections/hero";
-import { ServicesSection } from "@/components/sections/services";
+import { ServicesSection } from "@/components/sections/services"; // Now contains modules
 import { SecureAISystems } from "@/components/sections/secure-ai-systems";
-import { ComponentArchitecture } from "@/components/sections/ComponentArchitecture";
-import { WorkflowSection } from "@/components/sections/workflow";
+import { CaseStudiesSection } from "@/components/sections/case-studies"; // Portfolio
+import { ThoughtLeadershipSection } from "@/components/sections/thought-leadership"; // Insights
 import { ContactSection } from "@/components/sections/contact";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full overflow-hidden">
+    <div className="flex flex-col w-full overflow-hidden min-h-screen bg-[#040506]">
       <HeroSection />
-      <ServicesSection />
       <SecureAISystems />
-      <ComponentArchitecture />
-      <WorkflowSection />
+      <ServicesSection />
+      <CaseStudiesSection />
+      <ThoughtLeadershipSection />
       <ContactSection />
     </div>
   );
