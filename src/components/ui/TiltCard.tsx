@@ -15,11 +15,12 @@ export function TiltCard({ children, className }: TiltCardProps) {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const mouseXSpring = useSpring(x);
-    const mouseYSpring = useSpring(y);
+    const springConfig = { damping: 20, stiffness: 300, mass: 0.5 };
+    const mouseXSpring = useSpring(x, springConfig);
+    const mouseYSpring = useSpring(y, springConfig);
 
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!ref.current) return;
@@ -55,19 +56,23 @@ export function TiltCard({ children, className }: TiltCardProps) {
                 transformStyle: "preserve-3d",
             }}
             className={cn("relative group perspective-1000", className)}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
         >
-            <div
-                style={{
-                    transform: "translateZ(75px)",
-                    transformStyle: "preserve-3d",
-                }}
-                className="absolute inset-4 grid place-content-center rounded-xl bg-transparent opacity-0"
-            >
-                {/* Removed white background to fix visibility issue */}
-            </div>
-            <div style={{ transform: "translateZ(50px)" }} className="h-full w-full">
+            <div style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }} className="h-full w-full">
                 {children}
             </div>
+
+            {/* Holographic Sheen on Tilt */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"
+                style={{
+                    background: `linear-gradient(125deg, transparent 40%, rgba(6, 182, 212, 0.1) 45%, rgba(6, 182, 212, 0.0) 50%)`,
+                    transform: "translateZ(60px)"
+                }}
+            />
         </motion.div>
     );
 }

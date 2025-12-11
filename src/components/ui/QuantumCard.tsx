@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 interface QuantumCardProps {
     children: React.ReactNode;
@@ -11,8 +11,8 @@ interface QuantumCardProps {
 }
 
 export function QuantumCard({ children, className, noHover = false }: QuantumCardProps) {
-    return (
-        <div className={cn("relative group rounded-xl p-[1px] overflow-hidden", className)}>
+    const Content = (
+        <div className={cn("relative group h-full rounded-xl p-[1px] overflow-hidden", className)}>
             {/* Animated Gradient Border */}
             <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan via-blue-500 to-voltage-purple animate-spin-slow opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -24,5 +24,13 @@ export function QuantumCard({ children, className, noHover = false }: QuantumCar
                 {children}
             </div>
         </div>
+    );
+
+    if (noHover) return Content;
+
+    return (
+        <TiltCard className="h-full">
+            {Content}
+        </TiltCard>
     );
 }
