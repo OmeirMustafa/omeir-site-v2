@@ -3,7 +3,7 @@ import { ServicesSection } from "@/components/sections/services";
 import { SecureAISystems } from "@/components/sections/secure-ai-systems";
 import { ComponentArchitecture } from "@/components/sections/ComponentArchitecture";
 import { WorkflowSection } from "@/components/sections/workflow";
-import { FinalCTASection } from "@/components/sections/final-cta";
+import { ContactSection } from "@/components/sections/contact";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       <SecureAISystems />
       <ComponentArchitecture />
       <WorkflowSection />
-      <FinalCTASection />
+      <ContactSection />
     </div>
   );
 }

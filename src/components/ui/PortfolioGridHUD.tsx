@@ -1,38 +1,52 @@
 "use client";
 
 import React from "react";
-import { Loader } from "lucide-react";
-import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
+import { HoloPanel } from "@/components/ui/HoloPanel";
 
 export function PortfolioGridHUD() {
     return (
-        <div className="w-full h-[400px] rounded-xl border border-cyan-500/20 bg-[#0b0c10] relative overflow-hidden flex flex-col items-center justify-center group cursor-wait">
-            {/* Hologram Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <HoloPanel className="w-full h-[600px] flex flex-col items-center justify-center relative cursor-wait">
+            {/* Ambient Background */}
+            <div className="absolute inset-0 bg-cyan-500/5 blur-3xl rounded-full opacity-20" />
 
-            {/* Scanline Sweep */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/5 to-transparent translate-y-[-100%] animate-[scan_4s_ease-in-out_infinite] pointer-events-none" />
-
-            <div className="relative z-10 flex flex-col items-center text-center">
-                <div className="mb-6 relative">
-                    <div className="absolute inset-0 bg-cyan-400/20 blur-xl animate-pulse" />
-                    <Loader className="w-12 h-12 text-cyan-400 animate-spin relative z-10" />
+            <div className="relative z-10 flex flex-col items-center text-center space-y-6">
+                {/* Spinner */}
+                <div className="relative">
+                    <div className="absolute inset-0 bg-cyan-400/30 blur-xl animate-pulse rounded-full" />
+                    <Loader2 className="w-16 h-16 text-cyan-400 animate-spin relative z-10 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
                 </div>
 
-                <h3 className="text-xl font-mono font-bold text-cyan-300 tracking-wider mb-2 animate-pulse group-hover:translate-x-[2px] transition-transform">
-                    SYSTEM UPGRADE IN PROGRESS...
-                </h3>
-                <p className="text-sm text-cyan-600 font-mono uppercase tracking-widest group-hover:text-cyan-500 transition-colors">
-                    ARCHIVING CLASSIFIED PROJECTS
-                </p>
-
-                {/* Glitch Overlay Text (Hidden by default, visible on hover/glitch) */}
-                <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center opacity-0 group-hover:opacity-10 pointer-events-none mix-blend-screen animation-delay-100">
-                    <h3 className="text-xl font-mono font-bold text-red-500 tracking-wider mb-2 translate-x-[-2px] blur-[1px]">
-                        SYSTEM UPGRADE IN PROGRESS...
+                <div className="space-y-2">
+                    <h3 className="text-3xl font-mono font-bold text-white tracking-widest uppercase">
+                        SYSTEM UPGRADE IN PROGRESS
                     </h3>
+
+                    <div className="flex items-center justify-center gap-3">
+                        <div className="h-[1px] w-12 bg-cyan-500/50" />
+                        <p className="text-sm text-cyan-400 font-mono uppercase tracking-[0.2em]">
+                            ARCHIVING CLASSIFIED BLUEPRINTS
+                        </p>
+                        <div className="h-[1px] w-12 bg-cyan-500/50" />
+                    </div>
+                </div>
+
+                {/* Terminal Loader Text */}
+                <div className="mt-8 p-4 bg-black/60 border border-white/10 rounded font-mono text-xs text-left text-slate-400 w-64">
+                    <div className="flex justify-between">
+                        <span>{'>'} MIGRATING_DB...</span>
+                        <span className="text-green-400">DONE</span>
+                    </div>
+                    <div className="flex justify-between">
+                        <span>{'>'} ENCRYPTING_ASSETS...</span>
+                        <span className="text-green-400">DONE</span>
+                    </div>
+                    <div className="flex justify-between">
+                        <span>{'>'} RECOMPILING_HUD...</span>
+                        <span className="animate-pulse text-cyan-400">PROCESSING</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </HoloPanel>
     );
 }

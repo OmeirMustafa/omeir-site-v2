@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { QuantumCard } from "./QuantumCard";
+import { HoloPanel } from "@/components/ui/HoloPanel";
 import Link from "next/link";
 
 const INSIGHTS = [
@@ -23,18 +23,18 @@ export function InsightsHUDLayout() {
                     viewport={{ once: true }}
                 >
                     <Link href={`/insights/${post.slug}`}>
-                        <QuantumCard className="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group hover:bg-cyan-950/10 hover:border-cyan-400/50 cursor-pointer border-cyan-500/20 bg-[#0b0c10]">
+                        <HoloPanel className="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-all duration-300 hover:bg-cyan-950/20">
                             <div>
-                                <h3 className="text-lg font-bold text-slate-200 group-hover:text-cyan-300 transition-colors">{post.title}</h3>
-                                <div className="flex gap-4 text-xs text-slate-500 mt-1 font-mono">
+                                <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors font-mono tracking-tight">{post.title}</h3>
+                                <div className="flex gap-4 text-xs text-slate-400 mt-2 font-mono uppercase tracking-wider">
                                     <span>{post.date}</span>
-                                    <span>{post.readTime} read</span>
+                                    <span className="text-cyan-600">// {post.readTime} READ</span>
                                 </div>
                             </div>
-                            <div className="px-3 py-1 rounded bg-black/40 border border-cyan-500/20 text-xs text-cyan-600 group-hover:bg-cyan-400/10 group-hover:text-cyan-400 group-hover:border-cyan-400 transition-all font-mono">
-                                Read Article
+                            <div className="px-4 py-2 rounded bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-400 group-hover:bg-cyan-400 group-hover:text-black transition-all font-mono font-bold tracking-widest">
+                                ACCESS_FILE
                             </div>
-                        </QuantumCard>
+                        </HoloPanel>
                     </Link>
                 </motion.div>
             ))}
