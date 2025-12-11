@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, CheckCircle, Cpu, Shield, Zap, Layout, Globe, Code, ArrowRight } from "lucide-react";
 import { QuantumCard } from "@/components/ui/QuantumCard";
 import { SmartContactModal } from "@/components/ui/SmartContactModal";
+import { DiagramHUD } from "@/components/ui/DiagramHUD";
+import { RAGPipelineDiagram } from "@/components/diagrams/RAGPipelineDiagram";
+import { NextJsArchitectureDiagram } from "@/components/diagrams/NextJsArchitectureDiagram";
 
 export default function RevOpsCaseStudy() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -249,53 +252,26 @@ export default function RevOpsCaseStudy() {
           SECTION 7 — ARCHITECTURE DIAGRAM (HUD BLUEPRINT)
       =========================================================== */}
             <section className="py-20 px-6 bg-[#080808] border-y border-cyan-500/10">
-                <div className="container mx-auto max-w-3xl text-center">
-                    <h2 className="text-2xl font-mono font-bold text-cyan-400 mb-12">SYSTEM BLUEPRINT</h2>
+                <div className="container mx-auto max-w-5xl">
+                    <h2 className="text-2xl font-mono font-bold text-cyan-400 mb-12 text-center">SYSTEM BLUEPRINT</h2>
 
-                    <div className="font-mono text-sm text-cyan-300 space-y-2">
-                        <div className="flex flex-col items-center">
-                            <div className="px-4 py-2 border border-cyan-500 rounded bg-cyan-950/30 w-48">[ USER ]</div>
-                            <div className="h-8 w-px bg-cyan-500/50"></div>
-                            <div className="text-cyan-500/50 text-[10px]">▼</div>
-                        </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <DiagramHUD
+                            title="FIG 1.0 // RAG_PIPELINE"
+                            caption="The RAG pipeline enables semantic search and high-context automation across CRM, operational, and product data."
+                        >
+                            <RAGPipelineDiagram />
+                        </DiagramHUD>
 
-                        <div className="flex flex-col items-center">
-                            <div className="px-6 py-4 border border-cyan-500 rounded bg-cyan-950/30 w-64 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-                                <strong>HUD UI LAYER</strong>
-                            </div>
-                            <div className="h-8 w-px bg-cyan-500/50"></div>
-                            <div className="text-cyan-500/50 text-[10px]">▼</div>
-                        </div>
-
-                        <div className="flex flex-col items-center">
-                            <div className="px-6 py-4 border border-white/20 rounded bg-slate-900 w-64 text-slate-300">
-                                <div className="text-cyan-500 mb-2 font-bold">COMPONENT SYSTEM</div>
-                                <div className="text-xs">QuantumCard</div>
-                                <div className="text-xs">HUDPanel</div>
-                                <div className="text-xs">NeonGrid</div>
-                            </div>
-                            <div className="h-8 w-px bg-cyan-500/50"></div>
-                            <div className="text-cyan-500/50 text-[10px]">▼</div>
-                        </div>
-
-                        <div className="flex flex-col items-center">
-                            <div className="px-6 py-4 border border-white/20 rounded bg-slate-900 w-64 text-slate-300">
-                                <div className="text-purple-400 mb-2 font-bold">NEXT.JS 15 ENGINE</div>
-                                <div className="text-xs">SSR / PPR / SA</div>
-                            </div>
-                            <div className="h-8 w-px bg-cyan-500/50"></div>
-                            <div className="text-cyan-500/50 text-[10px]">▼</div>
-                        </div>
-
-                        <div className="flex flex-col items-center">
-                            <div className="px-6 py-4 border border-white/20 rounded bg-slate-900 w-64 text-slate-300">
-                                <div className="text-white mb-2 font-bold">VERCEL EDGE</div>
-                                <div className="text-xs">CDN + Routing</div>
-                            </div>
-                        </div>
+                        <DiagramHUD
+                            title="FIG 2.0 // NEXTJS_ENTERPRISE_ARCH"
+                            caption="This architecture leverages Next.js 15 Server Actions for secure, low-latency enterprise systems."
+                        >
+                            <NextJsArchitectureDiagram />
+                        </DiagramHUD>
                     </div>
 
-                    <p className="mt-12 text-slate-500 text-sm font-mono">
+                    <p className="mt-12 text-slate-500 text-sm font-mono text-center">
                         “The system was built to allow future AI workflows and RAG tooling.”
                     </p>
                 </div>

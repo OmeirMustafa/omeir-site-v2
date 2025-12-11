@@ -3,6 +3,8 @@
 import React from "react";
 import { Database, Cpu, Eye } from "lucide-react";
 import { motion } from "framer-motion";
+import { DiagramHUD } from "@/components/ui/DiagramHUD";
+import { SystemStackDiagram } from "@/components/diagrams/SystemStackDiagram";
 
 const modules = [
     {
@@ -56,6 +58,16 @@ export function ComponentArchitecture() {
                             MODULE DATA FAILURE — RELOADING…
                         </div>
                     )}
+                </div>
+
+                {/* System Stack Diagram */}
+                <div className="mt-24 max-w-2xl mx-auto">
+                    <DiagramHUD
+                        title="SYSTEM_OPERATING_MODEL // V.3.0"
+                        caption="A unified operating model combining strategy, architecture, and engineering."
+                    >
+                        <SystemStackDiagram />
+                    </DiagramHUD>
                 </div>
             </div>
         </section>
