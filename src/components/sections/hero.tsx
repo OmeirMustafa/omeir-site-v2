@@ -44,12 +44,12 @@ export function HeroSection() {
             {/* Left Column: Command Console */}
             <motion.div
                 style={{ x: moveX, y: moveY }}
-                variants={VARIANTS.staggerContainer}
+                variants={VARIANTS.container}
                 initial="hidden"
-                animate="show"
+                animate="visible"
                 className="flex-1 space-y-8 flex flex-col items-start text-left z-10"
             >
-                <motion.div variants={VARIANTS.fadeInUp}>
+                <motion.div variants={VARIANTS.item}>
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-black/40 border border-cyan-400/30 rounded-full backdrop-blur-md">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -62,7 +62,7 @@ export function HeroSection() {
                 </motion.div>
 
                 {/* H1 with Holo Sweep Mask */}
-                <motion.h1 variants={VARIANTS.fadeInUp} className="relative text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] text-white overflow-hidden p-1">
+                <motion.h1 variants={VARIANTS.item} className="relative text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] text-white overflow-hidden p-1">
                     <span className="relative z-10">DIGITAL PRODUCT</span> <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 filter drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">
                         ARCHITECT
@@ -77,11 +77,11 @@ export function HeroSection() {
                     />
                 </motion.h1>
 
-                <motion.p variants={VARIANTS.fadeInUp} className="text-lg text-slate-300 max-w-xl leading-relaxed font-light">
+                <motion.p variants={VARIANTS.item} className="text-lg text-slate-300 max-w-xl leading-relaxed font-light">
                     I design and architect AI-native, secure digital systems using Next.js, RAG pipelines, and enterprise-grade component architecture.
                 </motion.p>
 
-                <motion.div variants={VARIANTS.fadeInUp} className="flex flex-col w-full sm:w-auto gap-4">
+                <motion.div variants={VARIANTS.item} className="flex flex-col w-full sm:w-auto gap-4">
                     <Link href="#contact" scroll={true} className="w-full sm:w-auto">
                         <button className="group relative w-full sm:w-auto px-8 py-4 bg-cyan-400/10 hover:bg-cyan-400/20 text-cyan-400 font-bold font-mono rounded border border-cyan-400/50 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden">
                             <span className="relative z-10 flex items-center gap-2 tracking-widest uppercase text-sm">
@@ -106,9 +106,9 @@ export function HeroSection() {
             {/* Right Column: AI Terminal + Parallax Reverse */}
             <motion.div
                 style={{ x: moveXReverse, y: moveYReverse }}
-                variants={VARIANTS.scaleIn}
+                variants={VARIANTS.item}
                 initial="hidden"
-                animate="show"
+                animate="visible"
                 className="flex-1 w-full max-w-lg relative min-h-[400px] hidden lg:block"
             >
                 <div className="absolute -inset-10 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
