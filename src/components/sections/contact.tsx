@@ -4,20 +4,27 @@ import { motion } from "framer-motion";
 import { ArrowRight, Code } from "lucide-react";
 import { useState } from "react";
 import { SmartContactModal } from "@/components/ui/SmartContactModal";
-import { ReactorCoreHUD } from "@/components/ui/ReactorCoreHUD";
 
 export function ContactSection() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <section className="relative">
-            <ReactorCoreHUD
-                title="ESTABLISH UPLINK"
-                tagline="COMMUNICATION LINK"
-                systemId="SYS_COMMS: #101"
-                className="py-24"
-            >
-                <div className="max-w-2xl mx-auto text-center relative z-20">
+        <section className="py-24 px-6 relative bg-[#050505] overflow-hidden border-t border-cyan-500/10 flex items-center justify-center">
+            {/* Background Ambience */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px]" />
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
+            </div>
+
+            <div className="container mx-auto max-w-2xl relative z-10 text-center">
+
+                {/* HUD PANEL */}
+                <div className="relative rounded-xl bg-black/80 backdrop-blur-xl border border-cyan-500/40 p-8 md:p-16 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden group">
+
+                    {/* Glow Effects */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_10px_#06b6d4]" />
+
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -43,8 +50,16 @@ export function ContactSection() {
                             </span>
                         </button>
                     </motion.div>
+
+                    {/* Corner Brackets */}
+                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-500 opacity-50" />
+                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-cyan-500 opacity-50" />
+                    <div className="absolute top-4 right-4 text-[10px] font-mono text-cyan-500/30 uppercase tracking-widest">
+                        SYS // ACTIVE
+                    </div>
                 </div>
-            </ReactorCoreHUD>
+
+            </div>
 
             <SmartContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </section>
