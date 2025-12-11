@@ -3,8 +3,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { QuantumCard } from "@/components/ui/QuantumCard";
-import { ArrowRight, Zap, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ReactorCoreHUD } from "@/components/ui/ReactorCoreHUD";
 
 const OFFERS = [
     {
@@ -40,59 +41,57 @@ const OFFERS = [
 
 export function ServicesSection() {
     return (
-        <section id="services" className="min-h-screen py-24 px-6 bg-[#0b0b0d] relative overflow-hidden flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto w-full">
-                <div className="mb-16 text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Value Ladder</h2>
-                    <p className="text-white/60">From rapid diagnostics to long-term leadership.</p>
-                </div>
+        <ReactorCoreHUD
+            title="VALUE LADDER"
+            tagline="ENGAGEMENT MODELS"
+            systemId="SYS_OFFER: #404"
+            className="py-24"
+        >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {OFFERS.map((offer, index) => (
+                    <motion.div
+                        key={offer.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="h-full"
+                    >
+                        <QuantumCard className={cn("h-full flex flex-col p-6", offer.isSpecial && "border-neon-cyan/50")}>
+                            {offer.isSpecial && (
+                                <div className="absolute top-0 right-0 px-2 py-1 bg-neon-cyan text-black text-[10px] font-bold uppercase rounded-bl-lg">
+                                    Limited
+                                </div>
+                            )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {OFFERS.map((offer, index) => (
-                        <motion.div
-                            key={offer.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="h-full"
-                        >
-                            <QuantumCard className={cn("h-full flex flex-col p-6", offer.isSpecial && "border-neon-cyan/50")}>
-                                {offer.isSpecial && (
-                                    <div className="absolute top-0 right-0 px-2 py-1 bg-neon-cyan text-black text-[10px] font-bold uppercase rounded-bl-lg">
-                                        Limited
+                            <div className="mb-6">
+                                <div className={cn("text-xs font-mono uppercase tracking-widest mb-2", offer.isSpecial ? "text-neon-cyan" : "text-white/40")}>{offer.tier}</div>
+                                <h3 className="text-xl font-bold text-white mb-1">{offer.title}</h3>
+                                <div className="text-2xl font-light text-white mb-2">{offer.price}</div>
+                                <p className="text-xs text-white/60 h-10">{offer.desc}</p>
+                            </div>
+
+                            <div className="space-y-3 mb-8 flex-grow">
+                                {offer.features.map((f) => (
+                                    <div key={f} className="flex items-start gap-2 text-xs text-white/50">
+                                        <Check className="w-3 h-3 text-neon-cyan shrink-0 mt-0.5" />
+                                        <span>{f}</span>
                                     </div>
-                                )}
+                                ))}
+                            </div>
 
-                                <div className="mb-6">
-                                    <div className={cn("text-xs font-mono uppercase tracking-widest mb-2", offer.isSpecial ? "text-neon-cyan" : "text-white/40")}>{offer.tier}</div>
-                                    <h3 className="text-xl font-bold text-white mb-1">{offer.title}</h3>
-                                    <div className="text-2xl font-light text-white mb-2">{offer.price}</div>
-                                    <p className="text-xs text-white/60 h-10">{offer.desc}</p>
-                                </div>
-
-                                <div className="space-y-3 mb-8 flex-grow">
-                                    {offer.features.map((f) => (
-                                        <div key={f} className="flex items-start gap-2 text-xs text-white/50">
-                                            <Check className="w-3 h-3 text-neon-cyan shrink-0 mt-0.5" />
-                                            <span>{f}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <button className={cn(
-                                    "w-full py-3 text-xs uppercase font-bold tracking-wide rounded border transition-all flex items-center justify-center gap-2",
-                                    offer.isSpecial
-                                        ? "bg-neon-cyan text-black border-neon-cyan hover:bg-white hover:border-white"
-                                        : "bg-transparent border-white/10 text-white hover:bg-white/5 hover:border-neon-cyan"
-                                )}>
-                                    Select <ArrowRight size={14} />
-                                </button>
-                            </QuantumCard>
-                        </motion.div>
-                    ))}
-                </div>
+                            <button className={cn(
+                                "w-full py-3 text-xs uppercase font-bold tracking-wide rounded border transition-all flex items-center justify-center gap-2",
+                                offer.isSpecial
+                                    ? "bg-neon-cyan text-black border-neon-cyan hover:bg-white hover:border-white"
+                                    : "bg-transparent border-white/10 text-white hover:bg-white/5 hover:border-neon-cyan"
+                            )}>
+                                Select <ArrowRight size={14} />
+                            </button>
+                        </QuantumCard>
+                    </motion.div>
+                ))}
             </div>
-        </section>
+        </ReactorCoreHUD>
     );
 }
