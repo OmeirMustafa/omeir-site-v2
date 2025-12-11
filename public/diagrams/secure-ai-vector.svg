@@ -1,0 +1,31 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Deep Green Grid -->
+  <defs>
+    <pattern id="grid-green" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 194, 138, 0.1)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="300" fill="url(#grid-green)" />
+  
+  <!-- Central Hub -->
+  <circle cx="200" cy="150" r="40" stroke="#00C28A" stroke-width="1.5" fill="rgba(0, 194, 138, 0.05)" />
+  <text x="200" y="154" text-anchor="middle" fill="#00C28A" font-family="monospace" font-size="10" letter-spacing="2">VECTOR DB</text>
+  
+  <!-- Orbit Paths -->
+  <circle cx="200" cy="150" r="80" stroke="#007A52" stroke-width="1" stroke-dasharray="4 4" opacity="0.5" />
+  <circle cx="200" cy="150" r="120" stroke="#007A52" stroke-width="1" stroke-dasharray="4 4" opacity="0.3" />
+
+  <!-- Nodes -->
+  <circle cx="280" cy="150" r="4" fill="#00C28A">
+    <animateTransform attributeName="transform" type="rotate" from="0 200 150" to="360 200 150" dur="10s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="120" cy="150" r="3" fill="#007A52">
+     <animateTransform attributeName="transform" type="rotate" from="180 200 150" to="540 200 150" dur="15s" repeatCount="indefinite" />
+  </circle>
+
+   <circle cx="200" cy="70" r="3" fill="#9CCDBF">
+     <animateTransform attributeName="transform" type="rotate" from="90 200 150" to="450 200 150" dur="12s" repeatCount="indefinite" />
+  </circle>
+
+</svg>

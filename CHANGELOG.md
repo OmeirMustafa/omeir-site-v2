@@ -1,5 +1,26 @@
 # CHANGELOG - OMEIR OS v3.0
 
+## [2.0.0] - 2025-12-12
+### Added
+- **Deep-Green Reactor Palette**: Global CSS variables for `accent-green` (#00C28A) and `accent-deep` (#007A52).
+- **Secure AI Systems**: New section with Master Panel layout, vector DB visualization, and orbiting node animations.
+- **Visual Assets**: `VectorDBVisual.tsx` component and `secure-ai-vector.svg`.
+
+### Changed
+- **Global Config**: Replaced legacy `neon-cyan`/`voltage-purple` palette with Deep-Green Reactor specifications.
+- **Core Components**: Updated `HoloPanel`, `ReticleCursor`, and `HUDNavigation` to use new palette variables.
+- **CSS Architecture**: Implemented cleaner CSS nesting and variable usage in `globals.css`.
+
+### Removed
+- Legacy blue/cyan hardcoded color tokens.
+- Deprecated HUD panel styles.
+
+## [1.0.0] - 2025-12-11
+### 🚀 Major Features
+- **Tactical-OS Core**: Implemented full-site cinematic HUD interface.
+- **Hardcore Animations**: 
+    - `globals.css`: GPU-accelerated keyframes (`scanline`, `holoPulse`, `reticleSpin`, `holoSweep`).
+
 ## [v3.0.0] - Tactical Reactor Upgrade (Hardcore Animations Mode)
 
 ### 🚀 Major Features

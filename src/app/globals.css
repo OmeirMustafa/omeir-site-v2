@@ -4,43 +4,70 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* HUD Palette */
-  --color-hud-black: #0b0b0d;
-  --color-hud-panel: rgba(12, 16, 30, 0.55);
-  --color-neon-cyan: #00f5ff;
-  --color-neon-violet: #7c4dff;
-  --color-text-primary: #e6eef6;
-  --color-text-muted: #9aa6b2;
+  /* DEEP-GREEN REACTOR Palette */
+  --color-bg-deep: #050807;
+  --color-bg-deep-2: #071817;
+  --color-accent-green: #00C28A;
+  --color-accent-deep: #007A52;
+  --color-text-primary: #E6FFF6;
+  --color-text-muted: #9CCDBF;
+  --color-hairline: rgba(0, 194, 138, 0.12);
+  --color-halo: rgba(0, 194, 138, 0.06);
 
   --font-sans: var(--font-primary), ui-sans-serif, system-ui;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular;
 }
 
 :root {
-  --background: #0b0b0d;
-  --foreground: #e6eef6;
+  --bg-deep: #050807;
+  --bg-deep-2: #071817;
+  --accent-green: #00C28A;
+  --accent-deep: #007A52;
+  --text-primary: #E6FFF6;
+  --text-muted: #9CCDBF;
+  --hairline: rgba(0, 194, 138, 0.12);
+  --halo: rgba(0, 194, 138, 0.06);
+
+  --background: var(--bg-deep);
+  --foreground: var(--text-primary);
   --font-primary: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 body {
-  background-color: var(--background);
+  background: linear-gradient(180deg, var(--bg-deep), var(--bg-deep-2));
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
   width: 100%;
   cursor: none;
-  /* Hide default cursor for ReticleCursor */
 }
 
 @layer utilities {
 
-  /* HUD Panels */
-  .hud-panel {
-    background: var(--color-hud-panel);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 245, 255, 0.1);
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.05);
+  /* Scanlines & Grid */
+  .scanlines {
+    background-image: repeating-linear-gradient(transparent, transparent 6px, rgba(0, 255, 200, 0.015) 7px);
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .tech-grid {
+    background-image: linear-gradient(to right, rgba(0, 255, 200, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 255, 200, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  /* Master Panel - Deep Green */
+  .master-panel {
+    background: rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--hairline);
+    box-shadow: 0 30px 60px var(--halo);
+    border-radius: 12px;
+    padding: 48px;
   }
 
   /* Scanline Overlay */
@@ -60,8 +87,7 @@ body {
   /* Text Styles */
   .terminal-text {
     font-family: var(--font-mono);
-    color: var(--color-neon-cyan);
-    text-shadow: 0 0 5px rgba(0, 245, 255, 0.5);
+    color: var(--accent-green);
   }
 
   /* Animations */

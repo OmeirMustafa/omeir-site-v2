@@ -36,7 +36,7 @@ export function ReticleCursor() {
         <motion.div className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference" style={{ x: cursorXSpring, y: cursorYSpring }}>
             <div className="relative w-8 h-8 flex items-center justify-center">
                 {/* Center Dot */}
-                <motion.div animate={{ scale: isHovering ? 0 : 1 }} className="w-1 h-1 bg-cyan-400 rounded-full" />
+                <motion.div animate={{ scale: isHovering ? 0 : 1 }} className="w-1 h-1 bg-[var(--accent-green)] rounded-full" />
 
                 {/* Outer Ring */}
                 <motion.div
@@ -44,25 +44,25 @@ export function ReticleCursor() {
                         scale: isHovering ? 1.6 : 1,
                         opacity: isHovering ? 1 : 0.5,
                         rotate: isClicking ? 360 : 0,
-                        borderColor: isClicking ? "#7c4dff" : "#00f5ff"
+                        borderColor: isClicking ? "#00FFC2" : "var(--accent-green)"
                     }}
                     transition={{
-                        rotate: { duration: 0.4, ease: "linear" }, // Spin 360 in 400ms on click hold (simulated by just click state here)
+                        rotate: { duration: 0.4, ease: "linear" },
                         scale: { type: "spring", stiffness: 300, damping: 20 }
                     }}
                     className={cn(
-                        "absolute inset-0 border border-cyan-500 rounded-full",
-                        !isHovering && "animate-holo-pulse" // Idle pulse
+                        "absolute inset-0 border border-[var(--accent-green)] rounded-full",
+                        !isHovering && "animate-holo-pulse"
                     )}
                 >
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-1 bg-cyan-400" />
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] h-1 bg-cyan-400" />
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-[1px] bg-cyan-400" />
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-[1px] bg-cyan-400" />
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-1 bg-[var(--accent-green)]" />
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] h-1 bg-[var(--accent-green)]" />
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-[1px] bg-[var(--accent-green)]" />
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-[1px] bg-[var(--accent-green)]" />
                 </motion.div>
 
                 {/* Hover Spin Ring */}
-                {isHovering && <motion.div initial={{ scale: 2, opacity: 0 }} animate={{ scale: 1.5, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} className="absolute inset-0 border border-dashed border-cyan-400/50 rounded-full animate-spin-slow" />}
+                {isHovering && <motion.div initial={{ scale: 2, opacity: 0 }} animate={{ scale: 1.5, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} className="absolute inset-0 border border-dashed border-[var(--accent-green)] opacity-50 rounded-full animate-spin-slow" />}
             </div>
         </motion.div>
     );

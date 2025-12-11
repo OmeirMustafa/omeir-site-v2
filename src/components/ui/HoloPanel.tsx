@@ -25,20 +25,18 @@ export function HoloPanel({ children, className, withBrackets = true }: HoloPane
                 className
             )}
             style={{
-                boxShadow: "0 0 40px rgba(34,211,238,0.1)", // Default
-                // We handle dynamic glow via CSS hover states below usually, 
-                // but explicit framer animation could also work if complex.
+                boxShadow: "0 0 40px var(--halo)",
             }}
         >
             {/* Scanline Texture */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.02)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none z-0 animate-scanline" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,194,138,0.02)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none z-0 animate-scanline" />
 
             {/* Content */}
             <div className="relative z-10">
                 {children}
             </div>
 
-            {/* Tech Brackets - Staggered Reveal 80ms (0.08s) */}
+            {/* Tech Brackets - Deep Green */}
             {withBrackets && (
                 <>
                     <motion.div
@@ -46,28 +44,28 @@ export function HoloPanel({ children, className, withBrackets = true }: HoloPane
                         whileInView={{ scale: 1, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="absolute top-0 left-0 w-4 h-4 border-t border-l border-cyan-400/60"
+                        className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[var(--accent-green)] opacity-60"
                     />
                     <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.28 }}
-                        className="absolute top-0 right-0 w-4 h-4 border-t border-r border-cyan-400/60"
+                        className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[var(--accent-green)] opacity-60"
                     />
                     <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.36 }}
-                        className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-cyan-400/60"
+                        className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[var(--accent-green)] opacity-60"
                     />
                     <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.44 }}
-                        className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-cyan-400/60"
+                        className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[var(--accent-green)] opacity-60"
                     />
                 </>
             )}
