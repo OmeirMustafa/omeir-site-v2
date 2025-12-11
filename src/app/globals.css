@@ -54,6 +54,7 @@ body {
     position: fixed;
     inset: 0;
     z-index: 9999;
+    animation: scanline 8s linear infinite;
   }
 
   /* Text Styles */
@@ -67,6 +68,10 @@ body {
   .animate-spin-slow {
     animation: spin 8s linear infinite;
   }
+
+  .animate-holo-pulse {
+    animation: holoPulse 3s ease-in-out infinite;
+  }
 }
 
 @keyframes spin {
@@ -75,6 +80,43 @@ body {
   }
 
   to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 -30px;
+  }
+
+  100% {
+    background-position: 0 30px;
+  }
+}
+
+@keyframes holoPulse {
+  0% {
+    transform: scale(0.995);
+    opacity: 0.92;
+  }
+
+  50% {
+    transform: scale(1.01);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.995);
+    opacity: 0.92;
+  }
+}
+
+@keyframes reticleSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
     transform: rotate(360deg);
   }
 }
