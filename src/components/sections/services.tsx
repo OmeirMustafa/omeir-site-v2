@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MasterPanel } from "@/components/ui/MasterPanel";
-import { Database, Cpu, Eye, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Database, Cpu, Eye } from "lucide-react";
+import { CapabilityMatrixModal } from "@/components/ui/CapabilityMatrixModal";
 
 const MODULES = [
     {
@@ -28,14 +28,22 @@ const MODULES = [
 ];
 
 export function ServicesSection() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <section id="services" className="py-24 px-6 relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <MasterPanel title="CORE_MODULES // V.3.1">
-                    <div className="text-center mb-16 space-y-4">
+                    <div className="text-center mb-16 space-y-6">
                         <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-[var(--text-primary)]">
                             OPERATING <span className="text-[var(--accent-green)] text-glow">MODULES</span>
                         </h2>
+
+                        {/* New Platform Subline */}
+                        <div className="font-mono text-[10px] md:text-xs text-[var(--accent-green)]/60 tracking-widest uppercase max-w-4xl mx-auto py-2 px-4 border-y border-[var(--hairline)]/30 bg-[var(--bg-deep)]/50">
+                            Platform foundation: Next.js 16.0.8 • Tailwind CSS v4 • Framer Motion 12 — engineered for scale and production animation physics.
+                        </div>
+
                         <p className="text-[var(--text-muted)] max-w-2xl mx-auto text-lg font-light">
                             Deploying advanced capability across the entire digital stack.
                         </p>
@@ -80,15 +88,18 @@ export function ServicesSection() {
                     </div>
 
                     <div className="mt-16 text-center">
-                        <Link href="#contact">
-                            <button className="text-[var(--accent-green)] font-mono text-sm tracking-widest uppercase hover:underline underline-offset-4 decoration-[var(--accent-green)] decoration-2">
-                                VIEW FULL CAPABILITY MATRIX -&gt;
-                            </button>
-                        </Link>
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="text-[var(--accent-green)] font-mono text-sm tracking-widest uppercase hover:underline underline-offset-4 decoration-[var(--accent-green)] decoration-2"
+                        >
+                            VIEW FULL CAPABILITY MATRIX -&gt;
+                        </button>
                     </div>
 
                 </MasterPanel>
             </div>
+
+            <CapabilityMatrixModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </section>
     );
 }

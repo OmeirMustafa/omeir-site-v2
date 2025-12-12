@@ -6,7 +6,7 @@ import { MasterPanel } from "@/components/ui/MasterPanel"; // Reusing MasterPane
 
 export function SmartContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const [copied, setCopied] = useState(false);
-    const email = "kaziomeirmustafa@gmail.com";
+    const email = "omeirmustafa.work@gmail.com";
 
     const handleCopy = () => {
         navigator.clipboard.writeText(email);
