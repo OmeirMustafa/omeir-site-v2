@@ -8,28 +8,28 @@ import { IntelligenceBriefModal } from "@/components/ui/IntelligenceBriefModal";
 
 const VISUAL_MAPPING = [
     {
-        title: "Why Most SaaS Products Fail at Series A", tag: "STRATEGY",
-        content: "Startups often fail at Series A not because of poor engineering, but due to a mismatch between product velocity and architectural scalability. Founders accumulate technical debt in the MVP phase that becomes paralyzing when user growth demands reliability. \n\nThe solution is 'Just-in-Time Architecture'—building modular systems that can digest scale without needing a total rewrite. This bridge between MVP chaos and Series A structure is where Technical Product Architecture provides the highest ROI."
+        title: "What makes a website feel premium?", tag: "DESIGN",
+        content: "Premium websites communicate clarity, structure, and trust. They use minimal noise, strong typography, balanced space, and clear brand signals."
     },
 
     {
-        title: "The Role of Architecture in Modern Product Development", tag: "ENGINEERING",
-        content: "Architecture is no longer just about database schemas; it's about the flow of data value. Modern product development requires architects who understand 'Inference Economics'—how to build systems where AI costs don’t scale linearly with users.\n\nBy decoupling the frontend from the backend using edge-ready frameworks like Next.js, and implementing intelligent caching layers, we create products that feel instant and cost significantly less to run at scale."
+        title: "Why dark mode for modern brands?", tag: "AESTHETICS",
+        content: "Dark systems signal precision, focus, and professionalism. They make content feel more intentional and reduce visual fatigue."
     },
 
     {
-        title: "What Non-Technical CEOs Need to Know About AI & RAG", tag: "AI SYSTEMS",
-        content: "RAG (Retrieval Augmented Generation) is the only viable path for enterprise AI today because it solves the hallucination problem. Unlike a raw chatbot, RAG 'reads' your company's live data before answering.\n\nFor CEOs, this means your IP is safe. You aren't training a public model; you are simply indexing your own files into a secure vault (Vector DB) and asking an LLM to summarize them. It is secure, private, and highly accurate."
+        title: "How do you turn ideas into real products?", tag: "EXECUTION",
+        content: "By combining research, strategy, prototyping, and a scalable architecture built with modern frameworks like Next.js 16."
     },
 
     {
-        title: "The Dark-Mode Psychology Behind High-Trust Design", tag: "UX DESIGN",
-        content: "Dark mode isn't just an aesthetic choice; it's a trust signal in developer tools and crypto. It reduces eye strain during long session times, which is critical for complex dashboards.\n\nMore importantly, deep charcoal and obsidian palettes (like #040506) combined with neon accents create a 'Terminal Aesthetic' that subconsciously signals precision and engineering rigor to technical buyers."
+        title: "What defines intelligent UI motion?", tag: "INTERACTION",
+        content: "Smooth micro-interactions that guide the user, reduce confusion, and improve usability without distraction."
     },
 
     {
-        title: "The Future State Journey Map Every Company Needs", tag: "PRODUCT",
-        content: "Most roadmaps fail because they are feature lists, not state transitions. A Future State Journey Map defines where the data lives today versus where it needs to live tomorrow.\n\nIt forces you to answer hard questions: 'When we hit 10k users, does our manual onboarding break?' Mapping this out reveals the necessary architectural breakpoints before they become emergencies."
+        title: "How do modern businesses differentiate online?", tag: "STRATEGY",
+        content: "By creating a digital identity that feels engineered, not template-based. Custom systems always outperform generic website builders."
     }
 ];
 

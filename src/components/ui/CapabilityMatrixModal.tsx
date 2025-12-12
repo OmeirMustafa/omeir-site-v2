@@ -8,57 +8,36 @@ import { MasterPanel } from "@/components/ui/MasterPanel";
 // Structure Content
 const SECTIONS = [
     {
-        title: "1. EXECUTIVE SUMMARY",
-        content: "High-level capability summary: Engineering-grade, AI-native architectures focused on RAG, secure SSR, low-latency edge delivery, and outcome-driven productization."
+        title: "1. Brand Intelligence Layer",
+        content: "Research-driven brand identity. Visual language systems. Positioning & messaging frameworks. Industry adaptation for ANY business type (restaurant, medical, legal, SaaS, consulting, fitness, etc.)"
     },
     {
-        title: "2. PLATFORM & TOOLS",
+        title: "2. Premium Web Architecture",
         custom: true,
         items: [
-            { label: "Next.js 16.0.8", text: "Server Actions, Partial Prerendering, React 19 readiness." },
-            { label: "Tailwind CSS v4", text: "High-performance JIT + smaller bundles." },
-            { label: "Framer Motion 12", text: "Physics-based UI, spring/snap interactions." },
-            { label: "Node 20+", text: "Stable runtime for edge and server." },
-            { label: "Vercel Edge", text: "Low-latency global delivery." }
+            { label: "Custom Next.js 16 builds", text: "Latest framework features for optimal performance." },
+            { label: "Responsive dark-mode systems", text: "Adaptive theming for visual comfort and style." },
+            { label: "Component architecture", text: "Modular design meant for scalability." },
+            { label: "High-performance SEO", text: "Technical SEO optimization for search visibility." },
+            { label: "Enterprise-grade UI motion", text: "Fluid interactions using Framer Motion 12." }
         ]
     },
     {
-        title: "3. AI & DATA LAYER",
-        custom: true,
-        items: [
-            { label: "Vector DB options", text: "Pinecone, Qdrant, Weaviate (implementations & tradeoffs)." },
-            { label: "Embeddings", text: "OpenAI / Gemini Embed strategies." },
-            { label: "Ingestion", text: "Chunking, metadata tagging, schema notes." },
-            { label: "RAG orchestration", text: "Retrieval, re-ranking, prompt templates, safety layers." }
-        ]
+        title: "3. Intelligent Systems Integration",
+        content: "Automated content pipelines. Smart UX flows. On-site micro-interactions. Modular, upgrade-ready internal tools. Foundation for future AI expansion."
     },
     {
-        title: "4. SECURITY & COMPLIANCE",
-        content: "SSR & session policy, auth patterns, encryption-at-rest, rate-limits. Data privacy notes: PII handling, redaction strategies, consent capture."
+        title: "4. Security & Compliance Layer",
+        content: "Secure frontend practices. SSR-first architecture. Data minimization principles. Industry-compliant flows. Zero third-party exposure in critical components."
     },
     {
-        title: "5. UX & PERFORMANCE",
-        content: "LCP optimisation, critical CSS, image strategy, lazy-loading interactive components. Accessibility: keyboard-first modals, reduced-motion, ARIA roles."
-    },
-    {
-        title: "6. PRODUCT OFFERS",
-        custom: true,
-        items: [
-            { label: "Founder Diagnostic ($249)", text: "48-hr UX & code health check." },
-            { label: "Technical Audit ($3,500+)", text: "Architecture deep-dive & remediation roadmap." },
-            { label: "Build Sprint ($15k+)", text: "MVP architecture & execution." },
-            { label: "Fractional CPO ($6k/mo)", text: "Strategic product leadership." }
-        ]
-    },
-    {
-        title: "7. IMPLEMENTATION TIMELINES",
-        content: "Typical turnaround windows: Audit (3–5 days), Sprint (2–6 weeks), Platform Build (8–14 weeks). Deliverables: design system, component library, deployment pipeline, RAG integration, documentation."
+        title: "5. Operational Performance",
+        content: "Faster page loads with LCP optimization. Reduced layout shifts (CLS). High accessibility scores. Technical debt reduction for maintainability. Clean, maintainable architecture."
     }
 ];
 
 export function CapabilityMatrixModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const [copied, setCopied] = React.useState(false);
-    const triggerRef = useRef<HTMLButtonElement>(null); // To return focus
 
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
@@ -116,37 +95,39 @@ export function CapabilityMatrixModal({ isOpen, onClose }: { isOpen: boolean; on
                         initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
-                        className="relative w-full max-w-4xl h-[85vh] flex flex-col pointer-events-auto"
+                        className="relative w-full max-w-4xl h-[85vh] max-h-[85vh] flex flex-col pointer-events-auto"
                     >
                         <MasterPanel title="FULL CAPABILITY MATRIX" className="bg-[#0b0b0d] flex-1 flex flex-col overflow-hidden h-full">
 
                             {/* Sticky Header */}
                             <div className="flex-none flex justify-between items-center mb-6 pb-4 border-b border-[var(--hairline)]">
                                 <div id="modal-title" className="text-xs font-mono text-[var(--accent-green)] tracking-widest">
-                                    SYSTEM_CAPABILITY_OVERVIEW // V3.2
+                                    SYSTEM_CAPABILITY_OVERVIEW // V4.0
                                 </div>
-                                <button onClick={onClose} aria-label="Close" className="p-2 hover:bg-[var(--accent-green)]/10 rounded-full transition-colors focus:ring-2 focus:ring-[var(--accent-green)]">
+                                <button onClick={onClose} aria-label="Close" className="p-2 hover:bg-[var(--accent-green)]/10 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)]">
                                     <X className="w-5 h-5 text-[var(--text-muted)]" />
                                 </button>
                             </div>
 
                             {/* Scrollable Body */}
-                            <div className="flex-1 overflow-y-auto custom-scrollbar pr-4 space-y-8 min-h-0">
+                            <div className="flex-1 overflow-y-auto custom-scrollbar pr-4 space-y-10 min-h-0">
                                 {SECTIONS.map((section, idx) => (
-                                    <div key={idx} className="space-y-3">
-                                        <h3 className="text-[var(--text-primary)] font-bold text-lg font-mono">{section.title}</h3>
+                                    <div key={idx} className="space-y-4">
+                                        <h3 className="text-[var(--text-primary)] font-bold text-lg font-mono tracking-tight uppercase border-l-2 border-[var(--accent-green)] pl-3">
+                                            {section.title}
+                                        </h3>
 
                                         {section.custom && section.items ? (
-                                            <dl className="space-y-2">
+                                            <dl className="grid sm:grid-cols-2 gap-4 text-sm pl-4">
                                                 {section.items.map((item, i) => (
-                                                    <div key={i} className="flex flex-col sm:flex-row sm:gap-4 text-sm">
-                                                        <dt className="text-[var(--accent-green)] font-mono min-w-[150px]">{item.label}</dt>
-                                                        <dd className="text-[var(--text-muted)]">{item.text}</dd>
+                                                    <div key={i} className="flex flex-col gap-1">
+                                                        <dt className="text-[var(--accent-green)] font-mono text-xs uppercase opacity-80">{item.label}</dt>
+                                                        <dd className="text-[var(--text-muted)] leading-snug">{item.text}</dd>
                                                     </div>
                                                 ))}
                                             </dl>
                                         ) : (
-                                            <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-2xl border-l-2 border-[var(--accent-green)]/20 pl-4">
+                                            <p className="text-[var(--text-muted)] text-sm leading-relaxed pl-4 max-w-3xl">
                                                 {section.content}
                                             </p>
                                         )}

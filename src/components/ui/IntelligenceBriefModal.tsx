@@ -30,21 +30,21 @@ export function IntelligenceBriefModal({ isOpen, onClose, data }: { isOpen: bool
                         initial={{ scale: 0.9, opacity: 0, y: 10 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0, y: 10 }}
-                        className="relative w-full max-w-2xl"
+                        className="relative w-full max-w-2xl mt-8" /* Added margin top to clear any top overlap */
                     >
-                        <HoloPanel className="p-8 md:p-12 relative flex flex-col">
-                            {/* Close Button - Top Center as requested */}
-                            <div className="absolute top-0 left-0 right-0 flex justify-center -mt-5 md:-mt-6">
+                        <HoloPanel className="p-8 md:p-12 relative flex flex-col pt-12">
+                            {/* Close Button - Top Center as requested, absolute relative to modal body */}
+                            <div className="absolute top-0 left-0 right-0 flex justify-center -mt-6"> {/* Negative margin to pull it up */}
                                 <button
                                     onClick={onClose}
                                     aria-label="Close"
-                                    className="bg-[var(--bg-deep)] border border-[var(--hairline)] text-[var(--text-muted)] hover:text-[#00ffa0] hover:border-[#00ffa0] transition-colors rounded-full p-2 shadow-lg z-20"
+                                    className="bg-[var(--bg-deep)] border border-[var(--hairline)] text-[var(--accent-green)] hover:text-white hover:bg-[var(--accent-green)] hover:border-[var(--accent-green)] transition-colors rounded-full p-2 shadow-[0_0_20px_var(--halo)] z-50 flex items-center justify-center"
                                 >
                                     <X className="w-5 h-5" />
                                 </button>
                             </div>
 
-                            <div className="space-y-6 mt-4">
+                            <div className="space-y-6 mt-2">
                                 <div>
                                     <div className="text-[10px] font-mono text-[var(--accent-green)] tracking-widest mb-2">INTELLIGENCE BRIEF</div>
                                     <h3 className="text-2xl font-bold text-[var(--text-primary)] leading-tight">{data.title}</h3>

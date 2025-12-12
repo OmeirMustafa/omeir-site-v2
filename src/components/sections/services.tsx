@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MasterPanel } from "@/components/ui/MasterPanel";
-import { Database, Cpu, Eye } from "lucide-react";
+import { Database, Cpu, Eye, CheckCircle2, ArrowRight } from "lucide-react";
 import { CapabilityMatrixModal } from "@/components/ui/CapabilityMatrixModal";
+import Link from "next/link";
 
 const MODULES = [
     {
@@ -16,7 +17,7 @@ const MODULES = [
     {
         title: "BUILDER",
         icon: <Cpu className="w-8 h-8 text-[var(--accent-green)]" />,
-        desc: "High-Velocity Engineering. Next.js 15, React Server Components, and Type-Safe production code.",
+        desc: "High-Velocity Engineering. Next.js 16.0.8, React Server Components, and Type-Safe production code.",
         details: ["Next.js 16.0.8", "TypeScript", "RAG Pipelines"]
     },
     {
@@ -27,21 +28,67 @@ const MODULES = [
     }
 ];
 
+const TIERS = [
+    {
+        title: "TIER 1",
+        name: "Brand & Strategy Blueprint",
+        price: "Starting at 15k+",
+        desc: "A deep-dive into your brand, market, audience, and goals.",
+        features: [
+            "Brand positioning",
+            "Visual identity direction",
+            "Website architecture plan",
+            "Competitive analysis",
+            "Strategic execution roadmap"
+        ]
+    },
+    {
+        title: "TIER 2",
+        name: "Premium Web Architecture Build",
+        price: "Starting at 15k+",
+        desc: "A complete custom-built website engineered for performance, clarity, and conversion.",
+        features: [
+            "Custom Next.js interface",
+            "High-fidelity dark-mode design",
+            "Modern UI motion",
+            "SEO engineering",
+            "Fully responsive layouts",
+            "Fast, accessible, scalable"
+        ]
+    },
+    {
+        title: "TIER 3",
+        name: "Intelligent Systems Integration",
+        price: "Starting at 15k+",
+        desc: "Add depth and intelligence to your digital ecosystem.",
+        features: [
+            "Automated flows",
+            "Smart content systems",
+            "Operational UX improvements",
+            "Scalable component architecture",
+            "Foundations for future AI adoption"
+        ]
+    }
+];
+
 export function ServicesSection() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <section id="services" className="py-24 px-6 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-                <MasterPanel title="CORE_MODULES // V.3.2">
+            <div className="max-w-7xl mx-auto space-y-24">
+
+                {/* PART 1: OPERATING MODULES */}
+                <MasterPanel title="CORE_MODULES // V.4.0">
                     <div className="text-center mb-16 space-y-6">
                         <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-[var(--text-primary)]">
                             OPERATING <span className="text-[var(--accent-green)] text-glow">MODULES</span>
                         </h2>
 
-                        {/* New Platform Subline */}
-                        <div className="font-mono text-[10px] md:text-xs text-[var(--accent-green)]/60 tracking-widest uppercase max-w-4xl mx-auto py-2 px-4 border-y border-[var(--hairline)]/30 bg-[var(--bg-deep)]/50">
-                            Platform foundation: Next.js 16.0.8 • Tailwind CSS v4 • Framer Motion 12 — engineered for scale and production animation physics.
+                        {/* Stack Integrity Subline */}
+                        <div className="font-mono text-[10px] md:text-xs text-[var(--accent-green)]/60 tracking-widest uppercase max-w-4xl mx-auto py-3 px-4 border-y border-[var(--hairline)]/30 bg-[var(--bg-deep)]/50">
+                            <strong>Stack Integrity:</strong> Powered by: Next.js 16.0.8, Tailwind CSS v4, Framer Motion 12<br />
+                            Engineered for maximum performance, cleaner bundling, and enterprise-grade UI flow.
                         </div>
 
                         <p className="text-[var(--text-muted)] max-w-2xl mx-auto text-lg font-light">
@@ -95,8 +142,61 @@ export function ServicesSection() {
                             VIEW FULL CAPABILITY MATRIX -&gt;
                         </button>
                     </div>
-
                 </MasterPanel>
+
+                {/* PART 2: PRODUCTIZED ENGAGEMENT MODELS */}
+                <MasterPanel title="ENGAGEMENT_PROTOCOLS // TIERS">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-[var(--text-primary)]">
+                            PROJECT <span className="text-[var(--accent-green)] text-glow">BLUEPRINTS</span>
+                        </h2>
+                        <p className="mt-4 text-[var(--text-muted)] max-w-2xl mx-auto text-lg font-light">
+                            Select the engagement tier that matches your system requirements.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-6 relative z-10">
+                        {TIERS.map((tier, i) => (
+                            <motion.div
+                                key={tier.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 + (i * 0.15) }}
+                                className="relative flex flex-col p-8 rounded-xl border border-[var(--hairline)] bg-[var(--bg-deep)] hover:border-[var(--accent-green)]/60 transition-all duration-300 group"
+                            >
+                                <div className="mb-6 pb-6 border-b border-[var(--hairline)]/50">
+                                    <div className="text-[var(--accent-green)] font-mono text-xs tracking-widest mb-2 opacity-70">
+                                        // {tier.title}
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{tier.name}</h3>
+                                    <div className="text-xl font-mono text-[var(--accent-green)]">{tier.price}</div>
+                                </div>
+
+                                <p className="text-[var(--text-muted)] text-sm mb-8 leading-relaxed">
+                                    {tier.desc}
+                                </p>
+
+                                <ul className="space-y-3 mb-8 flex-1">
+                                    {tier.features.map((feat) => (
+                                        <li key={feat} className="flex items-start gap-3 text-sm text-[var(--text-muted)]">
+                                            <CheckCircle2 className="w-4 h-4 text-[var(--accent-green)] shrink-0 mt-0.5" />
+                                            <span>{feat}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <Link href="#contact" scroll={true} className="mt-auto">
+                                    <button className="w-full py-3 px-4 bg-[var(--accent-green)]/10 text-[var(--accent-green)] border border-[var(--accent-green)]/30 hover:bg-[var(--accent-green)] hover:text-black font-mono text-xs tracking-widest uppercase transition-all flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(0,255,160,0.2)]">
+                                        <span>INITIATE {tier.title}</span>
+                                        <ArrowRight className="w-3 h-3" />
+                                    </button>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
+                </MasterPanel>
+
             </div>
 
             <CapabilityMatrixModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

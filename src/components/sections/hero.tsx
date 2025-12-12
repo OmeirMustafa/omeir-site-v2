@@ -50,16 +50,17 @@ export function HeroSection() {
                     </motion.div>
 
                     {/* H1 Title */}
-                    <motion.h1 variants={VARIANTS.item} className="text-5xl md:text-7xl font-bold tracking-tight leading-[1] text-[var(--text-primary)]">
-                        DIGITAL <br />
+                    <motion.h1 variants={VARIANTS.item} className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] text-[var(--text-primary)] uppercase max-w-5xl">
+                        DIGITAL PRODUCT & <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-dim)] filter drop-shadow-[0_0_20px_var(--halo)]">
-                            PRODUCT ARCHITECT
+                            WEB ARCHITECT
                         </span>
                     </motion.h1>
 
                     {/* Subtitle */}
-                    <motion.p variants={VARIANTS.item} className="text-lg md:text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed font-light px-4 bg-[var(--bg-deep)]/60 backdrop-blur-sm rounded-xl py-2">
-                        Engineering AI-native systems with secure pipelines and enterprise-grade architecture. Precision is the only standard.
+                    <motion.p variants={VARIANTS.item} className="text-lg md:text-xl text-[var(--text-muted)] max-w-3xl leading-relaxed font-light px-4 bg-[var(--bg-deep)]/60 backdrop-blur-sm rounded-xl py-2">
+                        Designing premium brand systems and intelligent websites for modern businesses.<br className="hidden md:block" />
+                        From strategy to execution — every build is engineered with precision, clarity, and long-term scalability.
                     </motion.p>
 
                     {/* CTAs */}

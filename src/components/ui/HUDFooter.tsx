@@ -18,12 +18,12 @@ export function HUDFooter() {
 
                 {/* Left Side */}
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    <h4 className="text-xl font-bold font-mono text-[var(--text-primary)] tracking-tight relative group cursor-default mb-2 shadow-[0_0_15px_rgba(0,255,160,0.1)] rounded px-2" style={{ textShadow: "0 0 10px rgba(0,255,160,0.3)" }}>
+                    <h4 className="text-xl font-bold font-mono text-[var(--text-primary)] tracking-tight relative group cursor-default mb-2 shadow-[0_0_15px_rgba(0,255,160,0.1)] rounded px-2" style={{ textShadow: "0 0 12px rgba(0,255,160,0.6)" }}>
                         OMEIR<span className="text-[#00ffa0]">.MUSTAFA</span>
-                        <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#00ffa0]/50 blur-sm opacity-50 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#00ffa0] blur-md opacity-60 group-hover:opacity-100 transition-opacity" />
                     </h4>
                     <p className="text-[var(--text-muted)] text-sm max-w-lg font-light leading-relaxed">
-                        Omeir Mustafa — Digital Product Architect. I translate expert knowledge into AI-native, investor-grade digital platforms using modern web architecture and secure inference pipelines.
+                        Omeir Mustafa Uddin is a Digital Product & Web Architect specializing in premium brand systems and intelligent websites. Every build is engineered with strategy, precision, and long-term scalability.
                     </p>
                     <div className="mt-4 text-[10px] font-mono text-[var(--accent-green)]/40 tracking-widest uppercase">
                         SYSTEM STATUS: ONLINE

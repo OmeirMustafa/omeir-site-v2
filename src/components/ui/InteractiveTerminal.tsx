@@ -9,7 +9,8 @@ const PRESETS = [
     { id: "secure", label: "How do you secure vector DBs?", query: "Query: Vector Database Security Protocols.", answer: "Protect vectors like any sensitive store: encrypt at rest, restrict network access with private VPCs or IP allowlists, use per-tenant keys, obfuscate PII during ingest, and implement fine-grained access controls on retrieval endpoints. Add request auditing and rate-limiting for defensive posture." },
     { id: "ssr", label: "Explain SSR + Edge benefits", query: "Query: Analysis of SSR/Edge latency benefits.", answer: "Server Side Rendering with edge delivery reduces Time-to-First-Byte and improves perceived performance. Edge middleware lets you tailor content per-region and run server actions close to users. Together they give faster initial loads and enable low-latency dynamic features suitable for enterprise dashboards." },
     { id: "cost", label: "What are the LLM cost controls?", query: "Query: LLM Inference Cost Optimization Strategies.", answer: "Control costs by using mixed-model strategies (smaller models for retrieval/context processing, large models for final synthesis), prompt minimization, response length caps, caching frequent queries, and telemetry to identify expensive patterns. Consider batching and asynchronous jobs for analytics-heavy workloads." },
-    { id: "crm", label: "How to integrate CRM data?", query: "Query: CRM Data Ingestion & Vectorization pipeline.", answer: "Extract normalized records, map important fields to metadata tags, chunk long documents (notes, transcripts), create embeddings with a stable schema, store them in the vector DB with campaign/owner tags, and implement retrieval filters to scope context by account or timeframe. Secure connectors and rate-limited sync jobs are standard." }
+    { id: "crm", label: "How to integrate CRM data?", query: "Query: CRM Data Ingestion & Vectorization pipeline.", answer: "Extract normalized records, map important fields to metadata tags, chunk long documents (notes, transcripts), create embeddings with a stable schema, store them in the vector DB with campaign/owner tags, and implement retrieval filters to scope context by account or timeframe. Secure connectors and rate-limited sync jobs are standard." },
+    { id: "deploy", label: "Deployment Architecture Specs?", query: "Query: Visualize Production Deployment Topology.", answer: "We utilize a multi-region Vercel Edge setup for frontend delivery, coupled with a serverless Postgres/Vector cluster. CI/CD pipelines enforce linting, type-checking, and integration tests before atomic promotions. This ensures zero-downtime rollouts and instant rollback capabilities for mission-critical availability." }
 ];
 
 export function InteractiveTerminal() {
@@ -67,7 +68,7 @@ export function InteractiveTerminal() {
 
     return (
         <div className="w-full h-full min-h-[450px] flex flex-col md:flex-row gap-6">
-            {/* Left: Command List (Collapsible on mobile?) - Request asked for dropdown or accordion. Using detailed list for desktop, simple list for mobile */}
+            {/* Left: Command List */}
             <div className="w-full md:w-1/3 flex flex-col gap-3">
                 <div className="text-[10px] font-mono text-[var(--accent-green)]/50 uppercase tracking-widest mb-2">
                     Available Commands
@@ -84,26 +85,25 @@ export function InteractiveTerminal() {
                                 : "bg-[var(--bg-deep)] border-[var(--hairline)] text-[var(--text-muted)] hover:border-[var(--accent-green)]/50 hover:text-[var(--text-primary)]"
                         )}
                     >
-                        <span>{cmd.label}</span>
-                        <ChevronRight className={cn("w-3 h-3 transition-transform", activeId === cmd.id ? "rotate-90" : "group-hover:translate-x-1")} />
+                        <span className="truncate">{cmd.label}</span>
+                        <ChevronRight className={cn("w-3 h-3 transition-transform shrink-0", activeId === cmd.id ? "rotate-90" : "group-hover:translate-x-1")} />
                     </button>
                 ))}
-
-                {/* Playback Controls (Visible when active) */}
-                <div className="mt-4 flex gap-2 justify-center md:justify-start opacity-70">
-                    <button onClick={() => setSpeed(70)} className={cn("p-1 rounded hover:bg-[var(--accent-green)]/20", speed === 70 && "text-[var(--accent-green)]")} title="Normal"><Play className="w-3 h-3" /></button>
-                    <button onClick={() => setSpeed(35)} className={cn("p-1 rounded hover:bg-[var(--accent-green)]/20", speed === 35 && "text-[var(--accent-green)]")} title="Fast"><FastForward className="w-3 h-3" /></button>
-                    <button onClick={() => setSpeed(10)} className={cn("p-1 rounded hover:bg-[var(--accent-green)]/20", speed === 10 && "text-[var(--accent-green)]")} title="Instant"><SkipForward className="w-3 h-3" /></button>
-                </div>
             </div>
 
             {/* Right: Terminal Output */}
-            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/90 border border-[var(--hairline)] shadow-inner flex flex-col">
+            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/95 border border-[var(--hairline)] shadow-inner flex flex-col">
                 {/* Terminal Header */}
                 <div className="flex items-center justify-between px-4 py-2 bg-[var(--accent-green)]/5 border-b border-[var(--hairline)]">
                     <div className="flex items-center gap-2">
                         <Terminal className="w-3 h-3 text-[var(--accent-green)]" />
                         <span className="text-[10px] font-mono text-[var(--accent-green)] tracking-widest">SECURE_AI_MODULE // ONLINE</span>
+                    </div>
+                    {/* Controls */}
+                    <div className="flex gap-2">
+                        <button onClick={() => setSpeed(70)} className={cn("p-1 rounded hover:bg-[var(--accent-green)]/20 text-[var(--text-muted)]", speed === 70 && "text-[var(--accent-green)]")} title="Normal"><Play className="w-3 h-3" /></button>
+                        <button onClick={() => setSpeed(35)} className={cn("p-1 rounded hover:bg-[var(--accent-green)]/20 text-[var(--text-muted)]", speed === 35 && "text-[var(--accent-green)]")} title="Fast"><FastForward className="w-3 h-3" /></button>
+                        <button onClick={() => setSpeed(10)} className={cn("p-1 rounded hover:bg-[var(--accent-green)]/20 text-[var(--text-muted)]", speed === 10 && "text-[var(--accent-green)]")} title="Instant"><SkipForward className="w-3 h-3" /></button>
                     </div>
                 </div>
 

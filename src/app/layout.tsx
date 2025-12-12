@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-primary' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: 'Omeir Mustafa | Digital Product Architect',
-  description: 'Building investor-ready, AI-native digital ecosystems.',
+  title: 'Omeir Mustafa | Digital Product & Web Architect',
+  description: 'Designing premium brand systems and intelligent websites for modern businesses.',
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased selection:bg-neon-cyan selection:text-black bg-[#0b0b0d]`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased selection:bg-[#00ffa0] selection:text-black bg-[#0b0b0d]`}>
         <CircuitGridBackground />
         <ParticleBackground />
         <ReticleCursor />
