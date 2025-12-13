@@ -108,7 +108,7 @@ export function InteractiveTerminal() {
                 </div>
 
                 {/* Terminal Body */}
-                <div aria-live="polite" className="p-6 font-mono text-sm leading-relaxed text-[var(--text-primary)] flex-1 overflow-y-auto custom-scrollbar whitespace-pre-wrap break-words">
+                <div aria-live="polite" className="p-6 font-mono text-sm leading-relaxed text-[var(--text-primary)] flex-1 overflow-y-auto custom-scrollbar whitespace-pre-wrap break-words md:break-normal">
                     {!activeId ? (
                         <div className="opacity-50 space-y-2">
                             <p>&gt; SYSTEM INITIALIZED...</p>
