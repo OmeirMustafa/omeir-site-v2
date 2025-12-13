@@ -63,14 +63,14 @@ export function HeroSection() {
                     </motion.p>
 
                     {/* CTAs */}
-                    <motion.div variants={VARIANTS.item} className="flex flex-col sm:flex-row items-center gap-6 mt-8">
-                        <Link href="#contact" className="group relative px-8 py-4 bg-[var(--accent-green)] text-black font-bold font-mono text-xs tracking-widest uppercase hover:bg-white transition-all duration-300 shadow-[0_0_20px_var(--halo)] hover:shadow-[0_0_40px_var(--accent-green)]">
+                    <motion.div variants={VARIANTS.item} className="flex flex-col sm:flex-row items-center gap-6 mt-8 w-full sm:w-auto">
+                        <Link href="#contact" className="w-full sm:w-auto group relative px-8 py-4 bg-[var(--accent-green)] text-black font-bold font-mono text-xs tracking-widest uppercase hover:bg-white transition-all duration-300 shadow-[0_0_20px_var(--halo)] hover:shadow-[0_0_40px_var(--accent-green)] flex justify-center">
                             <span className="relative z-10 flex items-center gap-2">
                                 INITIATE BLUEPRINT PROTOCOL <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </span>
                         </Link>
 
-                        <Link href="#portfolio" className="group relative px-8 py-4 bg-transparent border border-[var(--hairline)] text-[var(--text-muted)] font-mono text-xs tracking-widest uppercase hover:text-[var(--accent-green)] hover:border-[var(--accent-green)] transition-all duration-300">
+                        <Link href="#portfolio" className="w-full sm:w-auto group relative px-8 py-4 bg-transparent border border-[var(--hairline)] text-[var(--text-muted)] font-mono text-xs tracking-widest uppercase hover:text-[var(--accent-green)] hover:border-[var(--accent-green)] transition-all duration-300 flex justify-center">
                             <span className="relative z-10">ACCESS PROJECT ARCHIVES</span>
                         </Link>
                     </motion.div>

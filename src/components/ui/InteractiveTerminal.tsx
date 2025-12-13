@@ -92,7 +92,7 @@ export function InteractiveTerminal() {
             </div>
 
             {/* Right: Terminal Output */}
-            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/95 border border-[var(--hairline)] shadow-inner flex flex-col">
+            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/95 border border-[var(--hairline)] shadow-inner flex flex-col min-h-[300px] md:min-h-0">
                 {/* Terminal Header */}
                 <div className="flex items-center justify-between px-4 py-2 bg-[var(--accent-green)]/5 border-b border-[var(--hairline)]">
                     <div className="flex items-center gap-2">

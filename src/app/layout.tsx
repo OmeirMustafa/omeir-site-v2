@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased selection:bg-[#00ffa0] selection:text-black bg-[#0b0b0d]`}>
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
+      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased selection:bg-[#00ffa0] selection:text-black bg-[#0b0b0d] overflow-x-hidden`}>
         <CircuitGridBackground />
         <ParticleBackground />
         <ReticleCursor />
