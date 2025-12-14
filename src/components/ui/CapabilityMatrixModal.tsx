@@ -43,14 +43,21 @@ export function CapabilityMatrixModal({ isOpen, onClose }: { isOpen: boolean; on
         const handleEsc = (e: KeyboardEvent) => {
             if (e.key === "Escape") onClose();
         };
+
         if (isOpen) {
             document.addEventListener("keydown", handleEsc);
-            // Lock body scroll
+            // Lock body scroll (Critical Fix)
             document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden"; // Backup for Safari/Mobile
+        } else {
+            document.body.style.overflow = "unset";
+            document.documentElement.style.overflow = "unset";
         }
+
         return () => {
             document.removeEventListener("keydown", handleEsc);
             document.body.style.overflow = "unset";
+            document.documentElement.style.overflow = "unset";
         };
     }, [isOpen, onClose]);
 
@@ -95,7 +102,7 @@ export function CapabilityMatrixModal({ isOpen, onClose }: { isOpen: boolean; on
                         initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
-                        className="relative w-[90%] max-h-[75vh] overflow-y-auto overscroll-contain md:w-full md:max-w-4xl md:h-[85vh] md:overflow-hidden flex flex-col pointer-events-auto"
+                        className="relative z-50 w-[90%] max-h-[75vh] overflow-y-auto overscroll-contain md:w-full md:max-w-4xl md:h-[85vh] md:overflow-hidden flex flex-col pointer-events-auto"
                     >
                         <MasterPanel title="FULL CAPABILITY MATRIX" className="bg-[#0b0b0d] flex-1 flex flex-col overflow-hidden h-auto md:h-full p-4 md:p-12">
                             <div className="flex flex-col h-full overflow-hidden">
