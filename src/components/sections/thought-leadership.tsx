@@ -54,7 +54,7 @@ export function ThoughtLeadershipSection() {
                     <div className="grid gap-3 md:gap-4">
                         {VISUAL_MAPPING.map((article, idx) => (
                             <motion.button
-                                key={idx}
+                                key={article.title}
                                 onClick={() => setSelectedSummary({ title: article.title, content: article.content })}
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}

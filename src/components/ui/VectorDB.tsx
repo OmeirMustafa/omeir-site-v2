@@ -4,13 +4,17 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export function VectorDB() {
-    // Generate random nodes
-    const nodes = Array.from({ length: 15 }).map((_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-    }));
+    // Generate random nodes - Client Side Only to prevent Hydration Mismatch
+    const [nodes, setNodes] = React.useState<any[]>([]);
+
+    React.useEffect(() => {
+        setNodes(Array.from({ length: 15 }).map((_, i) => ({
+            id: i,
+            x: Math.random() * 100,
+            y: Math.random() * 100,
+            size: Math.random() * 4 + 2,
+        })));
+    }, []);
 
     return (
         <div className="relative w-full h-full min-h-[300px] overflow-hidden rounded-xl border border-white/5 bg-[#0a0a0a]/50 backdrop-blur-sm">

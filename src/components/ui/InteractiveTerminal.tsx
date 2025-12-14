@@ -119,7 +119,7 @@ export function InteractiveTerminal() {
             </div>
 
             {/* Right: Terminal Output */}
-            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/95 border border-[var(--hairline)] shadow-inner flex flex-col h-full">
+            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/95 border border-[var(--hairline)] shadow-inner flex flex-col h-full will-change-transform backface-hidden" style={{ transform: "translateZ(0)" }}>
                 {/* Terminal Header */}
                 <div className="flex items-center justify-between px-4 py-2 bg-[var(--accent-green)]/5 border-b border-[var(--hairline)] shrink-0">
                     <div className="flex items-center gap-2">
