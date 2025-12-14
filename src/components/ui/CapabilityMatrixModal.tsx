@@ -95,12 +95,12 @@ export function CapabilityMatrixModal({ isOpen, onClose }: { isOpen: boolean; on
                         initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
-                        className="relative w-full max-w-4xl h-auto max-h-[80vh] md:h-[85vh] flex flex-col pointer-events-auto"
+                        className="relative w-[90%] max-h-[75vh] overflow-y-auto overscroll-contain md:w-full md:max-w-4xl md:h-[85vh] md:overflow-hidden flex flex-col pointer-events-auto"
                     >
-                        <MasterPanel title="FULL CAPABILITY MATRIX" className="bg-[#0b0b0d] flex-1 flex flex-col overflow-hidden h-full p-4 md:p-12">
+                        <MasterPanel title="FULL CAPABILITY MATRIX" className="bg-[#0b0b0d] flex-1 flex flex-col overflow-hidden h-auto md:h-full p-4 md:p-12">
                             <div className="flex flex-col h-full overflow-hidden">
                                 {/* Sticky Header */}
-                                <div className="flex-none flex justify-between items-center mb-6 pb-4 border-b border-[var(--hairline)] bg-[#0b0b0d] z-50">
+                                <div className="flex-none flex justify-between items-center mb-6 pb-4 border-b border-[var(--hairline)] bg-[#0b0b0d] z-50 sticky top-0">
                                     <div id="modal-title" className="text-[10px] md:text-xs font-mono text-[var(--accent-green)] tracking-widest">
                                         SYSTEM_CAPABILITY_OVERVIEW // V4.0
                                     </div>
@@ -110,7 +110,7 @@ export function CapabilityMatrixModal({ isOpen, onClose }: { isOpen: boolean; on
                                 </div>
 
                                 {/* Scrollable Body */}
-                                <div className="flex-1 overflow-y-auto custom-scrollbar pr-4 space-y-10 min-h-0 pb-24 md:pb-0 [-webkit-overflow-scrolling:touch]">
+                                <div className="flex-1 overflow-visible md:overflow-y-auto custom-scrollbar pr-4 space-y-10 min-h-0 pb-24 md:pb-0">
                                     {SECTIONS.map((section, idx) => (
                                         <div key={idx} className="space-y-4">
                                             <h3 className="text-[var(--text-primary)] font-bold text-lg font-mono tracking-tight uppercase border-l-2 border-[var(--accent-green)] pl-3">
