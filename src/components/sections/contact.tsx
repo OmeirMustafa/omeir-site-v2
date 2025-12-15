@@ -34,7 +34,14 @@ export function ContactSection() {
 
                             <button
                                 type="button"
-                                onClick={() => setIsModalOpen(true)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsModalOpen(true);
+                                    const contactSection = document.getElementById("contact");
+                                    if (contactSection) {
+                                        contactSection.scrollIntoView({ behavior: "smooth", block: "center" });
+                                    }
+                                }}
                                 className="group relative inline-flex items-center gap-3 px-12 py-5 bg-[var(--accent-green)] text-black font-bold font-mono text-sm tracking-[0.2em] uppercase hover:bg-white transition-all duration-300 shadow-[0_0_30px_var(--halo)] hover:shadow-[0_0_50px_var(--accent-green)] transform hover:-translate-y-1"
                             >
                                 <span className="relative z-10">OPEN UPLINK</span>
