@@ -34,26 +34,7 @@ body {
 }
 
 /* Global Background System */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(0, 255, 160, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 255, 160, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: -2;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 160, 0.05), transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-}
+/* Global Background System - REMOVED for Stability */
 
 @layer utilities {
 

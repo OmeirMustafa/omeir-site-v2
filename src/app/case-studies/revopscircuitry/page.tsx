@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, CheckCircle, Cpu, Shield, Zap, Layout, Globe, Code, ArrowRight } from "lucide-react";
 import { QuantumCard } from "@/components/ui/QuantumCard";
-import { SmartContactModal } from "@/components/ui/SmartContactModal";
+import SmartContactModal from "@/components/ui/SmartContactModal";
 import { DiagramHUD } from "@/components/ui/DiagramHUD";
 import { RAGPipelineDiagram } from "@/components/diagrams/RAGPipelineDiagram";
 import { NextJsArchitectureDiagram } from "@/components/diagrams/NextJsArchitectureDiagram";
