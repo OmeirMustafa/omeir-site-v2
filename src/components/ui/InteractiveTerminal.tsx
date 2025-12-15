@@ -94,7 +94,7 @@ export function InteractiveTerminal() {
 
     return (
         // Adjusted height for desktop to be taller/wider as requested
-        <div className="w-full h-[500px] md:h-[600px] flex flex-col md:flex-row gap-6">
+        <div className="w-full h-auto md:h-[600px] flex flex-col md:flex-row gap-6">
             {/* Left: Command List */}
             <div className="w-full md:w-1/3 flex flex-col gap-3 h-auto md:h-full shrink-0">
                 <div className="text-[10px] font-mono text-[var(--accent-green)]/50 uppercase tracking-widest mb-2 shrink-0">
@@ -119,7 +119,7 @@ export function InteractiveTerminal() {
             </div>
 
             {/* Right: Terminal Output */}
-            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/95 border border-[var(--hairline)] shadow-inner flex flex-col h-full will-change-transform backface-hidden" style={{ transform: "translateZ(0)" }}>
+            <div className="flex-1 relative rounded-xl overflow-hidden bg-black/95 border border-[var(--hairline)] shadow-inner flex flex-col h-full min-h-[300px] md:min-h-0 mt-6 md:mt-0 will-change-transform backface-hidden" style={{ transform: "translateZ(0)" }}>
                 {/* Terminal Header */}
                 <div className="flex items-center justify-between px-4 py-2 bg-[var(--accent-green)]/5 border-b border-[var(--hairline)] shrink-0">
                     <div className="flex items-center gap-2">
