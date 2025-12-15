@@ -163,9 +163,12 @@ export function ServicesSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.2 + (i * 0.15) }}
-                                className="relative flex flex-col p-8 rounded-xl border border-[var(--hairline)] bg-[var(--bg-deep)] transition-all duration-300 group animate-[greenBurn_3s_infinite_alternate]"
+                                className="relative flex flex-col p-8 rounded-xl border border-[var(--hairline)] transition-all duration-300 group animate-[greenBurn_3s_infinite_alternate] overflow-hidden"
                             >
-                                <div className="mb-6 pb-6 border-b border-[var(--hairline)]/50">
+                                {/* Plasma Background Layer */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a3315] to-black bg-[length:400%_400%] animate-[plasmaFlow_15s_ease_infinite] opacity-40 z-0" />
+
+                                <div className="relative z-10 mb-6 pb-6 border-b border-[var(--hairline)]/50">
                                     <div className="text-[var(--accent-green)] font-mono text-xs tracking-widest mb-2 opacity-70">
                                         // {tier.title}
                                     </div>
@@ -173,11 +176,11 @@ export function ServicesSection() {
                                     <div className="text-xl font-mono text-[var(--accent-green)]">{tier.price}</div>
                                 </div>
 
-                                <p className="text-[var(--text-muted)] text-sm mb-8 leading-relaxed">
+                                <p className="relative z-10 text-[var(--text-muted)] text-sm mb-8 leading-relaxed">
                                     {tier.desc}
                                 </p>
 
-                                <ul className="space-y-3 mb-8 flex-1">
+                                <ul className="relative z-10 space-y-3 mb-8 flex-1">
                                     {tier.features.map((feat) => (
                                         <li key={feat} className="flex items-start gap-3 text-sm text-[var(--text-muted)]">
                                             <CheckCircle2 className="w-4 h-4 text-[var(--accent-green)] shrink-0 mt-0.5" />
@@ -186,7 +189,7 @@ export function ServicesSection() {
                                     ))}
                                 </ul>
 
-                                <Link href="#contact" scroll={true} className="mt-auto">
+                                <Link href="#contact" scroll={true} className="relative z-10 mt-auto">
                                     <button className="w-full py-3 px-4 bg-[var(--accent-green)]/10 text-[var(--accent-green)] border border-[var(--accent-green)]/30 hover:bg-[var(--accent-green)] hover:text-black font-mono text-xs tracking-widest uppercase transition-all flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(0,255,160,0.2)]">
                                         <span>INITIATE {tier.title}</span>
                                         <ArrowRight className="w-3 h-3" />
