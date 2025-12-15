@@ -9,7 +9,7 @@ export function ContactSection() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <section id="contact" className="py-12 md:py-24 px-6 relative overflow-hidden bg-transparent mb-32 md:mb-0">
+        <section id="contact" className="pt-12 md:pt-24 pb-24 md:pb-32 px-6 relative overflow-hidden bg-transparent mb-0">
             <div className="container mx-auto max-w-4xl pt-12 border-t border-[var(--hairline)]">
 
                 <motion.div
