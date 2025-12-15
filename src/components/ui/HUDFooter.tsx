@@ -6,7 +6,7 @@ import { Linkedin } from "lucide-react";
 
 export function HUDFooter() {
     return (
-        <footer className="relative border-t border-[rgba(0,255,160,0.1)] bg-[var(--bg-deep)] py-12 px-6 overflow-hidden">
+        <footer className="relative z-10 border-t border-[rgba(0,255,160,0.1)] bg-[var(--bg-deep)] py-6 md:py-12 px-6 overflow-hidden">
 
             {/* Radial Glow Background */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,160,0.08),transparent_70%)] pointer-events-none" />
@@ -45,7 +45,7 @@ export function HUDFooter() {
 
             {/* Copyright / Version */}
             <div className="relative z-10 mt-12 text-center border-t border-[rgba(0,255,160,0.1)] pt-8">
-                <p className="text-[10px] text-[var(--text-muted)] font-mono opacity-60">
+                <p className="text-xs text-[var(--text-muted)] font-mono opacity-60">
                     © 2025 OMEIR MUSTAFA // OMEIR OS v4
                 </p>
             </div>

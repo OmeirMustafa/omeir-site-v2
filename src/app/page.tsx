@@ -14,6 +14,7 @@ export default function Home() {
       <CaseStudiesSection />
       <ThoughtLeadershipSection />
       <ContactSection />
+      <div className="h-24 md:hidden" />
     </div>
   );
 }

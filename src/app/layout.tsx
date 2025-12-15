@@ -7,6 +7,8 @@ import { ParticleBackground } from '@/components/ui/ParticleBackground';
 import { ReticleCursor } from '@/components/ui/ReticleCursor';
 import { CircuitGridBackground } from '@/components/ui/CircuitGridBackground';
 
+import { ScrollManager } from '@/components/ui/ScrollManager';
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-primary' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
@@ -23,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased selection:bg-[#00ffa0] selection:text-black bg-[#0b0b0d]`}>
+        <ScrollManager />
         <CircuitGridBackground />
         <ParticleBackground />
         <ReticleCursor />
