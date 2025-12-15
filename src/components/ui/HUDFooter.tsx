@@ -6,7 +6,7 @@ import { Linkedin } from "lucide-react";
 
 export function HUDFooter() {
     return (
-        <footer className="relative z-10 border-t border-[rgba(0,255,160,0.1)] bg-[var(--bg-deep)] py-6 md:py-12 px-6 overflow-hidden">
+        <footer className="relative z-10 border-t border-[rgba(0,255,160,0.1)] bg-[var(--bg-deep)] py-6 md:py-8 px-6 overflow-hidden h-auto">
 
             {/* Radial Glow Background */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,160,0.08),transparent_70%)] pointer-events-none" />
@@ -14,7 +14,7 @@ export function HUDFooter() {
             {/* Grid & Scanlines (Subtle) */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,160,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,160,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-50" />
 
-            <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8">
 
                 {/* Left Side */}
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">

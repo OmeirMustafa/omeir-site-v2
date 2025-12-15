@@ -51,7 +51,7 @@ export function HUDNavigation() {
                 className={cn(
                     "rounded-full px-4 md:px-8 py-2 flex items-center gap-8 pointer-events-auto transition-all duration-300 ease-in-out shadow-[0_0_20px_var(--halo)] relative border",
                     isScrolled
-                        ? "bg-[#050505]/80 backdrop-blur-md border-white/10"
+                        ? "bg-[#050505]/90 backdrop-blur-md border-green-500/10"
                         : "bg-transparent border-transparent backdrop-blur-none shadow-none"
                 )}
             >
