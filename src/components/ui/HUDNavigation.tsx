@@ -25,7 +25,7 @@ export function HUDNavigation() {
 
     React.useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            setIsScrolled(window.scrollY > 20);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -49,10 +49,10 @@ export function HUDNavigation() {
         <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-6 pointer-events-none">
             <div
                 className={cn(
-                    "border rounded-full px-4 md:px-8 py-2 flex items-center gap-8 pointer-events-auto transition-all duration-300 ease-in-out shadow-[0_0_20px_var(--halo)] relative",
+                    "rounded-full px-4 md:px-8 py-2 flex items-center gap-8 pointer-events-auto transition-all duration-300 ease-in-out shadow-[0_0_20px_var(--halo)] relative border",
                     isScrolled
-                        ? "bg-black/60 backdrop-blur-md border-[var(--accent-green)]/20"
-                        : "bg-black/90 backdrop-blur-xl border-white/10"
+                        ? "bg-[#050505]/80 backdrop-blur-md border-white/10"
+                        : "bg-transparent border-transparent backdrop-blur-none shadow-none"
                 )}
             >
 

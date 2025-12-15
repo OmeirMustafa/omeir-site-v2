@@ -8,6 +8,18 @@ import { HoloPanel } from "@/components/ui/HoloPanel";
 export function IntelligenceBriefModal({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: { title: string; content: string } }) {
     const [copied, setCopied] = useState(false);
 
+    React.useEffect(() => {
+        // Lock body scroll logic
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isOpen]);
+
     const handleCopy = () => {
         navigator.clipboard.writeText(`${data.title}\n\n${data.content}`);
         setCopied(true);
