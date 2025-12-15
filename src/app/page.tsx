@@ -7,7 +7,7 @@ import { ContactSection } from "@/components/sections/contact";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full overflow-x-hidden min-h-screen bg-[#040506]">
+    <div className="flex flex-col w-full overflow-x-hidden min-h-screen">
       <HeroSection />
       <SecureAISystems />
       <ServicesSection />
