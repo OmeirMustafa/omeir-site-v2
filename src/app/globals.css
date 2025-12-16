@@ -16,7 +16,9 @@
 
   /* Accents */
   --accent-emerald: #10b981;
-  --border-subtle: rgba(16, 185, 129, 0.15);
+  /* Sacred Green - Primary CTA Only */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  /* White based border, not green */
 
   /* Typography */
   --font-primary: 'Inter', sans-serif;
