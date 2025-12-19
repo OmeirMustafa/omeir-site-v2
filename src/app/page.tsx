@@ -30,27 +30,27 @@ export default function Home() {
           <div className="max-w-4xl">
 
             {/* Headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05] mb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05] mb-8 animate-fade-up opacity-0">
               I build digital systems that <span className="text-blue-500">capture leads</span> and automate operations.
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-xl md:text-2xl text-slate-400 max-w-2xl leading-relaxed mb-12 font-normal">
+            <p className="text-xl md:text-2xl text-slate-400 max-w-2xl leading-relaxed mb-12 font-normal animate-fade-up delay-100 opacity-0">
               Bridging software engineering and business growth.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-5">
+            <div className="flex flex-col sm:flex-row gap-5 animate-fade-up delay-200 opacity-0">
               <Link
                 href="#work"
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors text-base min-w-[180px]"
+                className="btn-primary text-base min-w-[180px]"
               >
                 View Work
               </Link>
 
               <Link
                 href="#process"
-                className="inline-flex items-center justify-center px-8 py-4 border border-slate-700 hover:border-slate-500 bg-transparent text-slate-300 hover:text-white font-medium rounded-lg transition-all text-base min-w-[180px]"
+                className="btn-secondary text-base min-w-[180px]"
               >
                 My Approach
               </Link>

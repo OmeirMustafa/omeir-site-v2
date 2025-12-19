@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* VALIDATOR PROTOCOL - v1.0 */
+/* VALIDATOR PROTOCOL - v2.0 (Premium Polish) */
 
 :root {
   /* Slate-900 Base */
@@ -25,6 +25,7 @@
 
   body {
     @apply bg-[#0F172A] text-[#F8FAFC] antialiased selection:bg-blue-500/30 selection:text-white;
+    background: radial-gradient(ellipse at top, #0F172A 0%, #0a0f1a 100%);
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
     -webkit-font-smoothing: antialiased;
   }
@@ -56,11 +57,59 @@
     @apply max-w-6xl mx-auto px-6;
   }
 
+  /* Interaction Physics */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded-lg transition-all duration-300 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] active:scale-[0.98];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-medium rounded transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 border border-slate-700 hover:border-slate-500 bg-transparent text-slate-300 hover:text-white font-medium rounded-lg transition-all duration-300 hover:bg-white/5;
+  }
+
+  /* Animations */
+  .animate-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
