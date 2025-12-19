@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { LuminaCaseStudy } from "@/components/case-studies/LuminaCaseStudy";
 
 const PROJECTS = [
     {
@@ -26,6 +29,14 @@ const PROJECTS = [
 ];
 
 export function WorkGrid() {
+    const [isLuminaOpen, setIsLuminaOpen] = useState(false);
+
+    const handleProjectClick = (id: string) => {
+        if (id === "lumina") {
+            setIsLuminaOpen(true);
+        }
+    };
+
     return (
         <section id="work" className="section-spacing bg-[#0F172A] border-t border-slate-800">
             <div className="container-width">
@@ -43,7 +54,8 @@ export function WorkGrid() {
                     {PROJECTS.map((project, idx) => (
                         <div
                             key={project.id}
-                            className={`group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-white/5 hover:border-blue-500/30 hover:bg-slate-800/80 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 ease-out ${project.size}`}
+                            onClick={() => handleProjectClick(project.id)}
+                            className={`group relative bg-slate-800/50 rounded-2xl overflow-hidden border border-white/5 hover:border-blue-500/30 hover:bg-slate-800/80 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 ease-out cursor-pointer ${project.size}`}
                         >
                             {/* Image Placeholder */}
                             <div className="aspect-[16/9] md:aspect-auto md:h-64 lg:h-80 w-full bg-slate-700/30 group-hover:bg-slate-700/50 transition-colors flex items-center justify-center">
@@ -78,6 +90,8 @@ export function WorkGrid() {
                 </div>
 
             </div>
+
+            <LuminaCaseStudy isOpen={isLuminaOpen} onClose={() => setIsLuminaOpen(false)} />
         </section>
     );
 }
