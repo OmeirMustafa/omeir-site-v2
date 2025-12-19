@@ -46,9 +46,10 @@ export function LuminaCaseStudy({ isOpen, onClose }: LuminaCaseStudyProps) {
             <div className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-[#0F172A] border border-slate-700 rounded-2xl shadow-2xl animate-fade-up">
 
                 {/* Close Button */}
+                {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-2 bg-slate-800 rounded-full text-slate-400 hover:text-white hover:bg-slate-700 transition-colors z-50 sticky"
+                    className="absolute top-0 left-0 z-50 p-3 bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white rounded-br-2xl transition-colors backdrop-blur-sm"
                 >
                     <X size={24} />
                 </button>
