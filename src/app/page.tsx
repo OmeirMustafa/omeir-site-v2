@@ -1,85 +1,66 @@
-import Link from "next/link";
+"use client";
+
 import { Navbar } from "@/components/ui/Navbar";
-import { WorkGrid } from "@/components/sections/work-grid";
-import { AboutSection } from "@/components/sections/about";
-import { ContactSection } from "@/components/sections/contact";
+import { Projects } from "@/components/sections/projects";
+import { Approach } from "@/components/sections/approach";
+import { QA } from "@/components/sections/qa";
 import { Footer } from "@/components/ui/Footer";
+import Link from "next/link";
+import React from "react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full min-h-screen bg-[#0F172A] text-slate-50 font-sans selection:bg-blue-500/30">
-
-      <Navbar />
+    <div className="flex flex-col w-full min-h-screen bg-[#F8FAFC] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900">
 
       {/* 
-        SECTION 1: HERO — THE HOOK 
-        Objective: Immediate credibility and positioning clarity.
+        HERO SECTION 
+        Objective: "Confident, Clear, Human". 
       */}
-      <section className="relative min-h-screen flex flex-col justify-center section-spacing overflow-hidden">
+      <section id="hero" className="min-h-screen flex items-center relative overflow-hidden pt-20">
 
-        {/* Subtle CSS Grid (Depth) */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: "linear-gradient(#F8FAFC 1px, transparent 1px), linear-gradient(90deg, #F8FAFC 1px, transparent 1px)",
-            backgroundSize: "40px 40px"
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0F172A] pointer-events-none" />
+        {/* Noise Overlay */}
+        <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
 
-        <div className="container-width relative z-10 pt-20">
+        {/* Subtle Orb */}
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-100 rounded-full blur-[120px] opacity-50 animate-pulse delay-1000 duration-[10s]" />
+
+        <div className="container-width relative z-10">
           <div className="max-w-4xl">
 
             {/* Headline */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1] mb-8 animate-fade-up opacity-0">
-              Digital product architect helping brands <span className="text-blue-500">clear the noise.</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-slate-900 leading-[1.05] mb-8 animate-fade-up opacity-0">
+              I build digital systems that <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">clarify value.</span>
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-10 font-normal animate-fade-up delay-100 opacity-0">
-              I design and build rigorous digital systems that increase trust, clarity, and revenue.
+            <p className="text-xl md:text-2xl text-slate-500 max-w-2xl leading-relaxed mb-12 font-medium animate-fade-up delay-100 opacity-0">
+              Strategic design for brands ready to scale. <br className="hidden md:block" />
+              No templates. No shortcuts. Just results.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-up delay-200 opacity-0">
-              <Link
-                href="#work"
-                className="btn-primary text-base min-w-[160px]"
+            <div className="flex flex-col sm:flex-row gap-5 animate-fade-up delay-200 opacity-0">
+              <button
+                onClick={() => (document.querySelector('[href="mailto:omeirmustafa.work@gmail.com"]') as HTMLElement)?.click()}
+                className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-slate-900 text-white font-bold text-lg shadow-xl shadow-slate-900/10 hover:bg-slate-800 transition-all hover:-translate-y-1 active:scale-95 min-w-[180px]"
               >
-                See the Work
-              </Link>
+                Contact Now
+              </button>
 
               <Link
-                href="#process"
-                className="btn-secondary text-base min-w-[160px]"
+                href="#projects"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white border border-slate-200 text-slate-900 font-bold text-lg shadow-sm hover:border-slate-300 hover:shadow-md transition-all hover:-translate-y-1 active:scale-95 min-w-[180px]"
               >
-                My Process
+                View Projects
               </Link>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 
-        SECTION 2: WORK GRID — THE PROOF
-        Objective: Demonstrate capability without real clients.
-      */}
-      <WorkGrid />
-
-      {/* 
-        SECTION 3: ABOUT — AUTHORITY
-        Objective: Explain the pivot from theory to velocity.
-      */}
-      <AboutSection />
-
-      {/* 
-        SECTION 4: CONTACT — DIRECT
-        Objective: Frictionless conversion.
-      */}
-      <ContactSection />
-
-      <Footer />
-
+      <Projects />
+      <Approach />
+      <QA />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { HUDFooter } from '@/components/ui/HUDFooter';
 import { ParticleBackground } from '@/components/ui/ParticleBackground';
 import { ReticleCursor } from '@/components/ui/ReticleCursor';
 import { CircuitGridBackground } from '@/components/ui/CircuitGridBackground';
+import { CustomCursor } from '@/components/ui/CustomCursor'; // Added CustomCursor import
 
 import { ScrollManager } from '@/components/ui/ScrollManager';
 
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-[#0F172A] text-slate-50 antialiased`}>
+        <CustomCursor /> {/* Added CustomCursor component */}
         <main className="min-h-screen flex flex-col">
           {children}
         </main>

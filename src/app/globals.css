@@ -26,53 +26,53 @@
   body {
     @apply bg-[#0F172A] text-[#F8FAFC] antialiased selection:bg-blue-500/30 selection:text-white;
     background: radial-gradient(ellipse at top, #0F172A 0%, #0a0f1a 100%);
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
-    -webkit-font-smoothing: antialiased;
+    @apply bg-[#F8FAFC] text-slate-900 antialiased overflow-x-hidden selection:bg-blue-100 selection:text-blue-900;
   }
 
-  /* Semantic Typography Hierarchy */
-  h1 {
-    @apply text-4xl md:text-6xl font-bold tracking-tight text-white;
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
   }
 
-  h2 {
-    @apply text-3xl md:text-4xl font-bold tracking-tight text-white;
+  ::-webkit-scrollbar-track {
+    background: transparent;
   }
 
-  h3 {
-    @apply text-xl md:text-2xl font-semibold text-white;
-  }
-
-  p {
-    @apply text-slate-400 leading-relaxed;
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
   }
 }
 
 @layer utilities {
   .section-spacing {
-    @apply py-20 md:py-32;
+    @apply py-24 md:py-32;
   }
 
   .container-width {
-    @apply max-w-6xl mx-auto px-6;
+    @apply max-w-7xl mx-auto px-6 md:px-12;
   }
 
-  /* Interaction Physics */
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-medium rounded-lg transition-all duration-300 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] active:scale-[0.98];
+  /* Premium Glass */
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-sm transition-all duration-300;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-slate-700 hover:border-slate-500 bg-transparent text-slate-300 hover:text-white font-medium rounded-lg transition-all duration-300 hover:bg-white/5;
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-md border border-white/40 shadow-sm hover:bg-white/80 hover:shadow-md hover:border-blue-500/20 transition-all duration-500;
+  }
+
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600;
   }
 
   /* Animations */
-  .animate-fade-up {
-    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
   }
 
-  .animate-fade-in {
-    animation: fade-in 1s ease-out forwards;
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
   }
 
   .delay-100 {
@@ -87,12 +87,23 @@
     animation-delay: 300ms;
   }
 
-  .delay-500 {
-    animation-delay: 500ms;
+  /* Subtle Gradient Noise Background */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 }
 
-@keyframes fade-up {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -104,12 +115,12 @@
   }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+/* Custom Cursor Reset - We will handle this with JS but style the follower here if needed, 
+   or just hide default cursor if we want full replacement. 
+   For usability, we often keep the default pointer interactions visible relative to the follower. 
+   But the prompt says "Replace default cursor". */
+@media (min-width: 1024px) {
+  /* Only replace on desktop */
+  /* body { cursor: none; } */
+  /* Ideally we use a class "custom-cursor-active" to hide it, inserted by JS */
 }
