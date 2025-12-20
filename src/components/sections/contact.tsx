@@ -9,8 +9,7 @@ export function ContactSection() {
                 <div className="max-w-3xl mx-auto text-center">
 
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-8 leading-tight">
-                        Ready to stop losing leads? <br />
-                        <span className="text-blue-500">Email me directly.</span>
+                        Ready to clear <span className="text-blue-500">the noise?</span>
                     </h2>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
@@ -31,7 +30,7 @@ export function ContactSection() {
                     </div>
 
                     <p className="mt-12 text-slate-500 text-sm">
-                        No forms. No spam. Just direct communication.
+                        Direct access. No salespeople. No forms.
                     </p>
 
                 </div>

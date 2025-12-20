@@ -16,23 +16,23 @@ export function AboutSection() {
                     {/* Copy Side */}
                     <div>
                         <div className="inline-block px-3 py-1 mb-6 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-widest">
-                            Engineer's Story
+                            The Architect's View
                         </div>
 
-                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-8 leading-tight">
-                            Why I trade theory <br />
-                            for <span className="text-blue-500">velocity</span>.
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6 leading-tight">
+                            Engineered for speed <br />
+                            and <span className="text-blue-500">trust.</span>
                         </h2>
 
                         <div className="space-y-6 text-slate-400 text-lg leading-relaxed">
                             <p>
-                                Traditional education optimizes for theory. <span className="text-white font-medium">The market optimizes for shipping.</span>
+                                Most websites are built to look good. <span className="text-white font-medium">I build systems that work.</span>
                             </p>
                             <p>
-                                I made the strategic decision to leave the lecture hall and build my engineering foundation in the real world. This wasn't a shortcut—it was an acceleration.
+                                My background bridges technical engineering with business strategy. I don't just write code; I design outcomes.
                             </p>
                             <p>
-                                Today, I combine that engineering rigor with the founder mentality needed to ship products that actually survive the market.
+                                Whether it's a lead generation engine or a complex dashboard, every pixel and line of code serves a specific business purpose.
                             </p>
                         </div>
 
