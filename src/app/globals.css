@@ -1,21 +1,25 @@
 @import "tailwindcss";
 
-/* VALIDATOR PROTOCOL - v2.0 (Premium Polish) */
+/* MASTER UPGRADE V2 - Light/Dark Hybrid */
 
 :root {
-  /* Slate-900 Base */
-  --bg-primary: #0F172A;
-  /* Slate-800 Surface */
-  --bg-surface: #1E293B;
+  /* Surface colors */
+  --bg-primary: #F8FAFC;
+  /* Slate-50 */
+  --bg-secondary: #F1F5F9;
+  /* Slate-100 */
 
-  /* Slate-50 Text */
-  --text-primary: #F8FAFC;
-  /* Slate-400 Muted */
-  --text-secondary: #94A3B8;
+  /* Text colors */
+  --text-primary: #0F172A;
+  /* Slate-900 */
+  --text-secondary: #64748B;
+  /* Slate-500 */
 
-  /* Blue-500 Accent */
-  --accent-primary: #3B82F6;
-  --accent-hover: #2563EB;
+  /* Accent */
+  --accent-primary: #2563EB;
+  /* Blue-600 */
+  --accent-hover: #1D4ED8;
+  /* Blue-700 */
 }
 
 @layer base {
@@ -24,8 +28,6 @@
   }
 
   body {
-    @apply bg-[#0F172A] text-[#F8FAFC] antialiased selection:bg-blue-500/30 selection:text-white;
-    background: radial-gradient(ellipse at top, #0F172A 0%, #0a0f1a 100%);
     @apply bg-[#F8FAFC] text-slate-900 antialiased overflow-x-hidden selection:bg-blue-100 selection:text-blue-900;
   }
 
@@ -52,18 +54,13 @@
     @apply max-w-7xl mx-auto px-6 md:px-12;
   }
 
-  /* Premium Glass */
+  /* Premium Glass (Light) */
   .glass-panel {
     @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-sm transition-all duration-300;
   }
 
   .glass-card {
-    @apply bg-white/60 backdrop-blur-md border border-white/40 shadow-sm hover:bg-white/80 hover:shadow-md hover:border-blue-500/20 transition-all duration-500;
-  }
-
-  /* Text Gradients */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600;
+    @apply bg-white rounded-2xl border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md hover:border-blue-100;
   }
 
   /* Animations */
@@ -113,14 +110,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* Custom Cursor Reset - We will handle this with JS but style the follower here if needed, 
-   or just hide default cursor if we want full replacement. 
-   For usability, we often keep the default pointer interactions visible relative to the follower. 
-   But the prompt says "Replace default cursor". */
-@media (min-width: 1024px) {
-  /* Only replace on desktop */
-  /* body { cursor: none; } */
-  /* Ideally we use a class "custom-cursor-active" to hide it, inserted by JS */
 }
