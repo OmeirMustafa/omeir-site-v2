@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Plus } from "lucide-react";
+import React, { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 
 const FAQ = [
     {
@@ -18,36 +18,56 @@ const FAQ = [
     },
     {
         q: "How does pricing work?",
-        a: "I work on a project-fee basis, typically starting at $3k for complete website rebuilds. No hidden hourly billing. usage rights included."
+        a: "I work on a project-fee basis, typically starting at $3k for complete website rebuilds. No hidden hourly billing. Usage rights included."
     }
 ];
 
 export function QA() {
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+
     return (
-        <section id="qa" className="section-spacing bg-[#F8FAFC]">
-            <div className="container-width grid grid-cols-1 lg:grid-cols-12 gap-12">
-                
-                <div className="lg:col-span-4">
-                    <h2 className="text-4xl font-bold text-slate-900 mb-6">
+        <section id="qa" className="section-spacing bg-[#F1F5F9] relative overflow-hidden">
+            <div className="container-width max-w-4xl">
+
+                <div className="text-center mb-16 animate-fade-up">
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 tracking-tight">
                         Common Questions
                     </h2>
                     <p className="text-slate-500 text-lg">
-                        Clarity is everything. Here is how I work.
+                        Clarity is the foundation of trust.
                     </p>
                 </div>
 
-                <div className="lg:col-span-8 space-y-6">
-                    {FAQ.map((item, idx) => (
-                        <div key={idx} className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-start justify-between">
-                                {item.q}
-                                {/* <Plus size={20} className="text-slate-300" /> */}
-                            </h3>
-                            <p className="text-slate-500 leading-relaxed">
-                                {item.a}
-                            </p>
-                        </div>
-                    ))}
+                <div className="space-y-4 animate-fade-up delay-100">
+                    {FAQ.map((item, idx) => {
+                        const isOpen = openIndex === idx;
+                        return (
+                            <div
+                                key={idx}
+                                className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen ? 'border-blue-500/30 shadow-lg shadow-blue-500/5' : 'border-slate-200 shadow-sm hover:border-slate-300'}`}
+                            >
+                                <button
+                                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                                    className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
+                                >
+                                    <span className={`text-lg md:text-xl font-bold transition-colors ${isOpen ? 'text-blue-600' : 'text-slate-800'}`}>
+                                        {item.q}
+                                    </span>
+                                    <span className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-blue-50 text-blue-600' : 'bg-slate-50 text-slate-400'}`}>
+                                        {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                                    </span>
+                                </button>
+
+                                <div
+                                    className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}
+                                >
+                                    <div className="px-6 md:px-8 pb-8 pt-0 text-slate-600 leading-relaxed text-lg">
+                                        {item.a}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
 
             </div>

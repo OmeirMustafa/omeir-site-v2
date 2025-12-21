@@ -18,7 +18,7 @@ export function Hero() {
 
                     {/* Headline */}
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-slate-900 leading-[1.05] mb-8 animate-fade-up opacity-0">
-                        I design digital systems that turn <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">clarify into momentum.</span>
+                        I design digital systems that turn <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">clarity into momentum.</span>
                     </h1>
 
                     {/* Sub-headline */}

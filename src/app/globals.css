@@ -4,16 +4,12 @@
 
 :root {
   /* Surface colors */
-  --bg-primary: #F8FAFC;
-  /* Slate-50 */
-  --bg-secondary: #F1F5F9;
-  /* Slate-100 */
-
+  --bg-primary: #F1F5F9; /* Platinum / Slate-100 */
+  --bg-secondary: #E2E8F0; /* Slate-200 */
+  
   /* Text colors */
-  --text-primary: #0F172A;
-  /* Slate-900 */
-  --text-secondary: #64748B;
-  /* Slate-500 */
+  --text-primary: #1E293B; /* Slate-800 - Softer than pure black */
+  --text-secondary: #475569; /* Slate-600 */
 
   /* Accent */
   --accent-primary: #2563EB;
@@ -28,7 +24,7 @@
   }
 
   body {
-    @apply bg-[#F8FAFC] text-slate-900 antialiased overflow-x-hidden selection:bg-blue-100 selection:text-blue-900;
+    @apply bg-[#F1F5F9] text-slate-800 antialiased overflow-x-hidden selection:bg-blue-100 selection:text-blue-900;
   }
 
   /* Custom Scrollbar */
