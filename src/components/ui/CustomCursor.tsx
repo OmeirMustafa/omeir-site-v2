@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const position = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     // Only run on desktop
@@ -13,17 +14,31 @@ export function CustomCursor() {
 
     const handleMouseMove = (e: MouseEvent) => {
       target.current = { x: e.clientX, y: e.clientY };
-      // Ensure cursor is visible on movement
       if (cursorRef.current) cursorRef.current.style.opacity = "1";
+
+      // Check hover targeting
+      const element = e.target as HTMLElement;
+      const isInteractive =
+        element.tagName === 'BUTTON' ||
+        element.tagName === 'A' ||
+        element.closest('button') !== null ||
+        element.closest('a') !== null ||
+        window.getComputedStyle(element).cursor === 'pointer';
+
+      setIsHovering(isInteractive);
     };
 
     const handleMouseDown = () => {
-      // Shrink on click
-      if (cursorRef.current) cursorRef.current.style.transform = `translate3d(${position.current.x}px, ${position.current.y}px, 0) scale(0.8)`;
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${position.current.x}px, ${position.current.y}px, 0) scale(0.9)`;
+      }
     };
 
     const handleMouseUp = () => {
-      if (cursorRef.current) cursorRef.current.style.transform = `translate3d(${position.current.x}px, ${position.current.y}px, 0) scale(1)`;
+      if (cursorRef.current) {
+        const scale = isHovering ? 2 : 1;
+        cursorRef.current.style.transform = `translate3d(${position.current.x}px, ${position.current.y}px, 0) scale(${scale})`;
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -37,12 +52,15 @@ export function CustomCursor() {
       const dx = target.current.x - position.current.x;
       const dy = target.current.y - position.current.y;
 
-      position.current.x += dx * 0.15; // Speed factor
+      position.current.x += dx * 0.15;
       position.current.y += dy * 0.15;
 
       if (cursorRef.current) {
-        // translate3d for GPU acceleration
-        cursorRef.current.style.transform = `translate3d(${position.current.x}px, ${position.current.y}px, 0)`;
+        const scale = isHovering ? 2.5 : 1; // 14px -> 35px approx (28px requested, so ~2x)
+        // Using 2.0 for 28px/14px
+        const targetScale = isHovering ? 2.0 : 1;
+
+        cursorRef.current.style.transform = `translate3d(${position.current.x}px, ${position.current.y}px, 0) scale(${targetScale})`;
       }
 
       rafId = requestAnimationFrame(animate);
@@ -55,42 +73,41 @@ export function CustomCursor() {
       window.removeEventListener("mouseup", handleMouseUp);
       cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [isHovering]);
 
   return (
     <>
-      {/* Global Cursor Hide */}
       <style jsx global>{`
                 @media (pointer: fine) {
-                    body { cursor: none; }
-                    a, button, [role="button"] { cursor: none; }
+                    body, a, button, [role="button"] { cursor: none !important; }
                 }
             `}</style>
 
-      {/* Cursor Follower (Neon Ring) */}
+      {/* Cursor Follower (Neon Dark Blue) */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-cyan-400 bg-cyan-500/10 pointer-events-none z-[9999] hidden md:block mix-blend-screen transition-opacity duration-300"
+        className="fixed top-0 left-0 w-[14px] h-[14px] rounded-full border-[2px] border-[#0A58FF]/60 bg-transparent pointer-events-none z-[9999] hidden md:block transition-all duration-300 ease-out will-change-transform"
         style={{
-          marginTop: -16, // Center offset
-          marginLeft: -16,
-          boxShadow: "0 0 15px 1px rgba(34, 211, 238, 0.6), 0 0 5px 1px rgba(255, 255, 255, 0.4)" // Neon Cyan/Blue Glow
+          marginTop: -7,
+          marginLeft: -7,
+          boxShadow: isHovering
+            ? "0 0 28px 4px rgba(10,88,255,0.28), inset 0 0 10px rgba(10,88,255,0.1)"
+            : "0 0 18px 2px rgba(10,88,255,0.18)"
         }}
       />
 
-      {/* Center Dot (Standard Pointer Replacement) */}
+      {/* Center Dot */}
       <div
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-cyan-200 rounded-full pointer-events-none z-[9999] hidden md:block mix-blend-screen"
+        className="fixed top-0 left-0 w-1 h-1 bg-[#0A58FF] rounded-full pointer-events-none z-[9999] hidden md:block"
         style={{
-          transform: 'translate(-50%, -50%)', // Center
-          left: 0, top: 0, // Reset default
+          transform: 'translate(-50%, -50%)',
         }}
+        id="cursor-dot"
       />
 
-      {/* JS Logic for Dot Following (Simple) */}
       <script dangerouslySetInnerHTML={{
         __html: `
-                const dot = document.querySelector('.bg-cyan-200');
+                const dot = document.getElementById('cursor-dot');
                 if(dot) {
                     document.addEventListener('mousemove', (e) => {
                         dot.style.left = e.clientX + 'px';
