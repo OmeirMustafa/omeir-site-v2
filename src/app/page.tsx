@@ -1,3 +1,4 @@
+// Master Upgrade - Verified Clean v2
 import { Navbar } from "@/components/ui/Navbar";
 import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
