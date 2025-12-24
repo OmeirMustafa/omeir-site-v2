@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 
 export function Hero() {
@@ -12,9 +13,18 @@ export function Hero() {
 
     return (
         <section id="hero" className="min-h-[90vh] flex flex-col justify-center pt-32 md:pt-48 relative overflow-hidden">
-            {/* Minimalist ambient tint */}
-            <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[120px] opacity-30 pointer-events-none" />
-            <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[100px] opacity-20 pointer-events-none" />
+            {/* Hero Background Image */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/hero-background-glassmotion.webp"
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                    priority
+                />
+                {/* Overlay to ensure text readability */}
+                <div className="absolute inset-0 bg-white/40" />
+            </div>
 
             <div className="container-width relative z-10 w-full flex flex-col items-center text-center">
 
@@ -64,6 +74,6 @@ export function Hero() {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
