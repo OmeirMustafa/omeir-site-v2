@@ -17,6 +17,7 @@ export function Hero() {
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/hero-background-glassmotion.webp"
+                    alt="Abstract glass motion background"
                     fill
                     className="object-cover"
                     sizes="100vw"
