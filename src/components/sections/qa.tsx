@@ -37,9 +37,11 @@ export function QA() {
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
                             Common Questions
                         </h2>
-                        <p className="text-slate-500 text-lg">
-                            Clarity is the foundation of trust.
-                        </p>
+                        <div className="max-w-3xl mx-auto text-center px-4 w-full">
+                            <p className="text-slate-500 text-lg">
+                                Clarity is the foundation of trust.
+                            </p>
+                        </div>
                     </div>
 
                     <div className="space-y-4 animate-fade-up delay-100">
@@ -52,7 +54,9 @@ export function QA() {
                                 >
                                     <button
                                         onClick={() => setOpenIndex(isOpen ? null : idx)}
-                                        className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
+                                        className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl"
+                                        aria-expanded={isOpen}
+                                        aria-label={isOpen ? "Collapse answer" : "Expand answer"}
                                     >
                                         <span className={`text-[18px] font-semibold transition-colors ${isOpen ? 'text-blue-700' : 'text-slate-900'}`}>
                                             {item.q}

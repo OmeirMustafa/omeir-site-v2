@@ -38,21 +38,21 @@ export function Footer() {
 
                     {/* COL 2: Services - Span 3 */}
                     <div className="md:col-span-3 space-y-6">
-                        <h4 className="text-white font-bold uppercase tracking-widest text-xs">Services</h4>
-                        <ul className="space-y-4">
-                            <li><span className="hover:text-white transition-colors cursor-default">Revenue Architecture</span></li>
-                            <li><span className="hover:text-white transition-colors cursor-default">UI/UX Audit</span></li>
-                            <li><span className="hover:text-white transition-colors cursor-default">Web Development</span></li>
-                            <li><span className="hover:text-white transition-colors cursor-default">Conversion Optimization</span></li>
+                        <h4 className="text-white font-bold uppercase tracking-widest text-xs select-none">Services</h4>
+                        <ul className="space-y-4 select-none">
+                            <li><span className="hover:text-white transition-colors cursor-pointer block focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm" tabIndex={0}>Revenue Architecture</span></li>
+                            <li><span className="hover:text-white transition-colors cursor-pointer block focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm" tabIndex={0}>UI/UX Audit</span></li>
+                            <li><span className="hover:text-white transition-colors cursor-pointer block focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm" tabIndex={0}>Web Development</span></li>
+                            <li><span className="hover:text-white transition-colors cursor-pointer block focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm" tabIndex={0}>Conversion Optimization</span></li>
                         </ul>
                     </div>
 
                     {/* COL 3: Contact - Span 4 */}
                     <div className="md:col-span-4 space-y-6">
-                        <h4 className="text-white font-bold uppercase tracking-widest text-xs">Contact</h4>
-                        <ul className="space-y-4">
+                        <h4 className="text-white font-bold uppercase tracking-widest text-xs select-none">Contact</h4>
+                        <ul className="space-y-4 select-none">
                             <li>
-                                <a href="mailto:omeirmustafa.work@gmail.com" className="flex items-center gap-3 hover:text-white transition-colors group">
+                                <a href="mailto:omeirmustafa.work@gmail.com" className="flex items-center gap-3 hover:text-white transition-colors group cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-lg p-1 -ml-1">
                                     <div className="p-2 bg-slate-800 rounded-full group-hover:bg-[#0A58FF] transition-colors">
                                         <Mail size={16} className="text-slate-300 group-hover:text-white" />
                                     </div>
@@ -60,7 +60,7 @@ export function Footer() {
                                 </a>
                             </li>
                             <li>
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-white transition-colors group">
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-white transition-colors group cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-lg p-1 -ml-1">
                                     <div className="p-2 bg-slate-800 rounded-full group-hover:bg-[#0A58FF] transition-colors">
                                         <Linkedin size={16} className="text-slate-300 group-hover:text-white" />
                                     </div>
@@ -76,11 +76,11 @@ export function Footer() {
                 <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-medium text-slate-500">
                     <p>© 2025 Omeir Mustafa. All rights reserved.</p>
 
-                    <div className="flex items-center gap-8">
-                        <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                        <Link href="#projects" className="hover:text-white transition-colors">Projects</Link>
-                        <Link href="#approach" className="hover:text-white transition-colors">Approach</Link>
-                        <Link href="#contact-section" className="hover:text-white transition-colors">Contact</Link>
+                    <div className="flex items-center gap-8 select-none">
+                        <Link href="/" className="hover:text-white transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm">Home</Link>
+                        <Link href="#projects" className="hover:text-white transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm">Projects</Link>
+                        <Link href="#approach" className="hover:text-white transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm">Approach</Link>
+                        <Link href="#contact-section" className="hover:text-white transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0A58FF] rounded-sm">Contact</Link>
                     </div>
 
                     <p className="flex items-center gap-2 hidden md:flex">

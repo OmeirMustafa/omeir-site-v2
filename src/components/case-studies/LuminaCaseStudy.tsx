@@ -60,7 +60,16 @@ export function LuminaCaseStudy() {
                         onClick={() => setIsOpen(false)}
                     />
 
-                    <div className="relative w-full max-w-[1120px] h-[100dvh] md:h-[90vh] bg-white md:rounded-[32px] shadow-2xl overflow-hidden flex flex-col md:flex-row animate-[slideUp_300ms_cubic-bezier(0.16,1,0.3,1)_forwards]">
+                    <div className="relative w-full max-w-[1120px] h-[100dvh] md:h-[90vh] bg-white md:rounded-[32px] shadow-2xl overflow-hidden flex flex-col md:flex-row animate-[slideUp_var(--duration-modal)_var(--ease-entrance)_forwards]">
+
+                        {/* Standardized Close Button (Absolute Top-Right) */}
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="absolute top-4 right-4 z-[60] w-10 h-10 bg-white rounded-full flex items-center justify-center ring-1 ring-slate-200 shadow-md hover:scale-105 active:scale-95 transition-all outline-none focus-visible:ring-2 focus-visible:ring-[#0A58FF]"
+                            aria-label="Close modal"
+                        >
+                            <X size={20} className="text-slate-600" />
+                        </button>
 
                         {/* CONTENT CONTAINER - Scrollable Area */}
                         <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide bg-white relative">
@@ -68,9 +77,6 @@ export function LuminaCaseStudy() {
                             {/* Sticky Header */}
                             <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex justify-between items-center md:hidden">
                                 <span className="font-bold text-slate-900">Lumina Law Case Study</span>
-                                <button onClick={() => setIsOpen(false)} className="p-2 bg-slate-100 rounded-full">
-                                    <X size={20} className="text-slate-600" />
-                                </button>
                             </div>
 
                             <div className="p-6 md:p-10 lg:p-12 pb-24">
@@ -82,12 +88,6 @@ export function LuminaCaseStudy() {
                                                 Lumina Law — Strategic Rebuild for Trust & Conversion
                                             </h2>
                                         </div>
-                                        <button
-                                            onClick={() => setIsOpen(false)}
-                                            className="hidden md:flex p-3 hover:bg-slate-100 rounded-full transition-colors group"
-                                        >
-                                            <X className="w-6 h-6 text-slate-400 group-hover:text-slate-900" />
-                                        </button>
                                     </div>
                                 </div>
 

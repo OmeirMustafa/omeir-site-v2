@@ -54,7 +54,7 @@ export function SmartContactModal({ isOpen, onClose }: SmartContactModalProps) {
             />
 
             {/* Modal - Dark Gradient Glass */}
-            <div className="relative w-full max-w-md bg-gradient-to-br from-[#0A58FF] to-[#5FA8FF] border border-white/20 rounded-2xl shadow-2xl p-6 md:p-8 animate-[scaleIn_320ms_cubic-bezier(0.22,1,0.36,1)_forwards] overflow-hidden">
+            <div className="relative w-full max-w-md bg-gradient-to-br from-[#0A58FF] to-[#5FA8FF] border border-white/20 rounded-2xl shadow-2xl p-6 md:p-8 animate-[scaleIn_var(--duration-modal)_var(--ease-entrance)_forwards] overflow-hidden">
 
                 {/* Internal Glow Effect */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/2" />

@@ -8,19 +8,19 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-primary' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: 'Omeir Mustafa | Conversion-Focused Web Systems',
-  description: 'I architect high-trust website rebuilds for founders and scaling teams. Turn your digital presence into a predictable revenue engine.',
+  title: 'Omeir Mustafa — Digital & Product Architect',
+  description: 'I help founders and scaling teams rebuild fragile web presences into high-trust, conversion-first systems that increase qualified inquiries and predictable revenue.',
   openGraph: {
-    title: 'Omeir Mustafa | Revenue Architecture',
-    description: 'High-trust website rebuilds for founders and scaling teams.',
-    url: 'https://omeirmustafa.com',
+    title: 'Omeir Mustafa — Digital & Product Architect',
+    description: 'I help founders and scaling teams rebuild fragile web presences into high-trust, conversion-first systems that increase qualified inquiries and predictable revenue.',
+    url: 'https://omeir-mustafa.vercel.app/',
     siteName: 'Omeir Mustafa',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://omeir-mustafa.vercel.app/social-preview.png',
         width: 1200,
         height: 630,
-        alt: 'Omeir Mustafa Portfolio',
+        alt: 'Omeir Mustafa — Digital & Product Architect',
       },
     ],
     locale: 'en_US',
@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omeir Mustafa | Revenue Architecture',
+    title: 'Omeir Mustafa — Digital & Product Architect',
     description: 'High-trust website rebuilds for founders and scaling teams.',
-    images: ['/og-image.jpg'],
+    images: ['https://omeir-mustafa.vercel.app/social-preview.png'],
   },
-  metadataBase: new URL('https://omeirmustafa.com'),
+  metadataBase: new URL('https://omeir-mustafa.vercel.app/'),
 };
 
 export default function RootLayout({
@@ -43,6 +43,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-[#F1F5F9] text-slate-800 antialiased`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:px-6 focus:py-3 focus:bg-white focus:text-[#0A58FF] focus:rounded-xl focus:shadow-xl focus:ring-2 focus:ring-[#0A58FF] focus:font-bold transition-all"
+        >
+          Skip to main content
+        </a>
         <ScrollToTop />
         <CustomCursor />
         {children}

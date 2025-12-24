@@ -30,7 +30,7 @@ export function Projects() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                         {/* Card 1: Kuro Coffee */}
-                        <div className="group glass-card rounded-3xl p-8 md:p-10 border border-[#5FA8FF]/15 hover:-translate-y-2 hover:shadow-[0_8px_26px_rgba(10,88,255,0.06)] transition-all duration-420 opacity-0 animate-[fadeUp_600ms_0.2s_forwards]">
+                        <div className="group glass-card rounded-3xl p-8 md:p-10 border border-[#5FA8FF]/15 transition-all duration-420 opacity-0 animate-[fadeUp_450ms_200ms_var(--ease-entrance)_forwards]">
                             <div className="flex justify-between items-start mb-6">
                                 <span className="text-xs font-bold tracking-widest uppercase text-slate-400 group-hover:text-[#0A58FF] transition-colors">
                                     E-Commerce Performance
@@ -50,7 +50,7 @@ export function Projects() {
                         </div>
 
                         {/* Card 2: Confidential (Locked) */}
-                        <div className="group glass-card rounded-3xl p-8 md:p-10 border border-[#5FA8FF]/15 hover:-translate-y-2 hover:shadow-[0_8px_26px_rgba(10,88,255,0.06)] transition-all duration-420 opacity-0 animate-[fadeUp_600ms_0.3s_forwards]">
+                        <div className="group glass-card rounded-3xl p-8 md:p-10 border border-[#5FA8FF]/15 transition-all duration-420 opacity-0 animate-[fadeUp_450ms_300ms_var(--ease-entrance)_forwards]">
                             <div className="flex justify-between items-start mb-6">
                                 <span className="text-xs font-bold tracking-widest uppercase text-slate-400 group-hover:text-[#0A58FF] transition-colors">
                                     Confidential

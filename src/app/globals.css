@@ -7,8 +7,8 @@
   --color-neon-dark: #0A58FF;
   --color-neon-sky: #5FA8FF;
   --grad-neon: linear-gradient(90deg, var(--color-neon-dark), var(--color-neon-sky));
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
 
   /* TYPOGRAPHY COLORS */
   --text-primary: #0B1220;
@@ -20,12 +20,14 @@
   /* MOTION TOKENS */
   --ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-micro: cubic-bezier(0.25, 0.8, 0.25, 1);
-  --duration-entrance: 420ms;
-  --duration-micro: 240ms;
-  --duration-modal: 320ms;
+  --duration-entrance: 450ms;
+  --duration-micro: 300ms;
+  --duration-modal: 350ms;
 }
 
 @layer base {
+
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -116,6 +118,37 @@
   }
 }
 
+/* gradient-text class */
+.gradient-text {
+  background: linear-gradient(90deg, var(--color-neon-dark) 0%, var(--color-neon-sky) 50%, var(--color-neon-dark) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 8s linear infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
+
 @layer utilities {
   .section-spacing {
     @apply py-32 md:py-48;
@@ -136,9 +169,9 @@
   }
 
   .glass-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 40px rgba(10, 88, 255, 0.1);
-    border-color: rgba(10, 88, 255, 0.2);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(10, 88, 255, 0.08);
+    border-color: rgba(10, 88, 255, 0.3);
   }
 
   .glass-panel {
