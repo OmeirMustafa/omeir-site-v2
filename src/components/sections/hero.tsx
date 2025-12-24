@@ -27,24 +27,29 @@ export function Hero() {
                         I help founders and scaling teams rebuild fragile web presences into high-trust, conversion-first systems that increase qualified inquiries and predictable revenue.
                     </h2>
 
-                    <div className="flex flex-col items-center gap-4 animate-fade-up delay-200 opacity-0">
+                    <div className="flex flex-col items-center gap-6 animate-fade-up delay-200 opacity-0">
                         <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                            {/* Primary CTA: Book Audit */}
-                            <a
-                                href="mailto:omeirmustafa.work@gmail.com?subject=Audit%20Request"
-                                className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-slate-900 text-white font-medium text-lg shadow-lg hover:shadow-[#0A58FF]/40 hover:bg-[#0A58FF] transition-all duration-300 hover:-translate-y-1 active:scale-95 min-w-[200px] group relative overflow-hidden"
+                            {/* Primary CTA: Book Audit (Scrolls to Contact) */}
+                            <button
+                                onClick={() => {
+                                    const contactSection = document.getElementById('contact-section');
+                                    if (contactSection) {
+                                        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                }}
+                                className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-slate-900 text-white font-medium text-xl shadow-lg hover:shadow-[#0A58FF]/40 hover:bg-[#0A58FF] transition-all duration-300 hover:-translate-y-1 active:scale-95 min-w-[220px] group relative overflow-hidden"
                             >
                                 <span className="relative z-10 flex items-center gap-2">
                                     Book an Audit
                                 </span>
                                 {/* Pulse Entry & Steady Glow */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-[#0A58FF] to-[#5FA8FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]" />
-                            </a>
+                            </button>
 
                             {/* Secondary CTA: Strategic Work */}
                             <button
                                 onClick={handleScrollProjects}
-                                className="inline-flex items-center justify-center px-5 py-3 rounded-2xl border border-slate-300 text-slate-900 font-medium text-lg shadow-sm hover:shadow-[0_0_20px_rgba(10,88,255,0.15)] hover:border-[#0A58FF]/50 transition-all hover:-translate-y-1 active:scale-95 min-w-[200px] bg-transparent group relative"
+                                className="inline-flex items-center justify-center px-6 py-4 rounded-2xl border border-slate-300 text-slate-900 font-medium text-xl shadow-sm hover:shadow-[0_0_20px_rgba(10,88,255,0.15)] hover:border-[#0A58FF]/50 transition-all hover:-translate-y-1 active:scale-95 min-w-[220px] bg-transparent group relative"
                             >
                                 <span className="relative z-10 flex items-center gap-2 group-hover:text-[#0A58FF] transition-colors">
                                     Explore Strategic Work
@@ -52,9 +57,9 @@ export function Hero() {
                             </button>
                         </div>
 
-                        {/* Microcopy */}
-                        <p className="text-sm text-gray-400 font-medium tracking-wide">
-                            30-min site & product audit — free
+                        {/* Microcopy - Clearer & Aligned */}
+                        <p className="text-[17px] text-slate-500 font-medium tracking-wide text-center">
+                            30-min site & product audit — <span className="text-[#0A58FF] font-semibold">free</span>
                         </p>
                     </div>
                 </div>

@@ -37,7 +37,7 @@ export function Navbar() {
                         aria-label="Omeir Mustafa — Digital & Product Architect"
                     >
                         {/* Primary Brand */}
-                        <div className="relative z-10 text-xl md:text-2xl font-semibold tracking-tight text-slate-900 group-hover:text-[#0A58FF] transition-colors duration-300">
+                        <div className="relative z-10 text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-[#0A58FF] to-[#5FA8FF] text-transparent bg-clip-text group-hover:from-[#0A58FF] group-hover:to-[#0A58FF] transition-all duration-300">
                             Omeir Mustafa
                         </div>
 
@@ -83,9 +83,10 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
     return (
         <Link
             href={href}
-            className="group relative px-4 py-2 text-[16px] md:text-[18px] font-medium tracking-[0.01em] text-[#5B6570] transition-all duration-200 ease-[cubic-bezier(.25,.8,.25,1)] hover:text-[#0B1220] hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(10,88,255,0.12)] focus:outline-hidden focus:ring-2 focus:ring-[#0A58FF]/50 rounded-lg select-none cursor-pointer"
+            className="group relative px-4 py-2 text-[16px] md:text-[18px] font-medium tracking-[0.01em] text-[#5B6570] transition-colors duration-200 hover:text-[#0B1220] focus:outline-hidden focus:ring-2 focus:ring-[#0A58FF]/50 rounded-lg select-none cursor-pointer overflow-hidden"
         >
             <span className="relative z-10">{children}</span>
+            <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#0A58FF] to-[#5FA8FF] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
         </Link>
     );
 }
